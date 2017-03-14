@@ -1,8 +1,8 @@
-package com.mapper;
+package cn.edu.nju.mapper;
 
 import java.util.List;
 
-import com.po.UserInfo;
+import cn.edu.nju.po.UserInfo;
 
 public interface UserInfoMapper {
 	
