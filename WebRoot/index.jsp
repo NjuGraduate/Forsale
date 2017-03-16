@@ -19,13 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
   
        <table>
-             <tr><td>用户编号</td><td>用户名</td><td>用户邮箱</td><td>phone</td></tr>
-             <c:forEach items="${alluser}" var="user">
-             
-                  <tr><td>${user.userId}</td><td>${user.userName}</td><td>${user.email}</td><td>${user.phone}</td></tr>
-             
-             </c:forEach>
-       
+             <tr><td>用户编号</td><td>用户名</td><td>用户邮箱</td><td>phone</td></tr>           
+             <tr><td>${user.userId}</td><td>${user.userName}</td><td>${user.email}</td><td>${user.phone}</td></tr>     
        </table>
   </body>
 </html>

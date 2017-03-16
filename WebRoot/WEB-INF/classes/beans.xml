@@ -39,7 +39,7 @@
 	
 	<!-- mapper接口映射 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	      <property name="basePackage" value="com.mapper"></property>
+	      <property name="basePackage" value="cn.edu.nju.mapper"></property>
 	</bean>
 
 	

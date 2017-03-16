@@ -16,6 +16,8 @@ import cn.edu.nju.po.UserInfo;
 @RequestMapping("/userinfo/")
 public class UserInfoController {
     
+	@Resource(name="userInfoMapper")
+	private UserInfoMapper userInfoMapper;
 	
 	@RequestMapping("login.do")
 	public String login(String username,String password,Model model){
@@ -23,7 +25,16 @@ public class UserInfoController {
 		UserInfo user=new UserInfo();
 		user.setUserName(username);
 		user.setPwd(password);
-		System.out.println(username+"------------------------------------------------"+password);
-		return "login";
+		UserInfo u = userInfoMapper.getUserByNameAndPwd(user);
+		if(u!=null)	
+		{
+			model.addAttribute("user", user);
+			return "index";
+		}
+		else
+		{
+			model.addAttribute("msg", "用户名或密码错误");
+			return "login";
+		}
 	}
 }
