@@ -1,7 +1,5 @@
 package cn.edu.nju.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -36,5 +34,33 @@ public class UserInfoController {
 			model.addAttribute("msg", "用户名或密码错误");
 			return "login";
 		}
+	}
+	
+	@RequestMapping("register.do")
+	public String register(String username,String password,Model model){
+		
+		UserInfo user=new UserInfo();
+		user.setUserName(username);
+		user.setPwd(password);
+		UserInfo u = userInfoMapper.getUserByNameAndPwd(user);
+		if(u!=null)	
+			//already exist
+		{
+			return "register";
+		}
+		else
+			//register success
+		{
+			return "index";
+		}
+	}
+	
+	@RequestMapping("update.do")
+	public String update(String username,String password,Model model){
+		
+		UserInfo user=new UserInfo();
+		user.setUserName(username);
+		user.setPwd(password);
+		return null;
 	}
 }
