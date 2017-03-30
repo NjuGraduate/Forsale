@@ -1,5 +1,7 @@
 package cn.edu.nju.po;
 
-public class AdvertisementInfo {
+import java.io.Serializable;
+
+public class AdvertisementInfo implements Serializable{
 
 }

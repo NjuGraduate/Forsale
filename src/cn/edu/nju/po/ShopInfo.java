@@ -1,5 +1,7 @@
 package cn.edu.nju.po;
 
-public class ShopInfo {
+import java.io.Serializable;
+
+public class ShopInfo implements Serializable{
 
 }

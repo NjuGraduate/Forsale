@@ -38,29 +38,13 @@ public class UserInfoController {
 	
 	@RequestMapping("register.do")
 	public String register(String username,String password,Model model){
-		
-		UserInfo user=new UserInfo();
-		user.setUserName(username);
-		user.setPwd(password);
-		UserInfo u = userInfoMapper.getUserByNameAndPwd(user);
-		if(u!=null)	
-			//already exist
-		{
-			return "register";
-		}
-		else
-			//register success
-		{
-			return "index";
-		}
+		//TODO
+		return null;
 	}
 	
 	@RequestMapping("update.do")
 	public String update(String username,String password,Model model){
-		
-		UserInfo user=new UserInfo();
-		user.setUserName(username);
-		user.setPwd(password);
+		//TODO		
 		return null;
 	}
 }

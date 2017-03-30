@@ -1,5 +1,14 @@
 package cn.edu.nju.mapper;
 
-public class AdvertisementInfoMapper {
+import java.util.List;
 
+import cn.edu.nju.po.AdvertisementInfo;
+
+public interface AdvertisementInfoMapper {
+	public boolean addAdvertisement(AdvertisementInfo user);
+	public boolean removeAdvertisement(AdvertisementInfo ad);
+	public boolean updateAdvertisement(AdvertisementInfo ad);
+	public List<AdvertisementInfo> getAdvertisementsLike();
+	public List<AdvertisementInfo> getAdvertisements();
+	public AdvertisementInfo getAdvertisementByName(AdvertisementInfo ad);
 }

@@ -1,9 +1,11 @@
 package cn.edu.nju.po;
 
+import java.io.Serializable;
+
 
 
 //user的实体对象
-public class UserInfo {
+public class UserInfo implements Serializable{
     private int userId;
     private String userName;
     private String pwd;
