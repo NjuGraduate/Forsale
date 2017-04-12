@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.nju.mapper.UserInfoMapper;
@@ -26,7 +27,7 @@ public class UserInfoController {
 		UserInfo u = userInfoMapper.getUserByNameAndPwd(user);
 		if(u!=null)	
 		{
-			model.addAttribute("user", user);
+			model.addAttribute("user", u);
 			return "index";
 		}
 		else
@@ -37,14 +38,26 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping("register.do")
-	public String register(String username,String password,Model model){
+	public String register(@RequestBody UserInfo info,Model model){
+		UserInfo u = userInfoMapper.getUserByNameAndPwd(info);
+		if(u!=null)	
+		{
+			model.addAttribute("msg", "用户已存在");
+			//TODO
+			return "index";
+		}
+		else
+		{
+			userInfoMapper.addUser(info);
+			return "login";
+		}
 		//TODO
-		return null;
 	}
 	
 	@RequestMapping("update.do")
-	public String update(String username,String password,Model model){
-		//TODO		
+	public String update(@RequestBody UserInfo user){
+		userInfoMapper.updateUser(user);
+		//TODO
 		return null;
 	}
 }

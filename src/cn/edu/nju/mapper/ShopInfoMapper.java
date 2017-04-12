@@ -8,7 +8,7 @@ public interface ShopInfoMapper {
 	public boolean addShop(ShopInfo user);
 	public boolean removeShop(ShopInfo co);
 	public boolean updateShop(ShopInfo co);
-	public List<ShopInfo> getShopsLike();
+	public List<ShopInfo> getShopsLike(ShopInfo co);
 	public List<ShopInfo> getShops();
 	public ShopInfo getShopByName(ShopInfo co);
 }

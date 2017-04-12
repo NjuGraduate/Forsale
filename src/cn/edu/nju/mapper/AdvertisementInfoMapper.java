@@ -8,7 +8,7 @@ public interface AdvertisementInfoMapper {
 	public boolean addAdvertisement(AdvertisementInfo user);
 	public boolean removeAdvertisement(AdvertisementInfo ad);
 	public boolean updateAdvertisement(AdvertisementInfo ad);
-	public List<AdvertisementInfo> getAdvertisementsLike();
+	public List<AdvertisementInfo> getAdvertisementsLike(String str);
 	public List<AdvertisementInfo> getAdvertisements();
 	public AdvertisementInfo getAdvertisementByName(AdvertisementInfo ad);
 }
