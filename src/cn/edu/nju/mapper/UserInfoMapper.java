@@ -8,7 +8,8 @@ public interface UserInfoMapper {
 	public boolean addUser(UserInfo user);
 	public boolean removeUser(UserInfo user);
 	public boolean updateUser(UserInfo user);
-	public List<UserInfo> getUsersLike();
+	public List<UserInfo> getUsersLike(String str);
 	public List<UserInfo> getUsers();
-	public UserInfo getUserByNameAndPwd(UserInfo user);
+	public UserInfo getUserByEmailAndPwd(UserInfo user);
+	public UserInfo getUserById(UserInfo user);
 }
