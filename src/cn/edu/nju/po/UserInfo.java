@@ -4,14 +4,12 @@ import java.io.Serializable;
 
 
 
-//user的实体对象
 public class UserInfo implements Serializable{
     private int userId;
     private String userName;
     private String pwd;
     private String email;
-    private String phone;
-    
+    private String description;
     
     
 	public int getUserId() {
@@ -37,20 +35,18 @@ public class UserInfo implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
+	}	
 	
 	@Override
 	public String toString() {
 		return "UserInfo [userId=" + userId + ", userName=" + userName
-				+ ", pwd=" + pwd + ", email=" + email + ", phone=" + phone
-				+ "]";
+				+ ", pwd=" + pwd + ", email=" + email + "]";
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
     
     

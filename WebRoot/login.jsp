@@ -5,74 +5,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css"></link>
-     <link rel="stylesheet" href="css/login.css" type="text/css"></link>
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-   
-    
-	
-  </head>
- 
-  <body>
-    
-       <div class="container">
-			<div class="row main">
-			
-			   <div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">${msg}</h1>
-	               		<hr />
-	               	</div>
-	            </div> 
-			
-			
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">登录</h1>
-	               		<hr />
-	               	</div>
-	            </div> 
-				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="userinfo/login.do">
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">用户名</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="输入用户名"/>
-								</div>
-							</div>
-						</div>
+<html lang="en">
+<head>
+	<base href="<%=basePath%>">
+    <meta charset="UTF-8">
+    <title>ForSale 登录</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/form-elements.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/retina-1.1.0.min.js"></script>
+    <script src="js/loginJS.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <span>您好！欢迎注册ForSale！</span>
+    </div>
+    <div class="content">
+        <div class="top-content">
+            <div class="inner-bg">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1><strong>ForSale</strong> 登陆</h1>
+                        <div class="description">
+                            <p>
+                                欢迎您登录ForSale二手交易网站。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            <form role="form" action="userinfo/login.do" method="post" class="login-form">
+                                <fieldset>
+                                    <div class="form-top">
+                                        <div class="form-top-left">
+                                            <p>输入您的账户信息：</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-bottom">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-email">Email</label>
+                                            <input type="text" name="form-email" placeholder="邮箱地址：" class="form-email form-control" id="form-email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-password">Password</label>
+                                            <input type="password" name="form-password" placeholder="密码：" class="form-password form-control" id="form-password">
+                                        </div>
+                                        <button type="button" class="btn btn-reg" id="regBtn">注册新用户</button>
+                                        <button type="submit" class="btn btn-log">登录</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="输入密码"/>
-								</div>
-							</div>
-						</div>
-
-						
-
-						<div class="form-group ">
-							<%--<button type="button" class="btn btn-primary btn-lg btn-block login-button">登录</button>
-						--%>
-						   <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="登录"/>
-						</div>
-
-					</form>
-				</div>
-			</div>
-		</div>
-    
-    
-    
-    
-  </body>
+        </div>
+    </div>
+</div>
+</body>
 </html>
