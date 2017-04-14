@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
         });
     // 注册按钮的判定
     $('#regBtn').click(function () {
-        window.open('register.html');
+        window.open('register.jsp');
     })
     // 提交按钮
     $('.login-form').on('submit', function(e) {
