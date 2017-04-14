@@ -47,13 +47,14 @@ public class UserInfoController {
 		user.setPwd(password);
 		user.setUserName(name);
 		user.setDescription(description);
+		System.out.println(user);
 //		UserInfo u = userInfoMapper.getUserByEmailAndPwd(user);
 //		if(u!=null){
 //		model.addAttribute("msg","fail");		
 //		}else{
 //			userInfoMapper.addUser(user);
 //		}
-		System.out.println(user);
+//		System.out.println(user);
 		//TODO
 		return "index";
 	}

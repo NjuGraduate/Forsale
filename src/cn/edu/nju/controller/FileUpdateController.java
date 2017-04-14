@@ -15,19 +15,19 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUpdateController {
 	@RequestMapping("/upload.do")
 	public String fileupload(@RequestParam(value="file",required=false) MultipartFile file,HttpServletRequest request,Model model) {
-		// TODO Auto-generated method stub
-		String path = request.getSession().getServletContext().getRealPath("/upload");
-		String Name = file.getOriginalFilename();
-//		String extName = old.substring(old.indexOf("."));
-		//requst.getServletPath()
-		File newFile = new File(path,Name);
-		try {
-			file.transferTo(newFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		// TODO Auto-generated method stub
+//		String path = request.getSession().getServletContext().getRealPath("/upload");
+//		String Name = file.getOriginalFilename();
+////		String extName = old.substring(old.indexOf("."));
+//		//requst.getServletPath()
+//		File newFile = new File(path,Name);
+//		try {
+//			file.transferTo(newFile);
+//		} catch (IllegalStateException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		return "";
 	}

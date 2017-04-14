@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -46,12 +47,9 @@
 	    </property>
 	</bean>
 	
-	<bean id="multipartResolver"
-    	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
-    	<!-- one of the properties available; the maximum file size in bytes -->
-    	<property name="maxUploadSize" value="100000"/>
-	</bean>
+	<!-- 上传文件 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<import resource="classpath:beans.xml"/>
 	
 	<!-- 配置kaptcha验证码 -->  
 	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
