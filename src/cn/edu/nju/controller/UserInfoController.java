@@ -26,7 +26,12 @@ public class UserInfoController {
 		UserInfo user=new UserInfo();
 		user.setEmail(email);
 		user.setPwd(password);
-		model.addAttribute("user",user);
+//		UserInfo u = userInfoMapper.getUserByEmailAndPwd(user);
+//		if(u!=null){
+			model.addAttribute("user",user);
+//		}else{
+//			model.addAttribute("msg","fail");
+//		}
 		//TODO
 		return "index";
 	}
@@ -42,14 +47,28 @@ public class UserInfoController {
 		user.setPwd(password);
 		user.setUserName(name);
 		user.setDescription(description);
+//		UserInfo u = userInfoMapper.getUserByEmailAndPwd(user);
+//		if(u!=null){
+//		model.addAttribute("msg","fail");		
+//		}else{
+//			userInfoMapper.addUser(user);
+//		}
 		System.out.println(user);
 		//TODO
 		return "index";
 	}
 	
 	@RequestMapping("update.do")
-	public String update(@RequestBody UserInfo user){
-		userInfoMapper.updateUser(user);
+	public String update(HttpServletRequest request,Model model){
+		String email = request.getParameter("form-email");
+		String password = request.getParameter("form-password");
+		String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
+		String description = request.getParameter("form-about-yourself");
+		UserInfo user = new UserInfo();
+		user.setPwd(password);
+		user.setUserName(name);
+		user.setDescription(description);
+//		userInfoMapper.updateUser(user);
 		//TODO
 		return null;
 	}
