@@ -1,0 +1,23 @@
+.advertisementDetail{
+    width: 100%;
+    height: auto;
+    margin: 20px 0px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 5px 5px;
+}
+.advertisementDetail img{
+    margin: 10px 105px 0px 105px;
+    width: 80%;
+    border-radius: 5px 5px;
+    height: auto;
+}
+.recommended{
+    margin: 10px 105px 10px 105px;
+}
+.recommended div{
+    display: inline-block;
+    width: 19%;
+    height: 100px;
+    border-radius: 5px 5px;
+    background-color: rgba(255,255,2555,0.3);
+}

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ForSale 二手交易网站</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/advertisement.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/jquery-3.1.1.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/Menu.js"></script>
+    <script src="../js/clothes/advertisement.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <span>Hi! Welcome to Forsale</span>
+                <span><a href="./login.html">请登录</a></span>
+                <span><a href="./register.html">免费注册</a></span>
+            </div>
+            <div class="header-right">
+                <ul id="menu">
+                    <li>
+                        <a href="">二手网首页</a>
+                        <ul><li><a href="index.html">回到首页</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="">我的二手</a>
+                        <ul id="myForSale">
+                            <li><a href="">我的二手</a></li>
+                            <li><a href="">已买的二手</a></li>
+                            <li><a href="">我要置换</a></li>
+                            <li><a href="">浏览足迹</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">购物车</a>
+                        <ul id="myCart">
+                            <li><a href="">查看我的购物车</a></li>
+                            <li><a href="">近期购入</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">卖家中心</a>
+                        <ul id="seller">
+                            <li><a href="">我的卖品</a></li>
+                            <li><a href="">我的店铺</a></li>
+                            <li><a href="">已卖出的宝贝</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">联系客服</a>
+                        <ul id="serviceCenter">
+                            <li><a href="">卖家客服</a></li>
+                            <li><a href="">买家客服</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">用户指南</a>
+                        <ul id="guideBook">
+                            <li><a href="">卖家指南</a></li>
+                            <li><a href="">买家指南</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control input-lg">
+            <span class="input-group-addon btn btn-primary searchBtn"><strong>搜索</strong></span>
+        </div>
+        <div class="nav nav-tabs" id="myTab">
+            主题市场
+            <div class="design" id="leftcolumn">
+                <a href="./clothes.html" data-toggle="tab" target="_self">女装/男装/内衣
+                    <span>&raquo;</span></a>
+                <a href="./shoes.html" data-toggle="tab" target="_self">鞋靴/箱包/配件
+                    <span>&raquo;</span></a>
+                <a href="./digit.html" data-toggle="tab" target="_self">家电/数码/手机
+                    <span>&raquo;</span></a>
+                <a href="./cosmetics.html" data-toggle="tab" target="_self">美妆/洗护/保健品
+                    <span>&raquo;</span></a>
+                <a href="./watch.html" data-toggle="tab" target="_self">珠宝/眼镜/手表
+                    <span>&raquo;</span></a>
+                <a href="./sports.html" data-toggle="tab" target="_self">运动/户外/乐器
+                    <span>&raquo;</span></a>
+                <a href="./house.html" data-toggle="tab" target="_self">房产/装修/材料
+                    <span>&raquo;</span></a>
+                <a href="./cars.html" data-toggle="tab" target="_self">汽车/二手车/用品
+                    <span>&raquo;</span></a>
+                <a href="./furniture.html" data-toggle="tab" target="_self">家具/家饰/家纺
+                    <span>&raquo;</span></a>
+            </div>
+        </div>
+        <div class="advertisement" id="banner">
+            <div class="adPic">
+                <img src="../images/index/advertisement/1.jpg"
+                     title="旗下淘宝平台" style="display: block">
+                <img src="../images/index/advertisement/2.jpg" title="旗下新浪平台">
+                <img src="../images/index/advertisement/3.jpg" title="旗下咸鱼平台">
+                <img src="../images/index/advertisement/4.jpg" title="旗下58同城">
+                <img src="../images/index/advertisement/5.jpg" title="签约艺人科比-布莱恩特">
+            </div>
+            <div class="lib">
+                <span class="defaultSpan"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="#" id="left"><img src="../images/arrow1.png" alt=""></a>
+            <a href="#" id="right"><img src="../images/arrow2.png" alt=""></a>
+        </div>
+        <footer class="container-fluid foot-wrap">
+            <!--采用container，使得页尾内容居中 -->
+            <div class="container">
+                <div class="row">
+                    <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                        <h3>Subscribe</h3>
+                        <ul>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">RSS feed</a></li>
+                            <li><a href="#">RSS to Email</a></li>
+                            <li><a href="#">Product Hunt</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Pinterest</a></li>
+                            <li><a href="#">Google+</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                        <h3>BROWSE</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">Templates</a></li>
+                            <li><a href="#">Resources</a></li>
+                            <li><a href="#">OPL Themes</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                        <h3>INFORMATION</h3>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Why One Page?</a></li>
+                            <li><a href="#">OPL Blog</a></li>
+                            <li><a href="#">Product Hunt</a></li>
+                            <li><a href="#">Advertise</a></li>
+                            <li><a href="#">Submit</a></li>
+                            <li><a href="#">Award Ribbons</a></li>
+                            <li><a href="#">Roadmap</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                        <h3>RESOURCES</h3>
+                        <ul>
+                            <li><a href="#">Browse All</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                            <li><a href="#">Round Ups</a></li>
+                            <li><a href="#">Tutorials</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                        <h3>TRENDING</h3>
+                        <ul>
+                            <li><a href="#">Big Typography</a></li>
+                            <li><a href="#">Free Templates</a></li>
+                            <li><a href="#">Most Loved</a></li>
+                            <li><a href="#">Centrally Divided</a></li>
+                            <li><a href="#">Skrollr.js</a></li>
+                            <li><a href="#">Parallax Scrolling</a></li>
+                            <li><a href="#">Off-Canvas Menu</a></li>
+                            <li><a href="#">Molecules</a></li>
+                        </ul>
+                    </div>
+                    <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                        <h3>OPL THEMES</h3>
+                        <ul>
+                            <li><a href="#">Browse All</a></li>
+                            <li><a href="#">East Java</a></li>
+                            <li><a href="#">Clutterless</a></li>
+                            <li><a href="#">Mapped</a></li>
+                        </ul>
+                    </div>
+
+                </div><!--/.row -->
+            </div><!--/.container-->
+
+            <!-- 社交图标列表，其中图标采用的是Font Awesome图标字体库-->
+            <ul class="social">
+                <li>
+                    <a href="#" title="Twitter Profile">
+                        <span class="icon fa fa-twitter"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="Facebook Page">
+                        <span class="icon fa fa-facebook"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="LinkedIn Profile">
+                        <span class="icon fa fa-linkedin"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="Goole+ Profile">
+                        <span class="icon fa fa-google"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="Github Profile">
+                        <span class="icon fa fa-github"></span>
+                    </a>
+                </li>
+            </ul>
+            <p align="center" style="margin-top: 20px;color:#878B91;">
+                Copyright &copy;2015 Dreyer
+            </p>
+
+        </footer>
+    </div>
+</body>
+</html>
