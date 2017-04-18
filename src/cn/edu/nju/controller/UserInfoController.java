@@ -21,54 +21,60 @@ public class UserInfoController {
 	
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request,Model model){
-		String email = request.getParameter("form-email");
+		String account = request.getParameter("form-email");
 		String password = request.getParameter("form-password");
 		UserInfo user=new UserInfo();
-		user.setEmail(email);
-		user.setPwd(password);
-//		UserInfo u = userInfoMapper.getUserByEmailAndPwd(user);
-//		if(u!=null){
+		user.setAccount(account);
+		user.setPassword(password);
+		System.out.println(user);
+		UserInfo u = userInfoMapper.getUserByAccountAndPwd(user);
+		System.out.println(u);
+		if(u!=null){
 			model.addAttribute("user",user);
-//		}else{
-//			model.addAttribute("msg","fail");
-//		}
-		//TODO
-		return "index";
+			return "index";
+		}else{
+			model.addAttribute("msg","fail");
+			return "login";
+		}
 	}
 	
 	@RequestMapping("register.do")
 	public String register(HttpServletRequest request,Model model){
-		String email = request.getParameter("form-email");
+		String account = request.getParameter("form-email");
 		String password = request.getParameter("form-password");
 		String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
-		String description = request.getParameter("form-about-yourself");
+		String des = request.getParameter("form-about-yourself");
 		UserInfo user = new UserInfo();
-		user.setEmail(email);
-		user.setPwd(password);
-		user.setUserName(name);
-		user.setDescription(description);
+		user.setAccount(account);
+		user.setPassword(password);
+		user.setName(name);
+		user.setDescription(des);
+		user.setBalance(0.0);
+		user.setRank(1);
 		System.out.println(user);
-//		UserInfo u = userInfoMapper.getUserByEmailAndPwd(user);
-//		if(u!=null){
-//		model.addAttribute("msg","fail");		
-//		}else{
-//			userInfoMapper.addUser(user);
-//		}
-//		System.out.println(user);
-		//TODO
-		return "index";
+		UserInfo u = userInfoMapper.getUserByAccount(user);
+		System.out.println(u);
+		if(u==null){
+			userInfoMapper.addUser(user);
+			model.addAttribute("user",user);
+			return "login";
+		}else{
+			model.addAttribute("msg","fail");
+			return "register";
+		}
 	}
 	
 	@RequestMapping("update.do")
 	public String update(HttpServletRequest request,Model model){
-		String email = request.getParameter("form-email");
+		String account = request.getParameter("form-email");
 		String password = request.getParameter("form-password");
 		String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
-		String description = request.getParameter("form-about-yourself");
+		String des = request.getParameter("form-about-yourself");
 		UserInfo user = new UserInfo();
-		user.setPwd(password);
-		user.setUserName(name);
-		user.setDescription(description);
+		user.setAccount(account);
+		user.setPassword(password);
+		user.setName(name);
+		user.setDescription(des);
 //		userInfoMapper.updateUser(user);
 		//TODO
 		return null;

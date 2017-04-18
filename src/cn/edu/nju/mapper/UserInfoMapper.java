@@ -10,6 +10,6 @@ public interface UserInfoMapper {
 	public boolean updateUser(UserInfo user);
 	public List<UserInfo> getUsersLike(String str);
 	public List<UserInfo> getUsers();
-	public UserInfo getUserByEmailAndPwd(UserInfo user);
-	public UserInfo getUserById(UserInfo user);
+	public UserInfo getUserByAccountAndPwd(UserInfo user);
+	public UserInfo getUserByAccount(UserInfo user);
 }

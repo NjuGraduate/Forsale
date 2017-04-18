@@ -5,50 +5,54 @@ import java.io.Serializable;
 
 
 public class UserInfo implements Serializable{
-    private int userId;
-    private String userName;
-    private String pwd;
-    private String email;
-    private String description;
+    private String name;
     
-    
-	public int getUserId() {
-		return userId;
+	private String account;
+    private String password;
+    private Double balance;
+    private int rank;
+    private String des;
+    public String getName() {
+		return name;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getUserName() {
-		return userName;
+	public String getAccount() {
+		return account;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setAccount(String account) {
+		this.account = account;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getEmail() {
-		return email;
+	public Double getBalance() {
+		return balance;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}	
-	
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public String getDes() {
+		return des;
+	}
+	public void setDescription(String des) {
+		this.des = des;
+	}
 	@Override
 	public String toString() {
-		return "UserInfo [userId=" + userId + ", userName=" + userName
-				+ ", pwd=" + pwd + ", email=" + email + "]";
+		return "UserInfo [name=" + name + ", account=" + account
+				+ ", password=" + password + ", balance=" + balance + ", rank="
+				+ rank + ", des="
+				+ des + "]";
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-    
-    
-    
 }

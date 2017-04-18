@@ -11,34 +11,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="password" column="password"/>
       <result property="balance" column="balance"/>
       <result property="rank" column="rank"/>
-      <result property="address" column="address"/>
       <result property="des" column="des"/>
    </resultMap>
      
    <insert id="addUser" parameterType="UserInfo">
-        insert into User(name,account,password,balance,rank,address,des) values(#{name},#{account},#{password},#{balance},#{rank},#{address},#{des})
+        insert into User(name,account,password,balance,rank,des) values(#{name},#{account},#{password},#{balance},#{rank},#{des})
    </insert>
    
    
    <delete id="removeUser" parameterType="UserInfo">
-        delete * from user where account=#{account};
+        delete * from user where account=#{account}
    </delete>
    
    <update id="updateUser" parameterType="UserInfo">
-        update user set(name=#{name},password=#{password},address=#{address},des=#{des}) where account=#{account};
+        update user set(name=#{name},password=#{password},des=#{des}) where account=#{account}
    </update>
    
-   <select id="getUsersLike" resultMap="usermap" parameterType="name">
-        select * from user where name like '%#{name}%';
+   <select id="getUsersLike" parameterType="UserInfo" resultMap="usermap">
+        select * from user where name like '%#{name}%'
    </select>
+   
    
    <select id="getUsers" resultMap="usermap">
-        select * from user;
+        select * from user
    </select>
    
    
-   <select id="getUserByAccountAndPwd" resultMap="usermap" parameterType="UserInfo">
-        select * from user where account=#{account} and password=#{password};
+   <select id="getUserByAccountAndPwd" parameterType="UserInfo" resultMap="usermap">
+        select * from user where account=#{account} and password=#{password}
+   </select>
+   
+   <select id="getUserByAccount" parameterType="UserInfo" resultMap="usermap">
+        select * from user where account=#{account}
    </select>
   
 </mapper>
