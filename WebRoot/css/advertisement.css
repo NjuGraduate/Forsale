@@ -57,12 +57,12 @@
 #banner a img:hover{
     opacity: 1;
 }
-#banner #left{
+#banner .left{
     position: absolute;
     top: 118px;
     left:55px;
  }
-#banner #right{
+#banner .right{
     position: absolute;
     top: 118px;
     right:105px;
