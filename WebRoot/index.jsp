@@ -25,7 +25,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <style>
+		#myTab{
+			padding: 0px;
+		}
+		#myTab li {
+			width:100%;
+		}
+		
+	</style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">

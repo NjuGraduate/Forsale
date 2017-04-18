@@ -101,10 +101,10 @@ ul#menu>li>a.ui-menu-item-wrapper {
     border-radius: 5px 5px;
     background-color: #f2f2f2;
 }
-#myTab{
+.design #myTab{
     padding:0;
 }
-#myTab li{
+.design #myTab li{
     width: 100%;
 }
 .design a {
