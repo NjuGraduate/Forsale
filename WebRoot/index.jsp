@@ -41,14 +41,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="header">
             <div class="header-left">
                 <span>Hi! Welcome to Forsale</span>
-                <span><a href="./login.html">请登录</a></span>
-                <span><a href="./register.html">免费注册</a></span>
+                <span><a href="./login.jsp">请登录</a></span>
+                <span><a href="./register.jsp">免费注册</a></span>
             </div>
             <div class="header-right">
                 <ul id="menu">
                     <li>
                         <a href="">二手网首页</a>
-                        <ul><li><a href="index.html">回到首页</a></li></ul>
+                        <ul><li><a href="./index.jsp">回到首页</a></li></ul>
                     </li>
                     <li>
                         <a href="">我的二手</a>
