@@ -79,4 +79,10 @@ public class UserInfoController {
 		//TODO
 		return null;
 	}
+	
+	@RequestMapping("forget.do")
+	public String forget(HttpServletRequest request,Model model){
+		//TODO
+		return null;
+	}
 }
