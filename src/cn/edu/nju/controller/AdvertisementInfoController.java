@@ -34,9 +34,9 @@ public class AdvertisementInfoController {
 	}
 	
 	@RequestMapping("removeAdvertisement.do")
-	public String removeAdvertisement(String adId){
+	public String removeAdvertisement(String title){
 		AdvertisementInfo ad = new AdvertisementInfo();
-		ad.setAdvertisementId(Integer.parseInt(adId));
+		ad.setTitle(title);;
 		advertisementInfoMapper.removeAdvertisement(ad);
 		return null;
 	}
