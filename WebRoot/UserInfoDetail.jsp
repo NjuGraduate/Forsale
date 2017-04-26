@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <div class="nav nav-tabs useTab">
-            <img src="../images/userLogo/logo1.jpg" class="userLogo">
+            <img src="./images/userLogo/logo1.jpg" class="userLogo">
             <div class="design" id="leftColumn">
                 <ul id="myTab">
                     <li class="active"><a href="#xw1" data-toggle="tab">个人资料<span>&raquo;</span></a></li>
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <p>登录邮箱：</p>
                 <p>绑定手机：</p>
             </div>
-            <img src="../images/components/line.png" class="line">
+            <img src="./images/components/line.png" class="line">
             <p class="detailTitle">您的安全服务</p>
             <div class="detailBase">
                 <div id="accordion">
@@ -130,12 +130,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                 </div>
             </div>
-            <img src="../images/components/line.png" class="line">
+            <img src="./images/components/line.png" class="line">
             <div class="tab-content">
                 <div class="tab-pane active fade in" id="xw1">
                     <p><strong>个人资料</strong></p>
                     <p>请您输入准确的个人信息便于您完成交易<p/>
-                    当前头像：<img src="../images/userLogo/logo1.jpg" class="userLogo"><br><br>
+                    当前头像：<img src="./images/userLogo/logo1.jpg" class="userLogo"><br><br>
                     当前昵称：<input type="text" placeholder="查无此人"><br><br>
                     真实姓名：<input type="text" placeholder="刘昌鑫"><br><br>
                     <form>
