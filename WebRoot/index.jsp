@@ -51,9 +51,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <ul><li><a href="./index.jsp">回到首页</a></li></ul>
                     </li>
                     <li>
-                        <a href="">我的二手</a>
+                        <a href="./html/UserInfoDetail.html">我的二手</a>
                         <ul id="myForSale">
-                            <li><a href="">我的二手</a></li>
+                            <li><a href="./html/UserInfoDetail.html">我的二手</a></li>
                             <li><a href="">已买的二手</a></li>
                             <li><a href="">我要置换</a></li>
                             <li><a href="">浏览足迹</a></li>
