@@ -8,7 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-	<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>ForSale 二手交易网站</title>
     <link rel="stylesheet" href="css/common.css">
@@ -19,7 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/form-elements.css">
+    <!--content的各种样式表-->
     <link rel="stylesheet" href="css/indexContent/clothes.css">
+
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/Menu.js"></script>
@@ -27,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
 </head>
-
 <body>
 <div class="container">
     <div class="header">
@@ -160,22 +160,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="tab-content advertisement" id="banner">
         <div class="tab-pane active fade in" id="xw1">
             <div class="adPic">
-                <img src="./images/index/advertisement/1.jpg"
+                <img src="./images/clothes/advertisement/018.jpg"
                      title="旗下淘宝平台" style="display: block">
-                <img src="./images/clothes/advertisement/2.jpg" title="旗下新浪平台">
-                <img src="./images/clothes/advertisement/3.jpg" title="旗下咸鱼平台">
-                <img src="./images/clothes/advertisement/4.jpg" title="旗下58同城">
-                <img src="./images/clothes/advertisement/5.jpg" title="签约艺人科比-布莱恩特">
+                <img src="./images/clothes/advertisement/010.jpg" title="旗下新浪平台">
+                <img src="./images/clothes/advertisement/015.jpg" title="旗下咸鱼平台">
+                <img src="./images/clothes/advertisement/016.jpg" title="旗下58同城">
+                <img src="./images/clothes/advertisement/017.jpg" title="签约艺人科比-布莱恩特">
             </div>
         </div>
         <div class="tab-pane" id="xw2">
             <div class="adPic">
-                <img src="./images/index/advertisement/1.jpg"
+                <img src="./images/shoes/advertisement/1.jpg"
                      title="旗下淘宝平台" style="display: block">
-                <img src="./images/clothes/advertisement/2.jpg" title="旗下新浪平台">
-                <img src="./images/clothes/advertisement/3.jpg" title="旗下咸鱼平台">
-                <img src="./images/clothes/advertisement/4.jpg" title="旗下58同城">
-                <img src="./images/clothes/advertisement/5.jpg" title="签约艺人科比-布莱恩特">
+                <img src="./images/shoes/advertisement/2.jpg" title="旗下新浪平台">
+                <img src="./images/shoes/advertisement/3.jpg" title="旗下咸鱼平台">
+                <img src="./images/shoes/advertisement/4.jpg" title="旗下58同城">
+                <img src="./images/shoes/advertisement/5.jpg" title="签约艺人科比-布莱恩特">
             </div>
         </div>
         <div class="tab-pane" id="xw3">
@@ -261,69 +261,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="tab-content clothesContent">
         <div class="tab-pane active fade in femaleClothes" id="content1">
             <h4>女装专栏</h4>
-            <div>女装1</div>
-            <div>女装2</div>
-            <div>女装3</div>
-            <div>女装4</div>
-            <div>女装5</div>
-            <div>女装6</div>
-            <div>女装7</div>
+            <div><img src="./images/clothes/female/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/female/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/female/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/female/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/female/010.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/female/013.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/female/008.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
             <img src="./images/components/line.png">
             <h4>男装专栏</h4>
-            <div>男装1</div>
-            <div>男装2</div>
-            <div>男装1</div>
-            <div>男装1</div>
-            <div>男装1</div>
-            <div>男装1</div>
-            <div>男装1</div>
+            <div><img src="./images/clothes/male/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/male/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/male/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/male/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/male/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/male/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/male/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
             <img src="./images/components/line.png">
             <h4>内衣专栏</h4>
-            <div>内衣</div>
-            <div>内衣</div>
-            <div>内衣</div>
-            <div>内衣</div>
-            <div>内衣</div>
-            <div>内衣</div>
-            <div>内衣</div>
+            <div><img src="./images/clothes/under/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/under/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/under/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/under/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/under/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/under/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/clothes/under/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
         </div>
         <div class="tab-pane fade in femaleClothes" id="content2">
             <h4>鞋靴专栏</h4>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
+            <div><img src="./images/shoes/shoes/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/shoes/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/shoes/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/shoes/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/shoes/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/shoes/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/shoes/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
             <img src="./images/components/line.png">
             <h4>箱包专栏</h4>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
+            <div><img src="./images/shoes/bags/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/bags/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/bags/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/bags/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/bags/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/bags/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/bags/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
             <img src="./images/components/line.png">
             <h4>配件专栏</h4>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
+            <div><img src="./images/shoes/music/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/006.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/007.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
         </div>
