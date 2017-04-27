@@ -1,0 +1,30 @@
+.clothesContent{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 20px 0px;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.clothesContent h4{
+    margin:0px auto;
+    padding-top: 10px;
+    text-align: center;
+}
+.clothesContent .femaleClothes div{
+    width: 145px;
+    height: 160px;
+    margin: 15px 5px;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.4);
+}
+.clothesContent span{
+    margin-right: 40px;
+    float: right;
+}
+.clothesContent img{
+    opacity: 0.3;
+    width: 100%;
+}
