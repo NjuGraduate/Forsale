@@ -281,7 +281,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/clothes/male/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <img src="./images/components/line.png" class="">
             <h4>内衣专栏</h4>
             <div><img src="./images/clothes/under/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/clothes/under/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
