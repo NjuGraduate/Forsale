@@ -10,5 +10,5 @@ public interface AdvertisementInfoMapper {
 	public boolean updateAdvertisement(AdvertisementInfo ad);
 	public List<AdvertisementInfo> getAdvertisementsLike(String str);
 	public List<AdvertisementInfo> getAdvertisements();
-	public AdvertisementInfo getAdvertisementByName(AdvertisementInfo ad);
+	public AdvertisementInfo getAdvertisementById(AdvertisementInfo ad);
 }

@@ -33,8 +33,8 @@ public class ManagerActionInfoController {
 		return null;
 	}
 	
-	@RequestMapping("removeUser.do")
-	public String removeUser(String username){
+	@RequestMapping("banUser.do")
+	public String banUser(String username){
 		//TODO
 		return null;
 	}
