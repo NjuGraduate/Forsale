@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="header">
-        <div class="header-left">
+        <div class="header-left" >
             <span>Hi! Welcome to Forsale</span>
-            <span><a href="./login.jsp">请登录</a></span>
-            <span><a href="./register.jsp">免费注册</a></span>
+            <span><a href="./login.jsp" class="header-text1"></a></span>
+            <span><a href="./register.jsp" class="header-text2"></a></span>
         </div>
         <div class="header-right">
             <ul id="menu">

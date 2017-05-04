@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
+	<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>ForSale 二手交易网站</title>
     <link rel="stylesheet" href="css/common.css">
@@ -28,6 +29,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+    	$(document).ready(function () {
+			test(${user});
+		});
+		
+		function test(account){
+			let temp = document.getElementsByClassName("header-text1")[0];
+			let temp2 = document.getElementsByClassName("header-text2")[0];
+			if(!account){
+				temp.innerHTML="请登录";
+				temp2.innerHTML = "免费注册";
+			}else{
+				temp.innerHTML = account.account;
+				temp2.innerHTML = "欢迎您！";
+			}
+		}
+    </script>
 </head>
 <body>
 <div class="container">

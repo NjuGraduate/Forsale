@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="inner-bg">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1><strong>ForSale</strong> 登陆</h1>
+                        <h1><strong>ForSale</strong> 登录</h1>
                         <div class="description">
                             <p>
                                 欢迎您登录ForSale二手交易网站。
