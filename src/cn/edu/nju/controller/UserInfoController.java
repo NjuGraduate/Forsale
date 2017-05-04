@@ -77,7 +77,7 @@ public class UserInfoController {
 		user.setDescription(des);
 //		userInfoMapper.updateUser(user);
 		//TODO
-		return null;
+		return "UserInfoDetail";
 	}
 	
 	@RequestMapping("forget.do")
