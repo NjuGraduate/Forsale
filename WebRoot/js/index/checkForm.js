@@ -3,7 +3,6 @@
  */
 function checkForm(){
     var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    alert(1);
     var mail = document.getElementById("form-email").value;
     if(checkPassword()){
         if (filter.test(mail))
@@ -26,4 +25,9 @@ function checkPassword() {
         alert("两次密码输入不一致!");
         return false;
     }
+}
+function checkUserEmail() {
+    // 获得文件框值:
+    var email = document.getElementById("form-email").value;
+    alert("请确认您的邮箱是第一次在本网站注册！");
 }

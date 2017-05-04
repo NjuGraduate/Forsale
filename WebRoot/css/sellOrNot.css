@@ -1,0 +1,45 @@
+.exchangeTitle{
+    display: inline-block;
+    width: 16%;
+    position: relative;
+}
+.exchangeContainer{
+    margin-top: 10px;
+    display: inline-block;
+    width: 83%;
+    float: right;
+}
+.exchangeTitle .nav{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 140px;
+    width: 100%;
+}
+
+.exchangeGoods{
+    margin: 10px 5px 0 5px;
+    width: 23%;
+    display: inline-block;
+    height: auto;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.3);
+}
+.exchangeGoods img{
+    width: 100%;
+    border-radius: 5px;
+}
+.exchangeGoods p span{
+    color: #ce8483;
+    font-weight: 700;
+    font-size: 16px;
+}
+.exchangeGoods p{
+    height: 120px;
+    overflow: hidden;
+}
+
+.pos{
+    width: 100%;
+    height: 220px;
+}

@@ -12,11 +12,13 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/retina-1.1.0.min.js"></script>
 	<script src="../js/scripts.js"></script>
+	<script src="../js/index/checkForm.js"></script>
 	<style>
 		.container{
 			height: 800px;
 		}
 	</style>
+
 
 </head>
 <body>
@@ -39,7 +41,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3 form-box">
-								<form role="form" action="index.html" method="post" class="registration-form">
+								<form role="form" action="index.html" method="post" class="registration-form" onsubmit="return checkForm()">
 									<fieldset>
 										<div class="form-top">
 											<div class="form-top-left">
@@ -80,7 +82,7 @@
 										<div class="form-bottom">
 											<div class="form-group">
 												<label class="sr-only" for="form-email">Email</label>
-												<input type="text" name="form-email" placeholder="邮箱地址：" class="form-email form-control" id="form-email">
+												<input type="text" name="form-email" placeholder="邮箱地址：" class="form-email form-control" id="form-email" onblur="checkUserEmail()">
 											</div>
 											<div class="form-group">
 												<label class="sr-only" for="form-password">Password</label>
@@ -92,7 +94,7 @@
 													   class="form-repeat-password form-control" id="form-repeat-password">
 											</div>
 											<button type="button" class="btn btn-previous">上一步</button>
-											<button type="submit" class="btn btn-next">完成注册</button>
+											<button type="submit" class="btn submit">完成注册</button>
 										</div>
 									</fieldset>
 								</form>
