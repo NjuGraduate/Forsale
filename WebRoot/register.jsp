@@ -20,6 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/jquery.backstretch.min.js"></script>
 	<script src="js/retina-1.1.0.min.js"></script>
 	<script src="js/scripts.js"></script>
+	<script src="js/index/checkForm.js"></script>
 	<style>
 		.container{
 			height: 800px;
@@ -46,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3 form-box">
-								<form role="form" action="userinfo/register.do" method="post" class="registration-form">
+								<form role="form" action="userinfo/register.do" method="post" class="registration-form" onsubmit="return checkForm()">
 									<fieldset>
 										<div class="form-top">
 											<div class="form-top-left">

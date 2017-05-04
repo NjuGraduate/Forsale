@@ -9,5 +9,5 @@ public interface PostInfoMapper {
 	public boolean removePost(PostInfo user);
 	public List<PostInfo> getPostsLike();
 	public List<PostInfo> getPosts();
-	public PostInfo getPostByNameAndPwd(PostInfo post);
+	public PostInfo getPostById(PostInfo post);
 }

@@ -1,6 +1,7 @@
 .goodsDesc {
     width: 100%;
     height: 30%;
+    border-radius: 5px;
     background-color: rgba(255,255,255,0.3);
     margin-top: 20px;
 }
@@ -26,27 +27,35 @@
     border-radius: 5px;
     position: relative;
 }
+.goodsLogo{
+    border-radius: 5px;
+}
 .logoDesc .title{
     margin-top: 5px;
     margin-left: 10px;
-    line-height: 26px;
     font-size: 20px;
 }
 .logoDesc .priceDiv{
-    background-color: #d6e9c6;
-    margin-top: 30px;
+    background-color: #ddd;
+    opacity: 0.7;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 .logoDesc .priceDiv p{
     margin-left: 10px;
     margin-top: 5px;
 }
-.logoDesc .priceDiv .priceNow{
+.priceDiv .priceDiv{
+    padding-top: 10px;
+}
+.priceDiv .priceNow{
+    padding-bottom: 10px;
     font-size: 20px;
     font-weight: 500;
     color: red;
 }
 .logoDesc .color{
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 20px;
     margin-left: 10px;
 }

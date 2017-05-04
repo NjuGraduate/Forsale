@@ -1,0 +1,60 @@
+.sellerTitle{
+    margin: 20px 0 5px 0;
+    width: 100%;
+    height: auto;
+    background:rgba(255,255,255,0.3);
+    border-radius: 5px;
+}
+.sellerLogo{
+    display: inline-block;
+    width: 20%;
+    height: 160px;
+    border-radius: 10px;
+}
+.sellerTitleContainer{
+    display: inline-block;
+    width: 79%;
+}
+.exchangeGoods{
+    margin: 10px 5px 0 5px;
+    width: 23%;
+    display: inline-block;
+    height: auto;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.3);
+}
+.exchangeGoods img{
+    width: 100%;
+    border-radius: 5px;
+}
+.exchangeGoods p span{
+    color: #ce8483;
+    font-weight: 700;
+    font-size: 16px;
+}
+.exchangeGoods p{
+    height: 120px;
+    overflow: hidden;
+}
+.sellerGoods{
+    margin-top: 15px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.3);
+}
+.sellerGoods .line{
+    opacity: 0.5;
+    width: 100%;
+}
+.sellerGoods h2{
+    padding-top: 20px;
+    margin-left: 45%;
+    font-weight: 600;
+    color: #777;
+}
+.sellerGoods .add{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    padding-left: 40px;
+}
