@@ -263,8 +263,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/shoes/music/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/music/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/music/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/006.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/007.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/001.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/002.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
              
         </div>
         <div class="femaleClothes tab-pane fade in" id="content3">

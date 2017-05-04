@@ -5,13 +5,14 @@ function checkForm(){
     var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var mail = document.getElementById("form-email").value;
     if(checkPassword()){
-        if (filter.test(mail))
+        if (checkUserEmail())
             return true;
         else {
             alert('您的电子邮件格式不正确');
             return false;
         }
     }else{
+        alert("您的密码不正确");
         return false;
     }
 }
@@ -24,10 +25,19 @@ function checkPassword() {
     if(repeatPassword != password){
         alert("两次密码输入不一致!");
         return false;
+    }else{
+    	return true;
     }
 }
 function checkUserEmail() {
+    var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     // 获得文件框值:
     var email = document.getElementById("form-email").value;
-    alert("请确认您的邮箱是第一次在本网站注册！");
+    if(filter.test(email)){
+        return true;
+    }
+    else {
+        alert('您的电子邮件格式不正确');
+        return false;
+    }
 }
