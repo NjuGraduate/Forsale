@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
@@ -30,61 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <div class="header-left">
-            <span>Hi! Welcome to Forsale</span>
-            <span><a href="./login.jsp">请登录</a></span>
-            <span><a href="./register.jsp">免费注册</a></span>
-        </div>
-        <div class="header-right">
-            <ul id="menu">
-                <li>
-                    <a href="">二手网首页</a>
-                    <ul>
-                        <li><a href="./index.jsp">回到首页</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="./UserInfoDetail.jsp">我的二手</a>
-                    <ul id="myForSale">
-                        <li><a href="./UserInfoDetail.jsp">我的二手</a></li>
-                        <li><a href="">已买的二手</a></li>
-                        <li><a href="">我要置换</a></li>
-                        <li><a href="">浏览足迹</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">购物车</a>
-                    <ul id="myCart">
-                        <li><a href="">查看我的购物车</a></li>
-                        <li><a href="">近期购入</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">卖家中心</a>
-                    <ul id="seller">
-                        <li><a href="">我的卖品</a></li>
-                        <li><a href="">我的店铺</a></li>
-                        <li><a href="">已卖出的宝贝</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">联系客服</a>
-                    <ul id="serviceCenter">
-                        <li><a href="">卖家客服</a></li>
-                        <li><a href="">买家客服</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">用户指南</a>
-                    <ul id="guideBook">
-                        <li><a href="">卖家指南</a></li>
-                        <li><a href="">买家指南</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <%@ include file="Header.jsp" %>
     <div class="input-group">
         <input type="text" class="form-control input-lg">
         <span class="input-group-addon btn btn-primary searchBtn"><strong>搜索</strong></span>
@@ -270,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/clothes/female/008.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>男装专栏</h4>
             <div><img src="./images/clothes/male/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/clothes/male/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
@@ -281,7 +228,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/clothes/male/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png" class="">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>内衣专栏</h4>
             <div><img src="./images/clothes/under/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/clothes/under/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
@@ -304,7 +251,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/shoes/shoes/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>箱包专栏</h4>
             <div><img src="./images/shoes/bags/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/bags/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
@@ -315,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/shoes/bags/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>配件专栏</h4>
             <div><img src="./images/shoes/music/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/music/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
@@ -338,7 +285,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>数码</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>家电专栏</h4>
             <div>家电</div>
             <div>家电</div>
@@ -349,7 +296,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>家电</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>手机专栏</h4>
             <div>手机</div>
             <div>手机</div>
@@ -372,7 +319,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>美妆</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>洗护用品专栏</h4>
             <div>洗护用品</div>
             <div>洗护用品</div>
@@ -383,7 +330,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>洗护用品</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+			<p class="line"><img src="./images/components/line.png"></p><br>
             <h4>保健品专栏</h4>
             <div>保健品</div>
             <div>保健品</div>
@@ -405,7 +352,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>珠宝</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>眼镜专栏</h4>
             <div>眼镜</div>
             <div>眼镜</div>
@@ -416,7 +363,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>眼镜</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>手表专栏</h4>
             <div>配件</div>
             <div>配件</div>
@@ -439,7 +386,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>鞋靴</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>户外专栏</h4>
             <div>箱包</div>
             <div>箱包</div>
@@ -450,7 +397,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>箱包</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>乐器专栏</h4>
             <div>配件</div>
             <div>配件</div>
@@ -473,7 +420,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>鞋靴</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>装修专栏</h4>
             <div>箱包</div>
             <div>箱包</div>
@@ -484,7 +431,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>箱包</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>材料专栏</h4>
             <div>配件</div>
             <div>配件</div>
@@ -507,7 +454,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>鞋靴</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>二手车专栏</h4>
             <div>箱包</div>
             <div>箱包</div>
@@ -518,7 +465,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>箱包</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>汽车用品专栏</h4>
             <div>配件</div>
             <div>配件</div>
@@ -541,7 +488,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>鞋靴</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>家饰专栏</h4>
             <div>箱包</div>
             <div>箱包</div>
@@ -552,7 +499,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div>箱包</div>
             <br>
             <span><a href="">更多 &raquo;</a></span>
-            <img src="./images/components/line.png">
+            <p class="line"><img src="./images/components/line.png"></p><br>
             <h4>家纺专栏</h4>
             <div>配件</div>
             <div>配件</div>
@@ -565,41 +512,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span><a href="">更多 &raquo;</a></span>
         </div>
     </div>
-    <div class="footerWrapper">
-        <footer class="container-fluid foot-wrap">
-            <div class="row">
-                <div class="row-content col-lg-3 col-sm-4 col-xs-6">
-                    <h3>关于我们</h3>
-                    <ul>
-                        <li><a href="#">客服中心</a></li>
-                        <li><a href="#">用户须知</a></li>
-                    </ul>
-                </div>
-                <div class="row-content col-lg-3 col-sm-4 col-xs-6">
-                    <h3>浏览器支持</h3>
-                    <ul>
-                        <li><a href="#">opera</a></li>
-                        <li><a href="#">chrome</a></li>
-                        <li><a href="#">ie8+</a></li>
-                    </ul>
-                </div>
-                <div class="row-content col-lg-3 col-sm-4 col-xs-6">
-                    <h3>举报中心</h3>
-                    <ul>
-                        <li><a href="#">联系电话</a></li>
-                        <li><a href="#">官方QQ</a></li>
-                    </ul>
-                </div>
-                <div class="row-content col-lg-3 col-sm-4 col-xs-6">
-                    <h3>合作伙伴</h3>
-                    <ul>
-                        <li><a href="#">阿里巴巴</a></li>
-                        <li><a href="#">58同城</a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-    </div>
+    <%@ include file="Footer.jsp" %>
 </div>
 </body>
 </html>
