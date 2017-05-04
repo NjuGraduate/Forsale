@@ -3,6 +3,7 @@ package cn.edu.nju.mapper;
 import java.util.List;
 
 import cn.edu.nju.po.ShopInfo;
+import cn.edu.nju.po.UserInfo;
 
 public interface ShopInfoMapper {
 	public boolean addShop(ShopInfo user);
@@ -10,5 +11,6 @@ public interface ShopInfoMapper {
 	public boolean updateShop(ShopInfo co);
 	public List<ShopInfo> getShopsLike(ShopInfo co);
 	public List<ShopInfo> getShops();
-	public ShopInfo getShopByName(ShopInfo co);
+	public ShopInfo getShopById(ShopInfo co);
+	public ShopInfo getShopByAccount(UserInfo user);
 }

@@ -21,9 +21,9 @@ public class ShopInfoController {
 	
 	@RequestMapping("addShop.do")
 	public String addShop(@RequestBody ShopInfo shop,Model model){
-		ShopInfo s = shopInfoMapper.getShopByName(shop);
+		ShopInfo s = shopInfoMapper.getShopById(shop);
 		if(s!=null){
-			model.addAttribute("msg", "ÉÌµêÒÑ´æÔÚ");
+			model.addAttribute("msg", "ï¿½Ìµï¿½ï¿½Ñ´ï¿½ï¿½ï¿½");
 		}else{
 			shopInfoMapper.addShop(shop);
 		}
