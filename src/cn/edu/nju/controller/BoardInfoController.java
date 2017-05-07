@@ -13,8 +13,8 @@ public class BoardInfoController {
 	@Resource(name="boardInfoMapper")
 	private BoardInfoMapper boardInfoMapper;
 	
-	@RequestMapping("addmessage.do")
-	public String addmessage(String str){
+	@RequestMapping("board.do")
+	public String board(String str){
 		//TODO
 		return null;
 	}
