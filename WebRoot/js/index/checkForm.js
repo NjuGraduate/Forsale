@@ -5,14 +5,12 @@ function checkForm(){
     var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var mail = document.getElementById("form-email").value;
     if(checkPassword()){
-        if (filter.test(mail))
+        if (checkUserEmail())
             return true;
         else {
             alert('您的电子邮件格式不正确');
             return false;
         }
-    }else{
-        return false;
     }
 }
 function checkPassword() {
@@ -27,7 +25,48 @@ function checkPassword() {
     }
 }
 function checkUserEmail() {
+    var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     // 获得文件框值:
     var email = document.getElementById("form-email").value;
-    alert("请确认您的邮箱是第一次在本网站注册！");
+    if(filter.test(email)){
+        return true;
+    }
+    else {
+        alert('您的电子邮件格式不正确');
+        return false;
+    }
+}
+
+function checkUsername(){
+	//获得值
+	var email = document.getElementById("form-email").value;
+	//创建异步交互对象
+	var xhr = createXmlHttp();
+	//设置监听
+	xhr.onreadystatechange = function() {
+		
+	}
+	//打开链接
+	xhr.open("GET","${pageContext.request.contextPath}" +
+			"/userinfo/register.do?time="+new Date().getTime()
+			+"&username="+username,true);
+	//发送
+	xhr.send(null);
+}
+
+
+function createXmlHttp(){
+	var xmlHttp;
+	try{ // Firefox, Opera 8.0+, Safari
+		xmlHttp=new XMLHttpRequest();
+	}catch (e){
+		try{// Internet Explorer
+		  xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		}catch (e){
+		    try{
+		       xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		    }catch (e){}
+		}
+	}
+	return xmlHttp;
 }

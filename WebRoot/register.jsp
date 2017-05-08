@@ -17,7 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery-3.1.1.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.backstretch.min.js"></script>
 	<script src="js/retina-1.1.0.min.js"></script>
 	<script src="js/scripts.js"></script>
 	<script src="js/index/checkForm.js"></script>
@@ -88,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="form-bottom">
 											<div class="form-group">
 												<label class="sr-only" for="form-email">Email</label>
-												<input type="text" name="form-email" placeholder="邮箱地址：" class="form-email form-control" id="form-email">
+												<input type="text" name="form-email" placeholder="邮箱地址：" class="form-email form-control" id="form-email" onblur="checkUserEmail()">
 											</div>
 											<div class="form-group">
 												<label class="sr-only" for="form-password">Password</label>
@@ -100,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													   class="form-repeat-password form-control" id="form-repeat-password">
 											</div>
 											<button type="button" class="btn btn-previous">上一步</button>
-											<button type="submit" class="btn btn-next">完成注册</button>
+											<button type="submit" class="btn submit">完成注册</button>
 										</div>
 									</fieldset>
 								</form>

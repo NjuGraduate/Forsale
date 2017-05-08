@@ -13,4 +13,6 @@ public interface CommodityInfoMapper {
 	public List<CommodityInfo> getCommoditys();
 	public CommodityInfo getCommodityById(CommodityInfo co);
 	public CommodityInfo getCommodityByAccount(UserInfo user);
+	public CommodityInfo addOrder(CommodityInfo co);
+	public CommodityInfo removeOrder(CommodityInfo co);
 }

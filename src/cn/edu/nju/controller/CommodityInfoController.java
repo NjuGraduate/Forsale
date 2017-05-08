@@ -49,8 +49,8 @@ public class CommodityInfoController {
 		return null;
 	}
 	
-	@RequestMapping("purchaseCommodity.do")
-	public String purchaseCommodity(@RequestBody ArrayList<CommodityInfo> list){
+	@RequestMapping("buyCommodity.do")
+	public String buyCommodity(@RequestBody ArrayList<CommodityInfo> list){
 		//TODO
 		return null;
 	}

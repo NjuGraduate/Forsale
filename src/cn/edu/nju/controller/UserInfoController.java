@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.nju.mapper.UserInfoMapper;
 import cn.edu.nju.po.UserInfo;
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 
 @Controller
@@ -26,15 +31,20 @@ public class UserInfoController {
 		UserInfo user=new UserInfo();
 		user.setAccount(account);
 		user.setPassword(password);
-		System.out.println(user);
 		UserInfo u = userInfoMapper.getUserByAccountAndPwd(user);
-		System.out.println(u);
 		if(u!=null){
-			model.addAttribute("user",user);
+			try{
+				ObjectMapper mapper = new ObjectMapper();
+				String jsonInString = mapper.writeValueAsString(user);			
+				model.addAttribute("user",jsonInString);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
 			return "index";
+			
 		}else{
 			model.addAttribute("msg","fail");
-			return "login";
+			return "register";
 		}
 	}
 	
@@ -51,10 +61,9 @@ public class UserInfoController {
 		user.setDescription(des);
 		user.setBalance(0.0);
 		user.setRank(1);
-		System.out.println(user);
 		UserInfo u = userInfoMapper.getUserByAccount(user);
-		System.out.println(u);
 		if(u==null){
+			
 			userInfoMapper.addUser(user);
 			model.addAttribute("user",user);
 			return "login";

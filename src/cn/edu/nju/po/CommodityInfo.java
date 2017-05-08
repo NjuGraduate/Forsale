@@ -3,6 +3,7 @@ package cn.edu.nju.po;
 import java.io.Serializable;
 
 public class CommodityInfo implements Serializable{
+	private String id;
 	private String name; 
 	private double price;
 	public String getName() {
@@ -20,6 +21,12 @@ public class CommodityInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "CommodityInfo [name=" + name + ", price=" + price + "]";
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

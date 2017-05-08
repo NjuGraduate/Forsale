@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
+	<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>ForSale 二手交易网站</title>
     <link rel="stylesheet" href="css/common.css">
@@ -28,6 +29,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+    	$(document).ready(function () {
+			test(${user});
+		});
+		
+		function test(account){
+			let temp = document.getElementsByClassName("header-text1")[0];
+			let temp2 = document.getElementsByClassName("header-text2")[0];
+			if(!account){
+				temp.innerHTML="请登录";
+				temp2.innerHTML = "免费注册";
+			}else{
+				temp.innerHTML = account.account;
+				temp2.innerHTML = "欢迎您！";
+			}
+		}
+    </script>
 </head>
 <body>
 <div class="container">
@@ -263,8 +281,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><img src="./images/shoes/music/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/music/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/music/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/006.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/007.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/001.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
+            <div><img src="./images/shoes/music/002.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
              
         </div>
         <div class="femaleClothes tab-pane fade in" id="content3">

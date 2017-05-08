@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.nju.mapper.AdvertisementInfoMapper;
 import cn.edu.nju.po.AdvertisementInfo;
+import cn.edu.nju.po.AdState;
 
 @Controller
 @RequestMapping("/advertisementInfo/")
@@ -28,9 +29,16 @@ public class AdvertisementInfoController {
 	}
 	
 	@RequestMapping("addAdvertisement.do")
-	public String addAdvertisement(@RequestBody AdvertisementInfo ad){
-		advertisementInfoMapper.addAdvertisement(ad);
-		return null;
+	public String addAdvertisement(@RequestBody AdvertisementInfo ad,Model model){
+		AdvertisementInfo adif =advertisementInfoMapper.getAdvertisementByUser(ad);
+		if(adif==null){
+			ad.setState(AdState.WAIT);
+			advertisementInfoMapper.addAdvertisement(ad);
+			model.addAttribute("ad", ad);
+		}else{
+			model.addAttribute("msg", "fail");
+		}
+		return "adinfo";
 	}
 	
 	@RequestMapping("removeAdvertisement.do")
