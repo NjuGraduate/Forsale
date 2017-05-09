@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class CommodityInfo implements Serializable{
 	private String id;
 	private String name; 
+	private String des;
 	private double price;
 	public String getName() {
 		return name;
@@ -27,6 +28,12 @@ public class CommodityInfo implements Serializable{
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getDes() {
+		return des;
+	}
+	public void setDes(String des) {
+		this.des = des;
 	}
 	
 	
