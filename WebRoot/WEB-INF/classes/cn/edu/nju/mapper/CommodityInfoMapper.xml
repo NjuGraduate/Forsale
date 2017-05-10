@@ -3,8 +3,45 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.CommodityInfoMapper">
+	<resultMap type="CommodityInfo" id="commoditymap">
+		 <result property="name" column="name"/>
+		 <result property="price" column="price"/>
+		 <result property="des" column="des"/>
+		 <result property="pic" column="pic"/>
+		 <result property="sellerid" column="seller_id"/>
+		 <result property="shopid" column="shop_id"/>
+		 <result property="color" column="color"/>
+		 <result property="size" column="size"/>
+		 <association property="seller" column="seller_id" select="getUserByName"></association>		
+		 <association property="shop" column="shop_id" select="getShopByName"></association>		 
+	</resultMap>
+	
+	<insert id="addCommodity" parameterType="CommodityInfo">
+        insert into Commodity(name,price,des,pic,) values(#{name},#{price},#{des},#{pic},#{shopid},#{sellerid})
+   	</insert>
    
-  
-
-   
+   	<delete id="removeCommodity" parameterType="CommodityInfo">
+        delete * from commodity where name=#{name}
+   	</delete>
+   	
+   	
+   	<update id="updateCommodity" parameterType="CommodityInfo">
+        update commodity set(name=#{name},price=#{price},des=#{des},pic=#{pic}) where account=#{account}
+   	</update>  	
+	<select id="getCommoditysLike" parameterType="CommodityInfo" resultMap="commoditymap">
+        select * from commodity where name like '%#{name}%'
+   	</select>
+   	
+   	<select id="getCommodities" parameterType="CommodityInfo" resultMap="commoditymap">
+        select * from commodity      
+   	</select>
+   	
+   	<select id="getCommodityById" parameterType="CommodityInfo" resultMap="commoditymap">
+        select * from commodity where shop_id=#{id}      
+   	</select>
+   	
+   	<select id="getCommodityByAccount" parameterType="CommodityInfo" resultMap="commoditymap">
+        select * from commodity where name=#{name}       
+   	</select>
 </mapper>
+
