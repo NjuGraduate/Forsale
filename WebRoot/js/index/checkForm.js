@@ -36,37 +36,3 @@ function checkUserEmail() {
         return false;
     }
 }
-
-function checkUsername(){
-	//获得值
-	var email = document.getElementById("form-email").value;
-	//创建异步交互对象
-	var xhr = createXmlHttp();
-	//设置监听
-	xhr.onreadystatechange = function() {
-		
-	}
-	//打开链接
-	xhr.open("GET","${pageContext.request.contextPath}" +
-			"/userinfo/register.do?time="+new Date().getTime()
-			+"&username="+username,true);
-	//发送
-	xhr.send(null);
-}
-
-
-function createXmlHttp(){
-	var xmlHttp;
-	try{ // Firefox, Opera 8.0+, Safari
-		xmlHttp=new XMLHttpRequest();
-	}catch (e){
-		try{// Internet Explorer
-		  xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-		}catch (e){
-		    try{
-		       xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-		    }catch (e){}
-		}
-	}
-	return xmlHttp;
-}

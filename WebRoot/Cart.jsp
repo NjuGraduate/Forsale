@@ -23,8 +23,8 @@
 <div class="container">
     <%@ include file="Header.jsp" %>
     <div class="input-group">
-        <input type="text" class="form-control input-lg">
-        <span class="input-group-addon btn btn-primary searchBtn"><strong>搜索</strong></span>
+        <input type="text" class="form-control input-lg" name="form-cartSearch">
+        <span class="btn searchBtn"><strong>搜索</strong></span>
     </div>
     <div class="exchangeTitle">
         <div class="nav nav-tabs exchangeTab">

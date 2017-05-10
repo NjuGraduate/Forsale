@@ -97,20 +97,15 @@
                         <form role="form">
                             <div class="form-group">
                                 <label for="hold">描述</label>
-                                <input type="text" class="form-control" id="hold" placeholder="请输入您闲置物品的描述,最多不超过30个字" maxlength="30">
+                                <input type="text" class="form-control"  name="form-exchangeDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过30个字" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <label for="need">描述</label>
-                                <input type="text" class="form-control" id="need" placeholder="请输入您所需物品的描述，最多不超过30个字" maxlength="30">
+                                <input type="text" class="form-control"  name="form-needDesc" id="need" placeholder="请输入您所需物品的描述，最多不超过30个字" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <label for="inputfile">请上传你的闲置物品的照片一张</label>
-                                <input type="file" id="inputfile">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox">请选择
-                                </label>
+                                <input type="file" id="inputfile"  name="form-exchangePic">
                             </div>
                             <button type="submit" class="btn btn-primary">提交</button>
                         </form>

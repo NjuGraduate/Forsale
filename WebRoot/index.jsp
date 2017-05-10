@@ -31,10 +31,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/scripts.js"></script>
     <script>
     	$(document).ready(function () {
-			test(${user});
+			headerText(${user});
+			saveCookie(${user});
 		});
 		
-		function test(account){
+		function headerText(account){
 			let temp = document.getElementsByClassName("header-text1")[0];
 			let temp2 = document.getElementsByClassName("header-text2")[0];
 			if(!account){
@@ -45,6 +46,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				temp2.innerHTML = "欢迎您！";
 			}
 		}
+		//保存表单中的信息到Cookie中
+    	function saveCookie(account){
+        	var accountName = account.account;
+        	var password = account.password;
+        	alert(accountName+password);
+        	var date = new Date();
+        	date.setTime(date.getTime()+50000);
+        	//将cookie保存50秒钟
+        	setCookie("accountName",accountName,date.toGMTString(),"","","");
+        	setCookie("password",password,date.toGMTString(),"","","");
+       		showCookie();
+        }
     </script>
 </head>
 <body>

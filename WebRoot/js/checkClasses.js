@@ -39,7 +39,7 @@ $(function(){
         var flage2 = $("#cityList").children().get(0);
         if(flage2 != null){
             $("#cityList").empty();
-            $("#city").html("城市");
+            $("#city").html("分类");
         }
         for(var j=0;j<citys.length;j++){
             $("#cityList").append("<li><a href=\"#\" value="+citys[j]+">"+citys[j]+"</a></li>");
