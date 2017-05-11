@@ -10,9 +10,14 @@ public class CommodityInfo implements Serializable{
 	private String pic;
 	private int shopId;
 	private int sellerId;
-	private int state;
+	private String state;
 	private String color;
 	private String size;
+	private String classifiction1;
+	private String classifiction2;	
+	public enum state{
+		onsale,collected,sold,
+	}
 	public int getId() {
 		return id;
 	}
@@ -37,10 +42,10 @@ public class CommodityInfo implements Serializable{
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
 	}
-	public int getState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 	public String getColor() {
@@ -72,11 +77,23 @@ public class CommodityInfo implements Serializable{
 	}
 	public void setDes(String des) {
 		this.des = des;
-	}	
+	}
+	public String getClassifiction1() {
+		return classifiction1;
+	}
+	public void setClassifiction1(String classifiction1) {
+		this.classifiction1 = classifiction1;
+	}
+	public String getClassifiction2() {
+		return classifiction2;
+	}
+	public void setClassifiction2(String classifiction2) {
+		this.classifiction2 = classifiction2;
+	}
 	@Override
 	public String toString() {
 		return "CommodityInfo [id=" + id + ", name=" + name + ", price=" + price + ", des=" + des + ", pic=" + pic
 				+ ", shopId=" + shopId + ", sellerId=" + sellerId + ", state=" + state + ", color=" + color + ", size="
-				+ size + "]";
+				+ size + ", classifiction1=" + classifiction1 + ", classifiction2=" + classifiction2 + "]";
 	}
 }
