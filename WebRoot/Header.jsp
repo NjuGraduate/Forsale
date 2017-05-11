@@ -15,8 +15,8 @@
 				temp.innerHTML="请登录";
 				temp2.innerHTML = "免费注册";
 			}else{
-				temp.innerHTML = account.account;
-				temp2.innerHTML = "欢迎您！";
+				temp.innerHTML = "欢迎您！ "+account.account+" (点击退出登录)";
+				temp2.innerHTML = "点击重新注册";
 			}
 		}
 		//保存表单中的信息到Cookie中

@@ -19,7 +19,7 @@ $(function(){
     if(flage == null){
         for(var i=0;i<sheng_length;i++){
             var sheng = sheng_json[i].sheng;
-            $("#proList").append("<li><a href=\"#\" value="+sheng+">"+sheng+"</a></li>");
+            $("#proList").append("<li><a value="+sheng+">"+sheng+"</a></li>");
         }
     }
 
@@ -42,7 +42,7 @@ $(function(){
             $("#city").html("分类");
         }
         for(var j=0;j<citys.length;j++){
-            $("#cityList").append("<li><a href=\"#\" value="+citys[j]+">"+citys[j]+"</a></li>");
+            $("#cityList").append("<li><a value="+citys[j]+">"+citys[j]+"</a></li>");
         }
 
     });
