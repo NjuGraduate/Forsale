@@ -35,11 +35,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="formDiv">
                     <div class="form-group">
                         <label for="name">店名</label>
-                        <input type="text" class="form-control" id="name" placeholder="请输入您的店铺名，最多不超过十个字" maxlength="10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="请输入您的店铺名，最多不超过十个字" maxlength="10">
                     </div>
                     <div class="form-group">
                         <label for="need">店铺描述</label>
-                        <input type="text" class="form-control" id="need" placeholder="请输入您店铺的描述，最多不超过30个字" maxlength="30">
+                        <input type="text" class="form-control" id="need" name="need" placeholder="请输入您店铺的描述，最多不超过30个字" maxlength="30">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-default" id="subBtn" data-toggle="dropdown">提交</button>

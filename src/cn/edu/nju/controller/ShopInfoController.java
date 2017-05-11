@@ -30,8 +30,8 @@ public class ShopInfoController {
 		ShopInfo shop = new ShopInfo();
 		String u = (String)session.getAttribute("user");
 		shop.setUser_id(Integer.parseInt(u.split(":")[1].split(",")[0]));
-		shop.setDes(request.getParameter(""));
-		shop.setName(request.getParameter(""));
+		shop.setDes(request.getParameter("need"));
+		shop.setName(request.getParameter("name"));
 		shop.setRank("0");
 		shopInfoMapper.addShop(shop);
 		return "Seller";
