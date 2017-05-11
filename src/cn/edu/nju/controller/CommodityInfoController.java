@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
+import cn.edu.nju.po.UserInfo;
 
 @Controller
 @RequestMapping("/commodityInfo/")
@@ -41,7 +42,7 @@ public class CommodityInfoController {
 			String formGoodsClassesDetail,HttpServletRequest request,Model model){
 		String path= request.getSession().getServletContext().getRealPath("/upload/commodity");
 		String fileName=formGoodsLogoPic.getOriginalFilename();
-		String extfileName = fileName.substring(fileName.indexOf("."));
+		String extfileName = fileName.substring(Math.max(fileName.lastIndexOf("."), 0));
 		String systime=System.currentTimeMillis()+"";
 		Random r=new Random();
 		int rnum=r.nextInt(10000);
@@ -75,16 +76,17 @@ public class CommodityInfoController {
 	@RequestMapping("getCommodities.do")
 	@ResponseBody
 	public String getCommodities(Model model){
+		UserInfo info = (UserInfo)session.getAttribute("user_info");
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonInstring;
+		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserId(info);
+		System.out.println(info.getId());
+		System.out.println(commodities.size());
 		try {
-			jsonInstring = mapper.writeValueAsString(new Object());
-//			jsonInstring = "{}";
-			return jsonInstring;
+			return mapper.writeValueAsString(commodities);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
+			return "[]";
 		}
-		return "";
 	}
 	
 	@RequestMapping("removeCommodity.do")

@@ -16,6 +16,7 @@
 				temp2.innerHTML = "免费注册";
 			}else{
 				temp.innerHTML = "欢迎您！ "+account.account+" (点击退出登录)";
+				temp.href = "${pageContext.request.contextPath}/userinfo/logout.do";
 				temp2.innerHTML = "点击重新注册";
 			}
 		}
