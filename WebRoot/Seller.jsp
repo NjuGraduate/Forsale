@@ -26,14 +26,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-    	$.post({
+    	$.getJSON({
     		url:"commodityInfo/getCommodities.do",
-    		dataType:'json',
     		success:callback
     	});
     	
-    	function callback(data){
-    		alert(data);
+    	function callback(json) {
+    		console.log(json);
+    		let data = JSON.parse(json);
+    		let container = document.getElementById("goodsContainer");
+    		for (let item of data) {
+    			console.log(JSON.stringify(item));
+    			let div = document.createElement("div");
+    			div.classList.add("exchangeGoods");
+    			let img = document.createElement("img");
+    			img.src = item.pic;
+    			div.appendChild(img);
+    			let xxx = document.createElement("p");
+    			xxx.innerHTML = `这是我手里的一双科比毒液6，9成新，40码，我想要换一双41码的蓝球鞋，最好是白色或者灰色的<br>有意者联系QQ：<span>543372027</span>`;
+    			div.appendChild(xxx);
+    			container.appendChild(div);
+    		}
+    		/*let temp = document.getElementsByClassName("exchangeGoods")[0];
+    		for (let child of temp.children) {
+    			if (child.tagName.toUpperCase()	 === "IMG") {
+    				child.src = data.pic;
+    				console.log(data.pic);
+    				console.log(child.src);
+    				break;
+    			}
+    		}*/
     	}
     </script>
 
@@ -72,6 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="sellerGoods">
             <h2>我的卖品</h2>
             <img src="./images/components/line.png" alt="" class="line">
+            <div id="goodsContainer">
             <div class="exchangeGoods">
                 <img src="./images/shoes/shoes/001.jpg" alt="商品图片">
                 <p>这是我手里的一双李宁篮球鞋，95成新，42码，我想要换一双41码的蓝球鞋<br>有意者联系QQ：<span>543372027</span></p>
@@ -96,7 +119,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <img src="./images/shoes/music/002.jpg" alt="商品图片">
                 <p>这是我手里的一把尤克里里，95成新，买回来没怎么弹过，闲置浪费地方也舍不得扔掉，我想要换一把吉他<br>
                     有意者联系QQ：<span>543372027</span></p>
-            </div><br>
+            </div>
+            </div>
+            <br>
             <p class="add">您可以点击这里来 <a href="./PublishGoods.jsp" target="_blank">添加商品</a></p>
             <img src="./images/components/line.png" alt="" class="line">
             <h2>我的店铺</h2>
