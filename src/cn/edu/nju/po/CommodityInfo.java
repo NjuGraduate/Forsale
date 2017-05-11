@@ -15,9 +15,6 @@ public class CommodityInfo implements Serializable{
 	private String size;
 	private String classifiction1;
 	private String classifiction2;	
-	public enum state{
-		onsale,collected,sold,
-	}
 	public int getId() {
 		return id;
 	}
