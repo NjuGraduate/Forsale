@@ -26,7 +26,7 @@ public class CommodityInfoController {
 	public String addCommodity(HttpServletRequest request){
 		String id = request.getParameter("form-id");
 		String name = request.getParameter("form-name");
-		String des = request.getParameter("form-des");
+		String des = request.getParameter("form-goodsDesc");
 		double price = Double.valueOf(request.getParameter("form-price")).doubleValue();
 		CommodityInfo com = new CommodityInfo();
 		com.setId(id);
