@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,8 @@ import cn.edu.nju.po.ShopInfo;
 @Controller
 @RequestMapping("/shopInfo/")
 public class ShopInfoController {
+	@Autowired
+    private HttpSession session;
 	
 	@Resource(name="shopInfoMapper")
 	private ShopInfoMapper shopInfoMapper;
@@ -24,6 +28,11 @@ public class ShopInfoController {
 	@RequestMapping("addShop.do")
 	public String addShop(HttpServletRequest request){
 		ShopInfo shop = new ShopInfo();
+		String u = (String)session.getAttribute("user");
+		shop.setUser_id(Integer.parseInt(u.split(":")[1].split(",")[0]));
+		shop.setDes(request.getParameter(""));
+		shop.setName(request.getParameter(""));
+		shop.setRank("0");
 		shopInfoMapper.addShop(shop);
 		return "Seller";
 	}
