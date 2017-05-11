@@ -35,8 +35,7 @@ public class CommodityInfoController {
 	
 	@RequestMapping("getCommodities.do")
 	public String getCommodities(Model model){
-		list = commodityInfoMapper.getCommodities();
-		model.addAttribute("list", list);
+		model.addAttribute("list", "1");
 		return null;
 	}
 	
