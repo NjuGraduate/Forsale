@@ -36,8 +36,8 @@ public class CommodityInfoController {
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(@RequestParam(value="file",required=false) MultipartFile file,String formGoodsDesc,
-			String formGoodsPrice,String getParameter,String formGoodsSize,
-            HttpServletRequest request,Model model){
+			String formGoodsPrice,String formGoodsColor,String formGoodsSize,String formGoodsClasses,
+			String formGoodsClassesDetail,HttpServletRequest request,Model model){
 		String path= request.getSession().getServletContext().getRealPath("/upload");
 		String fileName=file.getOriginalFilename();
 		String extfileName = fileName.substring(fileName.indexOf("."));
@@ -61,15 +61,12 @@ public class CommodityInfoController {
 		com.setSellerId(Integer.parseInt(u.split(":")[1].split(",")[0]));
 		com.setDes(formGoodsDesc);
 		com.setPrice(Double.valueOf(formGoodsPrice).doubleValue());
-		com.setColor(formGoodsSize);
+		com.setColor(formGoodsColor);
 		com.setSize(formGoodsSize);
+		com.setClassifiction1(formGoodsClasses);
+		com.setClassifiction2(formGoodsClassesDetail);
 		com.setPic(url);
-		com.setDes(request.getParameter("form-goodsDesc"));
-		com.setPrice(Double.valueOf(request.getParameter("form-goodsPrice")).doubleValue());
-		com.setColor(request.getParameter("form-goodsColor"));
-		com.setSize(request.getParameter("form-goodsSize"));
-		com.setShopId(1);
-		System.out.println(com.getDes()+" "+com.getPic());
+		com.setState("0");
 		commodityInfoMapper.addCommodity(com);
 		return "Seller";
 	}

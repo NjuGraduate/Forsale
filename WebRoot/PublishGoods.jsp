@@ -37,35 +37,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <%@ include file="Header.jsp" %>
         <div class="publishGoods">
             <div class="formContainer">
-                <form role="form" action="commodityInfo/addCommodity.do" method="post">
+                <form role="form" action="commodityInfo/addCommodity.do" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                     <br>
                         <span for="hold" class="desc">描述</span>
-                        <input type="text" class="form-control" name="form-goodsDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过60个字" maxlength="60">
+                        <input type="text" class="form-control" name="formGoodsDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过60个字" maxlength="60">
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">价格</span>
-                        <input type="text" class="form-control" name="form-goodsPrice" id="price" placeholder="请输入您想要设置的价格">
+                        <input type="text" class="form-control" name="formGoodsPrice" id="price" placeholder="请输入您想要设置的价格">
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">颜色</span>
-                        <input type="text" class="form-control" name="form-goodsColor" placeholder="请输入您物品的颜色">
+                        <input type="text" class="form-control" name="formGoodsColor" placeholder="请输入您物品的颜色">
                     </div>
                     <div class="form-group">
                         <span for="size" class="desc">尺寸</span>
-                        <input type="text" class="form-control" name="form-goodsSize" placeholder="请输入商品的尺寸">
+                        <input type="text" class="form-control" name="formGoodsSize" placeholder="请输入商品的尺寸">
                     </div>
                     <div class="form-group selectGroup">
                         <span for="price" class="desc">选择分类 &nbsp;</span>
                         <div class="btn-group">
-                            <button type="button" id="pro" name="form-goodsClasses" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" id="pro" name="formGoodsClasses" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 一级分类
                             </button>
                             <ul class="dropdown-menu" id="proList" ></ul>
                         </div>
                         <!-- Single button -->
                         <div class="btn-group">
-                            <button type="button" id="city" name="form-goodsClassesDetail" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                            <button type="button" id="city" name="formGoodsClassesDetail" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                                 二级分类
                             </button>
                             <ul class="dropdown-menu" id="cityList" ></ul>
@@ -73,11 +73,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="form-group">
                         <label for="inputfile1" class="desc">请上传你的闲置物品的照片</label>
-                        <input type="file" id="inputfile1" class="inputFilePosition"  name="form-goodsLogoPic">
+                        <input type="file" id="inputfile1" class="inputFilePosition"  name="formGoodsLogoPic">
                     </div>
                     <div class="form-group">
                         <label for="inputfile2" class="desc">请上传你的闲置物品的照片</label>
-                        <input type="file" id="inputfile2" class="inputFilePosition"  name="form-goodsPic">
+                        <input type="file" id="inputfile2" class="inputFilePosition"  name="formGoodsPic">
                     </div>
                     <button type="submit" class="btn btn-primary subBtn" >提交</button>
                 </form>
