@@ -2,44 +2,48 @@ package cn.edu.nju.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.nju.mapper.UserInfoMapper;
 import cn.edu.nju.po.UserInfo;
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 
 @Controller
 @RequestMapping("/userinfo/")
 public class UserInfoController {
+    @Autowired
+    private HttpSession session;
     
 	@Resource(name="userInfoMapper")
 	private UserInfoMapper userInfoMapper;
 	
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request,Model model){
+	String u = (String)session.getAttribute("user");
+	if (u == null) {
 		String account = request.getParameter("form-email");
 		String password = request.getParameter("form-password");
 		UserInfo user=new UserInfo();
 		user.setAccount(account);
 		user.setPassword(password);
-		UserInfo u = userInfoMapper.getUserByAccountAndPwd(user);
-		if(u!=null){
+		UserInfo info = userInfoMapper.getUserByAccountAndPwd(user);
 			try{
 				ObjectMapper mapper = new ObjectMapper();
-				String jsonInString = mapper.writeValueAsString(u);			
-				model.addAttribute("user",jsonInString);
+				u = mapper.writeValueAsString(info);			
+				session.setAttribute("user", u);
 			}catch(IOException e) {
 				e.printStackTrace();
 			}
+		}
+		if(u!=null){
 			return "index";
 			
 		}else{
