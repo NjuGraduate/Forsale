@@ -12,5 +12,5 @@ public interface ShopInfoMapper {
 	public List<ShopInfo> getShopsLike(ShopInfo co);
 	public List<ShopInfo> getShops();
 	public ShopInfo getShopById(ShopInfo co);
-	public ShopInfo getShopByAccount(UserInfo user);
+	public ShopInfo getShopByUserId(UserInfo user);
 }
