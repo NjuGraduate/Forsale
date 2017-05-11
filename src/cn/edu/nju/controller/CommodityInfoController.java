@@ -35,11 +35,11 @@ public class CommodityInfoController {
 	List<CommodityInfo> list = new ArrayList<CommodityInfo>();
 	
 	@RequestMapping("addCommodity.do")
-	public String addCommodity(@RequestParam(value="file",required=false) MultipartFile file,String formGoodsDesc,
+	public String addCommodity(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile formGoodsLogoPic,String formGoodsDesc,
 			String formGoodsPrice,String formGoodsColor,String formGoodsSize,String formGoodsClasses,
 			String formGoodsClassesDetail,HttpServletRequest request,Model model){
-		String path= request.getSession().getServletContext().getRealPath("/upload");
-		String fileName=file.getOriginalFilename();
+		String path= request.getSession().getServletContext().getRealPath("/upload/commodity");
+		String fileName=formGoodsLogoPic.getOriginalFilename();
 		String extfileName = fileName.substring(fileName.indexOf("."));
 		String systime=System.currentTimeMillis()+"";
 		Random r=new Random();
@@ -49,12 +49,12 @@ public class CommodityInfoController {
 		
 		File targetFile=new File(path,systime);
 		try {
-			file.transferTo(targetFile);
+			formGoodsLogoPic.transferTo(targetFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		String url=request.getContextPath()+"/upload/"+systime;
+		String url=request.getContextPath()+"/upload/commodity/"+systime;
 		
 		String u = (String)session.getAttribute("user");
 		CommodityInfo com = new CommodityInfo();
