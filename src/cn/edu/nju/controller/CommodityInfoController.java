@@ -28,7 +28,7 @@ public class CommodityInfoController {
 		com.setDes(request.getParameter("form-goodsDesc"));
 		com.setPrice(Double.valueOf(request.getParameter("form-goodsPrice")).doubleValue());
 		com.setColor(request.getParameter("form-goodsColor"));
-		com.setSize(request.getParameter("form-goodsColor"));
+		com.setSize(request.getParameter("form-goodsSize"));
 		commodityInfoMapper.addCommodity(com);
 		return "seller";
 	}
