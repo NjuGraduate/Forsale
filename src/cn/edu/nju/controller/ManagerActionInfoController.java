@@ -57,7 +57,6 @@ public class ManagerActionInfoController {
 	@RequestMapping("removeCommodity.do")
 	public String removeCommodity(String id){
 		CommodityInfo com = new CommodityInfo();
-		com.setId(id);
 		commodityInfoMapper.removeCommodity(com);
 		return "removeCommodity";
 	}

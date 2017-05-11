@@ -24,17 +24,13 @@ public class CommodityInfoController {
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(HttpServletRequest request){
-		String id = request.getParameter("form-id");
-		String name = request.getParameter("form-name");
-		String des = request.getParameter("form-goodsDesc");
-		double price = Double.valueOf(request.getParameter("form-price")).doubleValue();
 		CommodityInfo com = new CommodityInfo();
-		com.setId(id);
-		com.setName(name);
-		com.setDes(des);
-		com.setPrice(price);
+		com.setDes(request.getParameter("form-goodsDesc"));
+		com.setPrice(Double.valueOf(request.getParameter("form-goodsPrice")).doubleValue());
+		com.setColor(request.getParameter("form-goodsColor"));
+		com.setSize(request.getParameter("form-goodsColor"));
 		commodityInfoMapper.addCommodity(com);
-		return null;
+		return "seller";
 	}
 	
 	@RequestMapping("getCommodities.do")
@@ -46,21 +42,19 @@ public class CommodityInfoController {
 	
 	@RequestMapping("removeCommodity.do")
 	public String removeCommodity(HttpServletRequest request){
-		String id = request.getParameter("form-id");
 		CommodityInfo com = new CommodityInfo();
-		com.setId(id);
+		com.setId(Integer.parseInt(request.getParameter("form-id")));
 		commodityInfoMapper.removeCommodity(com);
 		return null;
 	}
 	
 	@RequestMapping("updateCommodity.do")
 	public String updateCommodity(HttpServletRequest request){
-		String id = request.getParameter("form-id");
 		String name = request.getParameter("form-name");
 		String des = request.getParameter("form-des");
 		double price = Double.valueOf(request.getParameter("form-price")).doubleValue();
 		CommodityInfo com = new CommodityInfo();
-		com.setId(id);
+		com.setId(Integer.parseInt(request.getParameter("form-id")));
 		com.setName(name);
 		com.setDes(des);
 		com.setPrice(price);
@@ -70,7 +64,7 @@ public class CommodityInfoController {
 	
 	@RequestMapping("retrieveCommodity.do")
 	public String retrieveCommodity(String str,Model model){
-		list = commodityInfoMapper.getCommoditiesLike(str);
+		list = commodityInfoMapper.getCommoditiesByDes(str);
 		model.addAttribute("list", list);
 		return null;
 	}
