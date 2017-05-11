@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <%@ include file="Header.jsp" %>
         <div class="publishGoods">
             <div class="formContainer">
-                <form role="form" action="commodityInfo/addCommodities.do" method="post">
+                <form role="form" action="commodityInfo/addCommodity.do" method="post">
                     <div class="form-group">
                     <br>
                         <span for="hold" class="desc">描述</span>
