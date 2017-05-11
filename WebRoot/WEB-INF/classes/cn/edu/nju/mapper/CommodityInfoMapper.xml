@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<insert id="addCommodity" parameterType="CommodityInfo">
-        insert into Commodity(name,price,des,pic,shop_id,seller_id,state,color,size,classifiction1,classfiction2) values(#{name},#{price},#{des},#{pic},#{shopId},#{sellerId},#{state},#{color},#{size},#{classfiction1},#{classfiction2})
+        insert into Commodity(name,price,des,pic,shop_id,seller_id,state,color,size,classifiction1,classifiction2) values(#{name},#{price},#{des},#{pic},#{shopId},#{sellerId},#{state},#{color},#{size},#{classifiction1},#{classifiction2})
    	</insert>
    
    	<delete id="removeCommodity" parameterType="CommodityInfo">
