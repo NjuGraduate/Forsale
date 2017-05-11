@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
 
@@ -35,7 +38,15 @@ public class CommodityInfoController {
 	
 	@RequestMapping("getCommodities.do")
 	public String getCommodities(Model model){
-		model.addAttribute("list", "1");
+		String str = "1";
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonInstring;
+		try {
+			jsonInstring = mapper.writeValueAsString(str);
+			model.addAttribute("list",jsonInstring);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
