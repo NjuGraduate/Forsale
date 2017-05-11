@@ -3,6 +3,7 @@ package cn.edu.nju.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.nju.mapper.ShopInfoMapper;
+import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.ShopInfo;
 
 @Controller
@@ -20,15 +22,10 @@ public class ShopInfoController {
 	private ShopInfoMapper shopInfoMapper;
 	
 	@RequestMapping("addShop.do")
-	public String addShop(@RequestBody ShopInfo shop,Model model){
-		ShopInfo s = shopInfoMapper.getShopById(shop);
-		if(s!=null){
-			model.addAttribute("msg", "�̵��Ѵ���");
-		}else{
-			shopInfoMapper.addShop(shop);
-		}
-		//TODO
-		return null;
+	public String addShop(HttpServletRequest request){
+		ShopInfo shop = new ShopInfo();
+		shopInfoMapper.addShop(shop);
+		return "Seller";
 	}
 	
 	@RequestMapping("updateCommodity.do")
