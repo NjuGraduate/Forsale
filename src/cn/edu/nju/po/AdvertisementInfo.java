@@ -7,10 +7,8 @@ public class AdvertisementInfo implements Serializable{
 	private String title;
 	private String id;
 	private String user;
-	private AdState state;
-
+	private String state;
 	
-
 	public String getTitle() {
 		return title;
 	}
@@ -37,14 +35,6 @@ public class AdvertisementInfo implements Serializable{
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public AdState getState() {
-		return state;
-	}
-
-	public void setState(AdState state) {
-		this.state = state;
 	}
 
 }

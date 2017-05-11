@@ -3,7 +3,42 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.AdvertisementInfoMapper">
+   <resultMap type="AdvertisementInfo" id="advertisementmap">
+      <result property="title" column="title"/>
+      <result property="detail" column="detail"/>
+      <result property="state" column="state"/>
+   </resultMap>
+     
+   <insert id="addAdvertisement" parameterType="AdvertisementInfo">
+        insert into advertisement(name,account,password,balance,rank,des) values(#{name},#{account},#{password},#{balance},#{rank},#{des})
+   </insert>
    
+   
+   <delete id="removeAdvertisement" parameterType="AdvertisementInfo">
+        delete * from advertisement where account=#{account}
+   </delete>
+   
+   <update id="updateAdvertisement" parameterType="AdvertisementInfo">
+        update advertisement set(name=#{name},password=#{password},des=#{des}) where account=#{account}
+   </update>
+   
+   <select id="getAdvertisementsLike" parameterType="AdvertisementInfo" resultMap="advertisementmap">
+        select * from advertisement where name like '%#{name}%'
+   </select>
+   
+   
+   <select id="getAdvertisements" resultMap="advertisementmap">
+        select * from advertisement
+   </select>
+   
+   
+   <select id="getUserByAccountAndPwd" parameterType="AdvertisementInfo" resultMap="advertisementmap">
+        select * from user where account=#{account} and password=#{password}
+   </select>
+   
+   <select id="getUserByAccount" parameterType="AdvertisementInfo" resultMap="advertisementmap">
+        select * from user where account=#{account}
+   </select>
   
 
    

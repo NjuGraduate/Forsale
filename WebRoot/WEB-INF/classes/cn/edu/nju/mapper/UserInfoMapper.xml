@@ -4,12 +4,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.UserInfoMapper">  
    <resultMap type="UserInfo" id="usermap">
+   	  <result property="id" column="id"/>
       <result property="name" column="name"/>
       <result property="account" column="account"/>
       <result property="password" column="password"/>
       <result property="balance" column="balance"/>
       <result property="rank" column="rank"/>
       <result property="des" column="des"/>
+      <result property="logo" column="logo"/>
+      <result property="gender" column="gender"/>
+      <result property="phonenumber" column="phonenumber"/>
+      <result property="dateofbirth" column="dateofbirth"/>
    </resultMap>
      
    <insert id="addUser" parameterType="UserInfo">
@@ -25,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <select id="getUsersLike" parameterType="UserInfo" resultMap="usermap">
-        select * from user where name like '%#{name}%'
+        select * from user where des like '%#{des}%'
    </select>
    
    

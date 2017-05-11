@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import cn.edu.nju.mapper.AdvertisementInfoMapper;
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.UserInfoMapper;
-import cn.edu.nju.po.AdState;
 import cn.edu.nju.po.AdvertisementInfo;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.UserInfo;
@@ -64,11 +63,9 @@ public class ManagerActionInfoController {
 	@RequestMapping("reviewAd.do")
 	public String reviewAd(@RequestBody AdvertisementInfo ad,Boolean option,Model model){
 		if(option==true){
-			ad.setState(AdState.PASS);
 			advertisementInfoMapper.addAdvertisement(ad);
 			model.addAttribute("ad", ad);
 		}else{
-			ad.setState(AdState.FAIL);
 			model.addAttribute("msg", "fail");
 		}
 		return "adManage";

@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
      <typeAliases>
        
        <typeAlias type="cn.edu.nju.po.UserInfo" alias="UserInfo"/>
+       <typeAlias type="cn.edu.nju.po.CommodityInfo" alias="CommodityInfo"/>
+       <typeAlias type="cn.edu.nju.po.ShopInfo" alias="ShopInfo"/>
+       <typeAlias type="cn.edu.nju.po.AdvertisementInfo" alias="AdvertisementInfo"/>
+       <typeAlias type="cn.edu.nju.po.RecordInfo" alias="RecordInfo"/>
      </typeAliases>
 
      <mappers>
