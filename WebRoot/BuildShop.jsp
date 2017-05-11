@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="buildShopContainer">
             <h3>欢迎创建您的店铺</h3>
             <img src="images/components/line.png" alt="" class="lineInContainer">
-            <form role="form">
+            <form role="form" action="shopInfo/addShop.do" method="post">
                 <div class="formDiv">
                     <div class="form-group">
                         <label for="name">店名</label>
