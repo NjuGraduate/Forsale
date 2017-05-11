@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,17 +41,18 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("getCommodities.do")
+	@ResponseBody
 	public String getCommodities(Model model){
-		String str = "1";
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInstring;
 		try {
-			jsonInstring = mapper.writeValueAsString(str);
-			model.addAttribute("list",jsonInstring);
+			jsonInstring = mapper.writeValueAsString(new Object());
+//			jsonInstring = "{}";
+			return jsonInstring;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "";
 	}
 	
 	@RequestMapping("removeCommodity.do")
