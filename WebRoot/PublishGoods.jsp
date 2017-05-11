@@ -47,20 +47,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">颜色</span>
-                        <input type="number" class="form-control" name="form-goodsColor" placeholder="请输入您物品的颜色">
+                        <input type="text" class="form-control" name="form-goodsColor" placeholder="请输入您物品的颜色">
                     </div>
                     <div class="form-group selectGroup">
                         <span for="price" class="desc">选择分类 &nbsp;</span>
                         <div class="btn-group">
-                            <button type="button" id="pro" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                一级分类<span class="caret"></span>
+                            <button type="button" id="pro" name="form-goodsClasses" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                一级分类
                             </button>
                             <ul class="dropdown-menu" id="proList" ></ul>
                         </div>
                         <!-- Single button -->
                         <div class="btn-group">
-                            <button type="button" id="city" name="form-goodsClasses" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
-                                二级分类 <span class="caret"></span>
+                            <button type="button" id="city" name="form-goodsClassesDetail" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                                二级分类
                             </button>
                             <ul class="dropdown-menu" id="cityList" ></ul>
                         </div>

@@ -26,6 +26,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/bootstrap-datetimepicker.js"></script>
+    <script>
+    	$(document).ready(function () {
+			userText(${user});
+		});
+		function userText(user){
+			
+		}
+    </script>
 </head>
 <body>
     <div class="container">
