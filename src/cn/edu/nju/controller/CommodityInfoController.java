@@ -58,21 +58,18 @@ public class CommodityInfoController {
 		
 		String u = (String)session.getAttribute("user");
 		CommodityInfo com = new CommodityInfo();
-<<<<<<< HEAD
 		com.setSellerId(Integer.parseInt(u.split(":")[1].split(",")[0]));
 		com.setDes(formGoodsDesc);
 		com.setPrice(Double.valueOf(formGoodsPrice).doubleValue());
 		com.setColor(formGoodsSize);
 		com.setSize(formGoodsSize);
 		com.setPic(url);
-=======
 		com.setDes(request.getParameter("form-goodsDesc"));
 		com.setPrice(Double.valueOf(request.getParameter("form-goodsPrice")).doubleValue());
 		com.setColor(request.getParameter("form-goodsColor"));
 		com.setSize(request.getParameter("form-goodsSize"));
 		com.setShopId(1);
 		System.out.println(com.getDes()+" "+com.getPic());
->>>>>>> refs/remotes/origin/master
 		commodityInfoMapper.addCommodity(com);
 		return "Seller";
 	}
