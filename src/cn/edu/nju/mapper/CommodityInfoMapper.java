@@ -9,10 +9,11 @@ public interface CommodityInfoMapper {
 	public boolean addCommodity(CommodityInfo co);
 	public boolean removeCommodity(CommodityInfo co);
 	public boolean updateCommodity(CommodityInfo co);
-	public List<CommodityInfo> getCommoditiesLike(String str);
+	public List<CommodityInfo> getCommoditiesByClassification(String str);
+	public List<CommodityInfo> getCommoditiesByDes(String str);
 	public List<CommodityInfo> getCommodities();
 	public CommodityInfo getCommodityById(CommodityInfo co);
-	public CommodityInfo getCommodityByAccount(UserInfo user);
+	public CommodityInfo getCommodityByUserId(UserInfo user);
 	public CommodityInfo addOrder(CommodityInfo co);
 	public CommodityInfo removeOrder(CommodityInfo co);
 }
