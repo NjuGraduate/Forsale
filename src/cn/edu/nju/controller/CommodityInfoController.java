@@ -74,26 +74,13 @@ public class CommodityInfoController {
 	@RequestMapping("getCommodities.do")
 	@ResponseBody
 	public String getCommodities(Model model){
-<<<<<<< HEAD
-		String u = (String)session.getAttribute("user");
-		UserInfo user = new UserInfo();
-		user.setId(Integer.parseInt(u.split(":")[1].split(",")[0]));
-		List<CommodityInfo> list = new ArrayList<CommodityInfo>();
-		list = commodityInfoMapper.getCommodityByUserId(user);
-=======
 		UserInfo info = (UserInfo)session.getAttribute("user_info");
->>>>>>> refs/remotes/origin/master
 		ObjectMapper mapper = new ObjectMapper();
 		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserId(info);
 		System.out.println(info.getId());
 		System.out.println(commodities.size());
 		try {
-<<<<<<< HEAD
-			jsonInstring = mapper.writeValueAsString(list);
-			return jsonInstring;
-=======
 			return mapper.writeValueAsString(commodities);
->>>>>>> refs/remotes/origin/master
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return "[]";
