@@ -1,5 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
+<script>
+    	$(document).ready(function () {
+			headerText(${user});
+			//saveCookie(${user});
+		});
+		
+		function headerText(account){
+			let temp = document.getElementsByClassName("header-text1")[0];
+			let temp2 = document.getElementsByClassName("header-text2")[0];
+			if(!account){
+				temp.innerHTML="请登录";
+				temp2.innerHTML = "免费注册";
+			}else{
+				temp.innerHTML = account.account;
+				temp2.innerHTML = "欢迎您！";
+			}
+		}
+		//保存表单中的信息到Cookie中
+    	function saveCookie(account){
+    		// 账户名
+        	var accountName = account.account;
+        	// 密码
+        	var password = account.password;
+        	// 描述
+        	var desc = account.des;
+        	// 名字
+        	var name = account.name;
+        	
+        	alert(accountName+" "+password+" "+desc+" "+name);
+        	var date = new Date();
+        	date.setTime(date.getTime()+500000);
+        	//将cookie保存50秒钟
+        	setCookie("accountName",accountName,date.toGMTString(),"","","");
+        	setCookie("password",password,date.toGMTString(),"","","");
+        	setCookie("desc",desc,date.toGMTString(),"","","")
+        	setCookie("name",name,date.toGMTString(),"","","")
+        }
+        // 设置cookie
+       function setCookie(name,value,expires,path,domain,secure){
+       		document.cookie=name+"="+encodeURI(value)+
+        	((expires) ? "; expires=" + expires : "")+
+        	((path) ? "; path=" + path : "")+
+        	((domain) ? "; domain=" + domain : "")+
+        	((secure) ? "; secure=" + secure : "");
+        }
+        
+</script>
+
+
 <div class="header">
         <div class="header-left" >
             <span>Hi! Welcome to Forsale</span>
