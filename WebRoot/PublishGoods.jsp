@@ -38,16 +38,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="formContainer">
                 <form role="form">
                     <div class="form-group">
-                        <label for="hold" class="desc">描述</label>
+                    <br>
+                        <span for="hold" class="desc">描述</span>
                         <input type="text" class="form-control" name="form-goodsDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过60个字" maxlength="60">
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">价格</span>
-                        <input type="number" class="form-control" name="form-goodsPrice" id="price" placeholder="请输入您想要设置的价格">
+                        <input type="text" class="form-control" name="form-goodsPrice" id="price" placeholder="请输入您想要设置的价格">
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">颜色</span>
                         <input type="text" class="form-control" name="form-goodsColor" placeholder="请输入您物品的颜色">
+                    </div>
+                    <div class="form-group">
+                        <span for="size" class="desc">尺寸</span>
+                        <input type="text" class="form-control" placeholder="请输入商品的尺寸">
                     </div>
                     <div class="form-group selectGroup">
                         <span for="price" class="desc">选择分类 &nbsp;</span>

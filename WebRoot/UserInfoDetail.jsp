@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			userText(${user});
 		});
 		function userText(user){
-			
+			alert(user.account);
 		}
     </script>
 </head>
