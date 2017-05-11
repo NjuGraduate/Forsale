@@ -41,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from commodity where id=#{id}      
    	</select>
    	
-   	<select id="getCommodityByUserId" parameterType="CommodityInfo" resultMap="commoditymap">
-        select * from commodity where seller_id=#{sellerId}       
+   	<select id="getCommodityByUserId" parameterType="UserInfo" resultMap="commoditymap">
+        select * from commodity where seller_id=#{id}       
    	</select>
 </mapper>
 

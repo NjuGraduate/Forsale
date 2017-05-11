@@ -27,14 +27,16 @@ public class UserInfoController {
 	
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request,Model model){
-	String u = (String)session.getAttribute("user");
-	if (u == null) {
-		String account = request.getParameter("form-email");
-		String password = request.getParameter("form-password");
-		UserInfo user=new UserInfo();
-		user.setAccount(account);
-		user.setPassword(password);
-		UserInfo info = userInfoMapper.getUserByAccountAndPwd(user);
+		String u = (String)session.getAttribute("user");
+		if (u == null) {
+			String account = request.getParameter("form-email");
+			String password = request.getParameter("form-password");
+			UserInfo user=new UserInfo();
+			user.setAccount(account);
+			user.setPassword(password);
+			UserInfo info = userInfoMapper.getUserByAccountAndPwd(user);
+			session.setAttribute("user_info", info);
+			System.out.println(((UserInfo)session.getAttribute("user_info")).getId());
 			try{
 				ObjectMapper mapper = new ObjectMapper();
 				u = mapper.writeValueAsString(info);			
@@ -97,6 +99,13 @@ public class UserInfoController {
 	public String forget(HttpServletRequest request,Model model){
 		//TODO
 		return null;
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout() {
+		session.removeAttribute("user");
+		session.removeAttribute("user_info");
+		return "login";
 	}
 	
 }

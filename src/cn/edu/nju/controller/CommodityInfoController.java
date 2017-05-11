@@ -40,7 +40,7 @@ public class CommodityInfoController {
 			String formGoodsClassesDetail,HttpServletRequest request,Model model){
 		String path= request.getSession().getServletContext().getRealPath("/upload/commodity");
 		String fileName=formGoodsLogoPic.getOriginalFilename();
-		String extfileName = fileName.substring(fileName.indexOf("."));
+		String extfileName = fileName.substring(Math.max(fileName.lastIndexOf("."), 0));
 		String systime=System.currentTimeMillis()+"";
 		Random r=new Random();
 		int rnum=r.nextInt(10000);
@@ -74,20 +74,30 @@ public class CommodityInfoController {
 	@RequestMapping("getCommodities.do")
 	@ResponseBody
 	public String getCommodities(Model model){
+<<<<<<< HEAD
 		String u = (String)session.getAttribute("user");
 		UserInfo user = new UserInfo();
 		user.setId(Integer.parseInt(u.split(":")[1].split(",")[0]));
 		List<CommodityInfo> list = new ArrayList<CommodityInfo>();
 		list = commodityInfoMapper.getCommodityByUserId(user);
+=======
+		UserInfo info = (UserInfo)session.getAttribute("user_info");
+>>>>>>> refs/remotes/origin/master
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonInstring;
+		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserId(info);
+		System.out.println(info.getId());
+		System.out.println(commodities.size());
 		try {
+<<<<<<< HEAD
 			jsonInstring = mapper.writeValueAsString(list);
 			return jsonInstring;
+=======
+			return mapper.writeValueAsString(commodities);
+>>>>>>> refs/remotes/origin/master
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
+			return "[]";
 		}
-		return "";
 	}
 	
 	@RequestMapping("removeCommodity.do")
