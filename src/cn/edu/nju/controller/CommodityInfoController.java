@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
+import cn.edu.nju.po.UserInfo;
 
 @Controller
 @RequestMapping("/commodityInfo/")
@@ -32,8 +33,6 @@ public class CommodityInfoController {
 	
 	@Resource(name="commodityInfoMapper")
 	private CommodityInfoMapper commodityInfoMapper;
-	
-	List<CommodityInfo> list = new ArrayList<CommodityInfo>();
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile formGoodsLogoPic,String formGoodsDesc,
@@ -75,11 +74,15 @@ public class CommodityInfoController {
 	@RequestMapping("getCommodities.do")
 	@ResponseBody
 	public String getCommodities(Model model){
+		String u = (String)session.getAttribute("user");
+		UserInfo user = new UserInfo();
+		user.setId(Integer.parseInt(u.split(":")[1].split(",")[0]));
+		List<CommodityInfo> list = new ArrayList<CommodityInfo>();
+		list = commodityInfoMapper.getCommodityByUserId(user);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInstring;
 		try {
-			jsonInstring = mapper.writeValueAsString(new Object());
-//			jsonInstring = "{}";
+			jsonInstring = mapper.writeValueAsString(list);
 			return jsonInstring;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -111,8 +114,6 @@ public class CommodityInfoController {
 	
 	@RequestMapping("retrieveCommodity.do")
 	public String retrieveCommodity(String str,Model model){
-		list = commodityInfoMapper.getCommoditiesByDes(str);
-		model.addAttribute("list", list);
 		return null;
 	}
 	
