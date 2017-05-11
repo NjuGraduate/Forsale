@@ -35,7 +35,7 @@ public class UserInfoController {
 		if(u!=null){
 			try{
 				ObjectMapper mapper = new ObjectMapper();
-				String jsonInString = mapper.writeValueAsString(user);			
+				String jsonInString = mapper.writeValueAsString(u);			
 				model.addAttribute("user",jsonInString);
 			}catch(IOException e) {
 				e.printStackTrace();
