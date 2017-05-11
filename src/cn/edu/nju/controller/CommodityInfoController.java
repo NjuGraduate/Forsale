@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,8 +78,6 @@ public class CommodityInfoController {
 		UserInfo info = (UserInfo)session.getAttribute("user_info");
 		ObjectMapper mapper = new ObjectMapper();
 		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserId(info);
-		System.out.println(info.getId());
-		System.out.println(commodities.size());
 		try {
 			return mapper.writeValueAsString(commodities);
 		} catch (JsonProcessingException e) {
@@ -124,5 +123,19 @@ public class CommodityInfoController {
 	public String buyCommodity(@RequestBody ArrayList<CommodityInfo> list){
 		//TODO
 		return null;
+	}
+	
+	@RequestMapping("goodsDetail.do")
+	public String goodsDetail(@RequestParam("id") int id, Model model) {
+		CommodityInfo com = new CommodityInfo();
+		ObjectMapper mapper = new ObjectMapper();
+		com.setId(id);
+		CommodityInfo commodity = commodityInfoMapper.getCommodityById(com);
+		try {
+			model.addAttribute("detail", mapper.writeValueAsString(commodity));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "GoodsDetail";
 	}
 }

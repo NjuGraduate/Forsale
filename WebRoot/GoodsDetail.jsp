@@ -25,41 +25,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/accordion.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
-
+	<script>
+		$(document).ready(function (){
+			detail(${detail});
+		});
+		function detail(goods){
+			console.log(goods);
+			let container = document.getElementsByClassName("goodsDesc")[0];
+			let div = document.createElement("div");
+			div.classList.add("imgDesc");
+			let img = document.createElement("img");
+			img.classList.add("goodsLogo");
+			img.src = goods.pic;
+			div.appendChild(img);
+			container.appendChild(div);
+			let desc = document.getElementsByClassName("title")[0];
+			desc.innerHTML = goods.des;
+			let price = document.getElementsByClassName("spanPN")[0];
+			price.innerHTML = goods.price;
+			let size = document.getElementsByClassName("spanSize")[0];
+			size.innerHTML = goods.size;
+			let color = document.getElementsByClassName("spanColor")[0];
+			color.innerHTML = goods.color;
+			let imgContainer = document.getElementsByClassName("goodsImages")[0];
+			let img1 = document.createElement("img");
+			img1.src = goods.pic;
+			img1.style.width="100%";
+			img1.style.margin="10px 0 10px 0";
+			imgContainer.appendChild(img1);
+		};
+	</script>
 </head>
 <body>
 <div class="container">
     <%@ include file="Header.jsp" %>
     <div class="goodsContent">
         <div class="goodsDesc">
-            <div class="imgDesc">
-                <img src="images/clothes/female/001.jpg" class="goodsLogo">
-            </div>
             <div class="logoDesc">
-                <p class="title">商品名称<span>宽松套头卫衣女学生长袖打底衫棉立方2017春装新款女装潮韩版上衣</span></p>
+                <p class="title"></p>
                 <div class="priceDiv">
-                    <p class="price">原价<span class="spanPrice">388</span></p>
-                    <p class="priceDesc">衣服不错，面料厚实，棉立方第一次买这个牌子，做工精细，真的是物美价廉。我选的L的，稍大一些，所以低价二手出</p>
-                    <p class="priceNow" >当前价格<span class="spanPN">188</span></p>
-                    <p class="color" >衣服尺寸<span class="spanColor">L</span></p>
-                    <p class="color">商品颜色<span class="spanColor">白色</span></p>
+                    <p class="price">原价<span class="spanPrice">很贵很贵</span></p>
+                    <p class="priceDesc"></p>
+                    <p class="priceNow" >当前价格<span class="spanPN"></span></p>
+                    <p class="color" >衣服尺寸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="spanSize"></span></p>
+                    <p class="color">商品颜色<span class="spanColor"></span></p>
                 </div>
+                <br><br><br><br><br><br>
                 <div class="btnGroup">
 
                     <button class="btn col-sm-3" id="likeBtn">收藏</button>
                     <span class="col-sm-4"></span>
                     <button class="btn col-sm-3" id="buyBtn">立即购买</button>
                 </div>
-
-
             </div>
         </div>
         <div class="goodsImages">
-            <div class="goodsImage"><img src="images/clothes/detail/001.png"></div>
-            <div class="goodsImage"><img src="images/clothes/detail/016.jpg"></div>
-            <div class="goodsImage"><img src="images/clothes/detail/004.jpg" alt=""></div>
-            <div class="goodsImage"><img src="images/clothes/detail/019.jpg" alt=""></div>
-            <div class="goodsImage"><img src="images/clothes/detail/009.jpg" alt=""></div>
         </div>
     </div>
     <%@ include file="Footer.jsp" %>

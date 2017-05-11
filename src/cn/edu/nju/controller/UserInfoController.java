@@ -36,7 +36,6 @@ public class UserInfoController {
 			user.setPassword(password);
 			UserInfo info = userInfoMapper.getUserByAccountAndPwd(user);
 			session.setAttribute("user_info", info);
-			System.out.println(((UserInfo)session.getAttribute("user_info")).getId());
 			try{
 				ObjectMapper mapper = new ObjectMapper();
 				u = mapper.writeValueAsString(info);			
@@ -50,7 +49,7 @@ public class UserInfoController {
 			
 		}else{
 			model.addAttribute("msg","fail");
-			return "register";
+			return "login";
 		}
 	}
 	

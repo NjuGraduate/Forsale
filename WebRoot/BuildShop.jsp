@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input type="text" class="form-control" id="need" name="need" placeholder="请输入您店铺的描述，最多不超过30个字" maxlength="30">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default" id="subBtn" data-toggle="dropdown">提交</button>
+                <button type="submit" class="btn btn-default" id="subBtn">提交</button>
             </form>
         </div>
         <div class="buildSHopPos"></div>
