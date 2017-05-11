@@ -39,15 +39,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <form role="form">
                     <div class="form-group">
                         <label for="hold" class="desc">描述</label>
-                        <input type="text" class="form-control" id="hold" placeholder="请输入您闲置物品的描述,最多不超过60个字" maxlength="60">
+                        <input type="text" class="form-control" name="form-goodsDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过60个字" maxlength="60">
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">价格</span>
-                        <input type="number" class="form-control" id="price" placeholder="请输入您想要设置的价格">
+                        <input type="number" class="form-control" name="form-goodsPrice" id="price" placeholder="请输入您想要设置的价格">
                     </div>
                     <div class="form-group">
                         <span for="price" class="desc">颜色</span>
-                        <input type="number" class="form-control" placeholder="请输入您物品的颜色">
+                        <input type="number" class="form-control" name="form-goodsColor" placeholder="请输入您物品的颜色">
                     </div>
                     <div class="form-group selectGroup">
                         <span for="price" class="desc">选择分类 &nbsp;</span>
@@ -55,30 +55,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <button type="button" id="pro" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 一级分类<span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" id="proList" >
-
-                            </ul>
+                            <ul class="dropdown-menu" id="proList" ></ul>
                         </div>
                         <!-- Single button -->
                         <div class="btn-group">
-                            <button type="button" id="city" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                            <button type="button" id="city" name="form-goodsClasses" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                                 二级分类 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" id="cityList" >
-
-
-                            </ul>
+                            <ul class="dropdown-menu" id="cityList" ></ul>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputfile1" class="desc">请上传你的闲置物品的照片</label>
-                        <input type="file" id="inputfile1" class="inputFilePosition">
+                        <input type="file" id="inputfile1" class="inputFilePosition"  name="form-goodsLogoPic">
                     </div>
                     <div class="form-group">
                         <label for="inputfile2" class="desc">请上传你的闲置物品的照片</label>
-                        <input type="file" id="inputfile2" class="inputFilePosition">
+                        <input type="file" id="inputfile2" class="inputFilePosition"  name="form-goodsPic">
                     </div>
-                    <button type="submit" class="btn btn-primary subBtn">提交</button>
+                    <button type="submit" class="btn btn-primary subBtn" >提交</button>
                 </form>
             </div>
         </div>

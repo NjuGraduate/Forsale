@@ -29,23 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
-    <script>
-    	$(document).ready(function () {
-			test(${user});
-		});
-		
-		function test(account){
-			let temp = document.getElementsByClassName("header-text1")[0];
-			let temp2 = document.getElementsByClassName("header-text2")[0];
-			if(!account){
-				temp.innerHTML="请登录";
-				temp2.innerHTML = "免费注册";
-			}else{
-				temp.innerHTML = account.account;
-				temp2.innerHTML = "欢迎您！";
-			}
-		}
-    </script>
+    
 </head>
 <body>
 <div class="container">

@@ -80,11 +80,11 @@
                 <p>这是我手里的一把尤克里里，95成新，买回来没怎么弹过，闲置浪费地方也舍不得扔掉，我想要换一把吉他<br>
                     有意者联系QQ：<span>543372027</span></p>
             </div><br>
-            <p class="add">您可以点击这里来 <a href="" target="_blank">添加商品</a></p>
+            <p class="add">您可以点击这里来 <a href="./PublishGoods.jsp" target="_blank">添加商品</a></p>
             <img src="./images/components/line.png" alt="" class="line">
             <h2>我的店铺</h2>
             <img src="./images/components/line.png" alt="" class="line">
-            <p class="add">您当前暂无店铺，您可以选择 <a href="" target="_blank">创建店铺</a></p>
+            <p class="add">您当前暂无店铺，您可以选择 <a href="./BuildShop.jsp" target="_blank">创建店铺</a></p>
         </div>
         <%@ include file="Footer.jsp" %>
     </div>
