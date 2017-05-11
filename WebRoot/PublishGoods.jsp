@@ -30,6 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/checkClasses.js"></script>
 
 
+
 </head>
 <body>
     <div class="container">
@@ -52,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="form-group">
                         <span for="size" class="desc">尺寸</span>
-                        <input type="text" class="form-control" placeholder="请输入商品的尺寸">
+                        <input type="text" class="form-control" name="form-goodsSize" placeholder="请输入商品的尺寸">
                     </div>
                     <div class="form-group selectGroup">
                         <span for="price" class="desc">选择分类 &nbsp;</span>

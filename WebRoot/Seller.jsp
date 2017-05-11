@@ -19,6 +19,18 @@
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+    	$.ajax({
+    		type:'post',
+    		url:"commodityInfo/getCommodities.do",
+    		dataType:'json',
+    		success:callback
+    	});
+    	
+    	function callback(data){
+    		alert(data);
+    	}
+    </script>
 
 </head>
 <body>
