@@ -35,7 +35,7 @@ public class CommodityInfoController {
 		System.out.println(com.getDes()+" "+com.getPic());
 		commodityInfoMapper.addCommodity(com);
 		System.out.println("---------------------");
-		return "seller";
+		return "Seller";
 	}
 	
 	@RequestMapping("getCommodities.do")
