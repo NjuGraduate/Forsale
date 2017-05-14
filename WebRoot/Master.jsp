@@ -141,7 +141,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                21
 		            </div>
 		            <div class="tab-pane" id="xw4">
-		                21
+		                <table class="table table-hover">
+							<caption>举报列表</caption>
+						  	<thead>
+						    	<tr>
+						      	<th>举报者</th>
+						      	<th>账号</th>
+						      	<th>姓名</th>
+						      	<th>被举报者</th>
+						      	<th>帐号</th>
+						      	<th>举报原因</th>
+						      	<th>查看</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody>
+						    	<tr>
+						      	<td>LCX</td>
+						      	<td>lcx@nju.edu.cn</td>
+						      	<td>刘昌鑫</td>
+						      	<td>朱子威</td>
+						      	<td>zzw@nju.edu.cn</td>
+						      	<td>太丑了</td>
+						      	<td><button class="btn-danger">查看</button></td>
+						    	</tr>
+						    	<tr>
+						      	<td>LCX</td>
+						      	<td>lcx@nju.edu.cn</td>
+						      	<td>刘昌鑫</td>
+						      	<td>朱子威</td>
+						      	<td>zzw@nju.edu.cn</td>
+						      	<td>太丑了</td>
+						      	<td><button class="btn-danger">查看</button></td>
+						    	</tr>
+						    	<tr>
+						      	<td>LCX</td>
+						      	<td>lcx@nju.edu.cn</td>
+						      	<td>刘昌鑫</td>
+						      	<td>朱子威</td>
+						      	<td>zzw@nju.edu.cn</td>
+						      	<td>太丑了</td>
+						      	<td><button class="btn-danger">查看</button></td>
+						    	</tr>
+						  </tbody>
+						</table>
 		            </div>
 		        </div>
 		    </div>
