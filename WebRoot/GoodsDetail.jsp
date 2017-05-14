@@ -27,10 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/scripts.js"></script>
 	<script>
 		$(document).ready(function (){
-			detail(${detail});
-		});
+			detail(${detail}) ;
+		}); 
 		function detail(goods){
-			console.log(goods);
 			let container = document.getElementsByClassName("goodsDesc")[0];
 			let div = document.createElement("div");
 			div.classList.add("imgDesc");
