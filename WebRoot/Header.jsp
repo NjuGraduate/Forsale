@@ -36,7 +36,7 @@
                 <li>
                     <a href="./UserInfoDetail.jsp">我的二手</a>
                     <ul id="myForSale">
-                        <li><a href="./UserInfoDetail.jsp">我的二手</a></li>
+                        <li><a href="./Master.jsp">我的二手</a></li>
                         <li><a href="./Cart.jsp">已买的二手</a></li>
                         <li><a href="./exchangeReq.jsp">我要置换</a></li>
                     </ul>
