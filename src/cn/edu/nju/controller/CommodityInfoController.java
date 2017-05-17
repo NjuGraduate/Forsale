@@ -122,7 +122,7 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("retrieveCommodity.do")
-	public String retrieveCommodity(String str,Model model){
+	public String retrieveCommodity(HttpServletRequest request){
 		return null;
 	}
 	
