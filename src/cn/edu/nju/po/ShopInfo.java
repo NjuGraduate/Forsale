@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class ShopInfo implements Serializable{
 	
+	private String name;
+	private String rank;
+	private String des;
+	private int user_id;
 	
 	public int getId() {
 		return id;
@@ -41,8 +45,4 @@ public class ShopInfo implements Serializable{
 		return "ShopInfo [id=" + id + ", name=" + name + ", rank=" + rank + ", des=" + des + ", user_id=" + user_id
 				+ "]";
 	}
-	private String name;
-	private String rank;
-	private String des;
-	private int user_id;
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.mapper.RecordInfoMapper">
+   	<resultMap type="RecordInfo" id="recordmap">
+   	  <result property="id" column="id"/>
+      <result property="date" column="date"/>
+      <result property="buyerId" column="buyer_id"/>
+      <result property="commodityId" column="commodity_id"/>
+      <result property="sellerId" column="seller_id"/>
+   </resultMap>
+     
+   <insert id="addRecord" parameterType="RecordInfo">
+        insert into record(date,buyer_id,commodity_id,seller_id) values(#{date},#{buyerId},#{commodityId},#{sellerId})
+   </insert>
+ 
+   <delete id="removeRecord" parameterType="RecordInfo">
+        delete * from record where id=#{id}
+   </delete>
+   
+   <select id="getRecordsLike" parameterType="RecordInfo" resultMap="recordmap">
+        select * from record where date like '%#{date}%'
+   </select>
+   
+   
+   <select id="getRecords" resultMap="recordmap">
+        select * from record
+   </select>
+   
+   
+   <select id="getRecordById" parameterType="RecordInfo" resultMap="recordmap">
+        select * from record where id=#{id}
+   </select>
+   
+   <select id="getRecordByUserId" parameterType="RecordInfo" resultMap="recordmap">
+        select * from record where user_id=#{userId}
+   </select>
+   <select id="getRecordBySellerId" parameterType="RecordInfo" resultMap="recordmap">
+        select * from record where seller_id=#{sellerId}
+   </select>
+   <select id="getRecordByCommodityId" parameterType="RecordInfo" resultMap="recordmap">
+        select * from record where commodity_id=#{commodityId}
+   </select>  
+</mapper>

@@ -10,7 +10,6 @@ public class CommodityInfo implements Serializable{
 	private String pic;
 	private int shopId;
 	private int sellerId;
-	private String state;
 	private String color;
 	private String size;
 	private String classifiction1;
@@ -38,12 +37,6 @@ public class CommodityInfo implements Serializable{
 	}
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
 	}
 	public String getColor() {
 		return color;
@@ -90,7 +83,7 @@ public class CommodityInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "CommodityInfo [id=" + id + ", name=" + name + ", price=" + price + ", des=" + des + ", pic=" + pic
-				+ ", shopId=" + shopId + ", sellerId=" + sellerId + ", state=" + state + ", color=" + color + ", size="
+				+ ", shopId=" + shopId + ", sellerId=" + sellerId + ", color=" + color + ", size="
 				+ size + ", classifiction1=" + classifiction1 + ", classifiction2=" + classifiction2 + "]";
 	}
 }

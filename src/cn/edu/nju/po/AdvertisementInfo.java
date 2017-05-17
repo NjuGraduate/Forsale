@@ -6,8 +6,42 @@ public class AdvertisementInfo implements Serializable{
 	
 	private String title;
 	private String id;
-	private String user;
 	private String state;
+	private int user_id;
+	private int commodity_id;
+	private int shop_id;
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	public int getCommodity_id() {
+		return commodity_id;
+	}
+
+	public void setCommodity_id(int commodity_id) {
+		this.commodity_id = commodity_id;
+	}
+
+	public int getShop_id() {
+		return shop_id;
+	}
+
+	public void setShop_id(int shop_id) {
+		this.shop_id = shop_id;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -18,15 +52,8 @@ public class AdvertisementInfo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "AdvertisementInfo [title=" + title + "]";
-	}
-
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
+		return "AdvertisementInfo [title=" + title + ", id=" + id + ", state=" + state + ", user_id=" + user_id
+				+ ", commodity_id=" + commodity_id + ", shop_id=" + shop_id + "]";
 	}
 
 	public String getId() {

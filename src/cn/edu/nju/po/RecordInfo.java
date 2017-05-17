@@ -8,6 +8,7 @@ public class RecordInfo implements Serializable{
 	private int buyerId;
 	private int commodityId;
 	private String date;
+	private int sellerId;
 	public int getId() {
 		return id;
 	}

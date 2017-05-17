@@ -7,7 +7,7 @@ import cn.edu.nju.po.UserInfo;
 
 public interface ShopInfoMapper {
 	public boolean addShop(ShopInfo user);
-	public boolean removeShop(ShopInfo co);
+	public boolean removeRecord(ShopInfo co);
 	public boolean updateShop(ShopInfo co);
 	public List<ShopInfo> getShopsLike(ShopInfo co);
 	public List<ShopInfo> getShops();
