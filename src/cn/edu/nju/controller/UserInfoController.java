@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 
@@ -54,7 +56,12 @@ public class UserInfoController {
 			return "index";
 			
 		}else{
-			model.addAttribute("msg","fail");
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "login";
 		}
 	}
@@ -62,6 +69,7 @@ public class UserInfoController {
 	@RequestMapping("register.do")
 	public String register(HttpServletRequest request,Model model){
 		String account = request.getParameter("form-email");
+		ObjectMapper mapper = new ObjectMapper();
 		if(account.endsWith("edu.cn")){
 			String password = request.getParameter("form-password");
 			String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
@@ -76,15 +84,22 @@ public class UserInfoController {
 			UserInfo u = userInfoMapper.getUserByAccount(user);
 			if(u==null){
 				userInfoMapper.addUser(user);
-				model.addAttribute("user",user);
 				sendEmail(account);
 				return "login";
 			}else{
-				model.addAttribute("msg","fail");
+				try {
+					model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				return "register";
 			}
 		}else{
-			model.addAttribute("msg","fail");
+			try {
+				model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "register";
 		}
 		
@@ -155,9 +170,9 @@ public class UserInfoController {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sendMail, "Forsale网", "UTF-8"));
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal用户", "UTF-8"));
-        message.setSubject("欢迎使用Forsale网", "UTF-8");
+        message.setSubject("Welcome to Forsale", "UTF-8");
         String url = "http://localhost:8080/forsale/index.jsp";
-        message.setContent("您已注册Forsale网账号，若有疑问请访问   "+url, "text/html;charset=UTF-8");
+        message.setContent("Thank you for resgitering Forsale,more details:"+url, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
 

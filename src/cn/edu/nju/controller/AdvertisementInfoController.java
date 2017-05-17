@@ -8,9 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.AdvertisementInfoMapper;
 import cn.edu.nju.po.AdvertisementInfo;
+import cn.edu.nju.po.CommodityInfo;
 
 
 @Controller
@@ -60,5 +65,18 @@ public class AdvertisementInfoController {
 		advertisementInfoMapper.getAdvertisementsLike(str);
 		//TODO
 		return null;
+	}
+	
+	@RequestMapping("getAllAds.do")
+	@ResponseBody
+	public String getAllAds(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		List<AdvertisementInfo> ads = advertisementInfoMapper.getAdvertisements();
+		try {
+			return mapper.writeValueAsString(ads);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 }
