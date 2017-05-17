@@ -28,13 +28,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/checkClasses.js"></script>
+    <script>
+    	function getClass(){
+    		let btn1 = document.getElementById("pro");
+    		let tempClass = btn1.innerText;
+    		let class1 = document.getElementById("class1");
+    		class1.value = tempClass;
+    		let btn2 = document.getElementById("city");
+    		let temp = btn2.innerText;
+    		let class2 = document.getElementById("class2");
+    		class2.value = temp;
+    		alert(class2.value);
+    	}
+    </script>
 </head>
 <body>
     <div class="container">
         <%@ include file="Header.jsp" %>
         <div class="publishGoods">
             <div class="formContainer">
-                <form role="form" action="commodityInfo/addCommodity.do" method="post" enctype="multipart/form-data">
+                <form role="form" action="commodityInfo/addCommodity.do" method="post" enctype="multipart/form-data" onsubmit="getClass()">
                     <div class="form-group">
                     <br>
                         <span for="hold" class="desc">描述</span>
@@ -55,26 +68,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="form-group selectGroup">
                         <span for="price" class="desc">选择分类 &nbsp;</span>
                         <div class="btn-group">
-                            <button type="button" id="pro" name="formGoodsClasses" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" id="pro" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 一级分类
                             </button>
-                            <ul class="dropdown-menu" id="proList" ></ul>
+                            <ul class="dropdown-menu" id="proList"></ul>
+                            <input id="class1" type="hidden" name="formGoodsClasses">
                         </div>
                         <!-- Single button -->
                         <div class="btn-group">
-                            <button type="button" id="city" name="formGoodsClassesDetail" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                            <button type="button" id="city" class="btn btn-info dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                                 二级分类
                             </button>
                             <ul class="dropdown-menu" id="cityList" ></ul>
+                            <input id="class2" type="hidden" name="formGoodsClassesDetail">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputfile1" class="desc">请上传你的闲置物品的照片</label>
                         <input type="file" id="inputfile1" class="inputFilePosition"  name="formGoodsLogoPic">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputfile2" class="desc">请上传你的闲置物品的照片</label>
-                        <input type="file" id="inputfile2" class="inputFilePosition"  name="formGoodsPic">
                     </div>
                     <button type="submit" class="btn btn-primary subBtn" >提交</button>
                 </form>

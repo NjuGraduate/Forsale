@@ -30,12 +30,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-    $(document).ready(function () {
-		advertisementText(${user});
+    $.getJSON({
+		url:"commodityInfo/getAllCommodities.do",
+		success:callback
 	});
-    function advertisementText(user){
-    	
-    }
     </script>
     
 </head>

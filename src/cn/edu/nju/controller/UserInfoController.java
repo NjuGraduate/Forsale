@@ -43,18 +43,19 @@ public class UserInfoController {
 			user.setAccount(account);
 			user.setPassword(password);
 			UserInfo info = userInfoMapper.getUserByAccountAndPwd(user);
-			session.setAttribute("user_info", info);
-			try{
-				ObjectMapper mapper = new ObjectMapper();
-				u = mapper.writeValueAsString(info);			
-				session.setAttribute("user", u);
-			}catch(IOException e) {
-				e.printStackTrace();
+			if (info != null) {				
+				session.setAttribute("user_info", info);
+				try{
+					ObjectMapper mapper = new ObjectMapper();
+					u = mapper.writeValueAsString(info);			
+					session.setAttribute("user", u);
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		if(u!=null){
 			return "index";
-			
 		}else{
 			try {
 				ObjectMapper mapper = new ObjectMapper();
@@ -96,7 +97,7 @@ public class UserInfoController {
 			}
 		}else{
 			try {
-				model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+				model.addAttribute("msg",mapper.writeValueAsString(new String("fail-email")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

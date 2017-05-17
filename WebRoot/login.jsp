@@ -17,14 +17,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.backstretch.min.js"></script>
-    <script src="js/retina-1.1.0.min.js"></script>
     <script src="js/loginJS.js"></script>
     <style>
         .container{
             height: 600px;
         }
     </style>
+    <script>
+    	$(document).ready(function (){
+    		if(${msg} == "fail"){
+    			alert("账号不存在或密码错误");
+    		};
+    		let btn = document.getElementById("regBtn");
+    		let a = document.createElement("a");
+    		btn.appendChild(a);
+    		a.href="register.jsp";
+    	});
+    </script>
 </head>
 <body>
 <div class="container">
