@@ -29,11 +29,89 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <style>
+    div.goods-container {
+    	width: inherit !important;
+    	height: inherit !important;
+    	background-color: transparent !important;
+    	display: block !important;
+    }
+    </style>
     <script>
-    $.getJSON({
-		url:"commodityInfo/getAllCommodities.do",
-		success:callback
-	});
+	    $.getJSON({
+			url:"commodityInfo/getAllCommodities.do",
+			success:commodities
+		});
+    	function commodities(json){
+    		let data = JSON.parse(json);
+    		let content1 = document.getElementById("content1");
+    		let content2 = document.getElementById("content2");
+    		let content3 = document.getElementById("content3");
+    		let content4 = document.getElementById("content4");
+    		let content5 = document.getElementById("content5");
+    		let content6 = document.getElementById("content6");
+    		let content7 = document.getElementById("content7");
+    		let content8 = document.getElementById("content8");
+    		let content9 = document.getElementById("content9");
+    		for(var i = 0; i < data.length;i++){
+    			if(data[i].classifiction1 == "衣服"){
+    				if(data[i].classifiction2 == "女装"){
+    					let femaleContainer = document.getElementById("female_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "男装"){
+    					let maleContainer = document.getElementById("male_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("under_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
+    				
+    			}else if(data[i].classifiction1 == "鞋靴"){
+    				
+    			}else if(data[i].classifiction1 == "数码"){
+    				
+    			}else if(data[i].classifiction1 == "美妆"){
+    				
+    			}else if(data[i].classifiction1 == "手表"){
+    				
+    			}else if(data[i].classifiction1 == "户外"){
+    				
+    			}else if(data[i].classifiction1 == "房子"){
+    				
+    			}else if(data[i].classifiction1 == "汽车"){
+    				
+    			}else{
+    				
+    			}
+    		}
+    	}
     </script>
     
 </head>
@@ -215,36 +293,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="tab-content clothesContent">
         <div class="tab-pane active fade in femaleClothes" id="content1">
-            <h4>女装专栏</h4>
-            <div><img src="./images/clothes/female/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/female/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/female/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/female/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/female/010.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/female/013.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/female/008.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>男装专栏</h4>
-            <div><img src="./images/clothes/male/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/male/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/male/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/male/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/male/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/male/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/male/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>内衣专栏</h4>
-            <div><img src="./images/clothes/under/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/under/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/under/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/under/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/under/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/under/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/clothes/under/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-             
+          	<div id="goods_container" class="goods-container">
+	           	<div id="female_container" class="hidden goods-container">
+	           	<h4>女装专栏</h4>
+	           	<p class="line"><img src="./images/components/line.png"></p>
+	           	</div>
+	           	<div id="male_container" class="hidden goods-container">
+	           	<h4>男装专栏</h4>
+	           	<p class="line"><img src="./images/components/line.png"></p>
+	          	</div>
+	          	<div id="under_container" class="hidden goods-container">
+	           	<h4>内衣专栏</h4>
+	           	<p class="line"><img src="./images/components/line.png"></p>
+	          	</div>
+            </div>
         </div>
         <div class="tab-pane fade in femaleClothes" id="content2">
+        	<div id="shoes_container" class="goods-container">
+        		
+        	</div>
             <h4>鞋靴专栏</h4>
             <div><img src="./images/shoes/shoes/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
             <div><img src="./images/shoes/shoes/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
