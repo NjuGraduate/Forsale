@@ -20,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.edu.nju.mapper.CartInfoMapper;
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.RecordInfoMapper;
+import cn.edu.nju.po.CartInfo;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.RecordInfo;
 import cn.edu.nju.po.UserInfo;
@@ -37,6 +39,9 @@ public class CommodityInfoController {
 
 	@Resource(name="recordInfoMapper")
 	private RecordInfoMapper recordInfoMapper;
+	
+	@Resource(name="cartInfoMapper")
+	private CartInfoMapper cartInfoMapper;
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile formGoodsLogoPic,String formGoodsDesc,
@@ -102,11 +107,11 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("removeCommodity.do")
-	public String removeCommodity(HttpServletRequest request){
+	public String removeCommodity(@RequestParam("id") int id){
 		CommodityInfo com = new CommodityInfo();
-		com.setId(Integer.parseInt(request.getParameter("form-id")));
+		com.setId(id);
 		commodityInfoMapper.removeCommodity(com);
-		return null;
+		return "";
 	}
 	
 	@RequestMapping("updateCommodity.do")
@@ -147,11 +152,24 @@ public class CommodityInfoController {
 		return "";
 	}
 	
-	@RequestMapping("showOrder.do")
-	public String showOrder(Model model){
+	@RequestMapping("showbuyerOrder.do")
+	public String showbuyerOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
-		List<RecordInfo> list = recordInfoMapper.getRecordByUserAccount(user);
+		List<RecordInfo> list = recordInfoMapper.getRecordByBuyerAccount(user);
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("showSellerOrder.do")
+	public String showSellerOrder(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		List<RecordInfo> list = recordInfoMapper.getRecordBySellerAccount(user);
 		try {
 			return mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
@@ -161,8 +179,12 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("collectCommodity.do")
-	public String collectCommodity(HttpServletRequest request,Model model){
-		//TODO
+	public String collectCommodity(String commodity_id){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		CartInfo cart = new CartInfo();
+		cart.setBuyer_account(user.getAccount());
+		cart.setCommodity_id(Integer.parseInt(commodity_id));
+		cartInfoMapper.addCart(cart);
 		return "";
 	}
 	

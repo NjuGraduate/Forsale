@@ -7,15 +7,15 @@ public class AdvertisementInfo implements Serializable{
 	private String title;
 	private String id;
 	private String state;
-	private int user_account;
+	private String user_account;
 	private int commodity_id;
 	private int shop_id;
 	
-	public int getUser_account() {
+	public String getUser_account() {
 		return user_account;
 	}
 
-	public void setUser_account(int user_account) {
+	public void setUser_account(String user_account) {
 		this.user_account = user_account;
 	}
 	public String getState() {

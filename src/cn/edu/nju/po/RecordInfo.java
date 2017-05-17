@@ -17,11 +17,11 @@ public class RecordInfo implements Serializable{
 	public void setBuyerAccount(String buyerAccount) {
 		this.buyer_account = buyerAccount;
 	}
-	public int getCommodityId() {
-		return commodityId;
+	public int getCommodity_id() {
+		return commodity_id;
 	}
-	public void setCommodityId(int commodityId) {
-		this.commodityId = commodityId;
+	public void setCommodity_id(int commodity_id) {
+		this.commodity_id = commodity_id;
 	}
 	public String getCoName() {
 		return coName;
@@ -80,13 +80,13 @@ public class RecordInfo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "RecordInfo [id=" + id + ", buyerAccount=" + buyer_account + ", commodityId=" + commodityId + ", coName="
+		return "RecordInfo [id=" + id + ", buyerAccount=" + buyer_account + ", commodityId=" + commodity_id + ", coName="
 				+ coName + ", coPic=" + coPic + ", coColor=" + coColor + ", coSize=" + coSize + ", coDes=" + coDes
 				+ ", coPrice=" + coPrice + ", date=" + date + ", sellerAccount=" + seller_account + "]";
 	}
 	private int id;
 	private String buyer_account;
-	private int commodityId;
+	private int commodity_id;
 	private String coName;
 	private String coPic;
 	private String coColor;
@@ -98,7 +98,7 @@ public class RecordInfo implements Serializable{
 	private String seller_account;
 	public RecordInfo(UserInfo buyer,CommodityInfo co,String date){
 		this.buyer_account = buyer.getAccount();
-		this.commodityId = co.getId();
+		this.commodity_id = co.getId();
 		this.coName = co.getName();
 		this.coPic = co.getPic();
 		this.coColor = co.getColor();

@@ -83,7 +83,7 @@ public class CommodityInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "CommodityInfo [id=" + id + ", name=" + name + ", price=" + price + ", des=" + des + ", pic=" + pic
-				+ ", shopId=" + shopId + ", sellerAccount=" + seller_account + ", color=" + color + ", size=" + size
+				+ ", shopId=" + shopId + ", seller_account=" + seller_account + ", color=" + color + ", size=" + size
 				+ ", classifiction1=" + classifiction1 + ", classifiction2=" + classifiction2 + "]";
 	}
 }
