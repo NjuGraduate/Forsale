@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 
@@ -54,7 +56,12 @@ public class UserInfoController {
 			return "index";
 			
 		}else{
-			model.addAttribute("msg","fail");
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "login";
 		}
 	}
@@ -62,6 +69,7 @@ public class UserInfoController {
 	@RequestMapping("register.do")
 	public String register(HttpServletRequest request,Model model){
 		String account = request.getParameter("form-email");
+		ObjectMapper mapper = new ObjectMapper();
 		if(account.endsWith("edu.cn")){
 			String password = request.getParameter("form-password");
 			String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
@@ -76,15 +84,22 @@ public class UserInfoController {
 			UserInfo u = userInfoMapper.getUserByAccount(user);
 			if(u==null){
 				userInfoMapper.addUser(user);
-				model.addAttribute("user",user);
-				sendEmail(account);
+				sendEmail(account,password);
 				return "login";
 			}else{
-				model.addAttribute("msg","fail");
+				try {
+					model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				return "register";
 			}
 		}else{
-			model.addAttribute("msg","fail");
+			try {
+				model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "register";
 		}
 		
@@ -138,7 +153,7 @@ public class UserInfoController {
 		return "login";
 	}
 	
-	private static void sendEmail(String receiveMailAccount) {
+	private static void sendEmail(String receiveMailAccount,String password) {
 	    String myEmailAccount = "18795979720@163.com";
 	    String myEmailPassword = "18795979720xy";
 
@@ -159,7 +174,7 @@ public class UserInfoController {
 
         MimeMessage message;
 		try {
-			message = createMimeMessage(session, myEmailAccount, receiveMailAccount);
+			message = createMimeMessage(session, myEmailAccount, receiveMailAccount, password);
 	        Transport transport = session.getTransport();
 	        transport.connect(myEmailAccount, myEmailPassword);
 	        transport.sendMessage(message, message.getAllRecipients());
@@ -169,13 +184,13 @@ public class UserInfoController {
 		}
 	}
 	
-	private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail) throws Exception {
+	private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String password) throws Exception {
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sendMail, "Forsale缃�", "UTF-8"));
-        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal鐢ㄦ埛", "UTF-8"));
-        message.setSubject("娆㈣繋浣跨敤Forsale缃�", "UTF-8");
+        message.setFrom(new InternetAddress(sendMail, "Forsale网", "UTF-8"));
+        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal用户", "UTF-8"));
+        message.setSubject("Welcome to Forsale", "UTF-8");
         String url = "http://localhost:8080/forsale/index.jsp";
-        message.setContent("鎮ㄥ凡娉ㄥ唽Forsale缃戣处鍙凤紝鑻ユ湁鐤戦棶璇疯闂�   "+url, "text/html;charset=UTF-8");
+        message.setContent("Thank you for resgitering "+url+" You new password: "+ password, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
 

@@ -86,6 +86,19 @@ public class CommodityInfoController {
 		}
 	}
 	
+	@RequestMapping("getAllCommodities.do")
+	@ResponseBody
+	public String getAllCommodities(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		List<CommodityInfo> commodities = commodityInfoMapper.getCommodities();
+		try {
+			return mapper.writeValueAsString(commodities);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
 	@RequestMapping("removeCommodity.do")
 	public String removeCommodity(HttpServletRequest request){
 		CommodityInfo com = new CommodityInfo();
