@@ -1,7 +1,7 @@
 package cn.edu.nju.controller;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +21,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.CommodityInfoMapper;
+import cn.edu.nju.mapper.RecordInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
+import cn.edu.nju.po.RecordInfo;
 import cn.edu.nju.po.UserInfo;
 
 @Controller
@@ -34,6 +34,9 @@ public class CommodityInfoController {
 	
 	@Resource(name="commodityInfoMapper")
 	private CommodityInfoMapper commodityInfoMapper;
+
+	@Resource(name="recordInfoMapper")
+	private RecordInfoMapper recordInfoMapper;
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile formGoodsLogoPic,String formGoodsDesc,
@@ -137,7 +140,10 @@ public class CommodityInfoController {
 		CommodityInfo com = new CommodityInfo();
 		com.setId(Integer.parseInt(request.getParameter("id")));
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
-		commodityInfoMapper.addOrder(co,user);
+		Calendar now = Calendar.getInstance(); 
+		String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
+		RecordInfo rec = new RecordInfo(co,user,time);
+		recordInfoMapper.addRecord(rec);
 		return "";
 	}
 	
@@ -145,7 +151,7 @@ public class CommodityInfoController {
 	public String showOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
-		List<CommodityInfo> list = commodityInfoMapper.getCommodityByUserId(user);
+		List<RecordInfo> list = recordInfoMapper.getRecordByUserAccount(user);
 		try {
 			return mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
