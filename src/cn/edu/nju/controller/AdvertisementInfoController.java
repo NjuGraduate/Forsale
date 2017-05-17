@@ -3,11 +3,14 @@ package cn.edu.nju.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,12 +18,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.AdvertisementInfoMapper;
 import cn.edu.nju.po.AdvertisementInfo;
-import cn.edu.nju.po.CommodityInfo;
+import cn.edu.nju.po.UserInfo;
 
 
 @Controller
 @RequestMapping("/advertisementInfo/")
 public class AdvertisementInfoController {
+	@Autowired
+    private HttpSession session;
 	
 	@Resource(name="advertisementInfoMapper")
 	private AdvertisementInfoMapper advertisementInfoMapper;
@@ -34,15 +39,25 @@ public class AdvertisementInfoController {
 	}
 	
 	@RequestMapping("addAdvertisement.do")
-	public String addAdvertisement(@RequestBody AdvertisementInfo ad,Model model){
-		AdvertisementInfo adif =advertisementInfoMapper.getAdvertisementByUserAccount(ad);
-		if(adif==null){
-			advertisementInfoMapper.addAdvertisement(ad);
-			model.addAttribute("ad", ad);
+	public String addAdvertisement(@RequestParam("id") int id,Model model){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		AdvertisementInfo adif = new AdvertisementInfo();
+		adif.setCommodity_id(id);
+		adif.setUser_account(user.getAccount());
+		String msg = "";
+		if(advertisementInfoMapper.getAdvertisementByCommodityId(adif)==null){
+			advertisementInfoMapper.addAdvertisement(adif);
+			msg="success post";
 		}else{
-			model.addAttribute("msg", "fail");
+			msg="fail post";
 		}
-		return "adinfo";
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			model.addAttribute("msg",msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	@RequestMapping("removeAdvertisement.do")
