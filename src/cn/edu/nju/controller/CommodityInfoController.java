@@ -133,9 +133,35 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("buyCommodity.do")
-	public String buyCommodity(@RequestBody ArrayList<CommodityInfo> list){
+	public String buyCommodity(HttpServletRequest request,Model model){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		CommodityInfo com = new CommodityInfo();
+		com.setId(Integer.parseInt(request.getParameter("id")));
+		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
+		if(co.getState()=="0"){
+			co.setState("1");
+			commodityInfoMapper.addOrder(co,user);
+		}
+		return "";
+	}
+	
+	@RequestMapping("showOrder.do")
+	public String showOrder(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		List<CommodityInfo> list = commodityInfoMapper.getCommodityByUserId(user);
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("collectCommodity.do")
+	public String collectCommodity(HttpServletRequest request,Model model){
 		//TODO
-		return null;
+		return "";
 	}
 	
 	@RequestMapping("goodsDetail.do")
