@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<insert id="addCommodity" parameterType="CommodityInfo">
-        insert into Commodity(id,name,price,des,pic,shop_id,seller_account,state,color,size,classifiction1,classifiction2) values(#{id},#{name},#{price},#{des},#{pic},#{shopId},#{seller_account},#{state},#{color},#{size},#{classifiction1},#{classifiction2})
+        insert into Commodity(id,name,price,des,pic,shop_id,seller_account,color,size,classifiction1,classifiction2) values(#{id},#{name},#{price},#{des},#{pic},#{shopId},#{seller_account},#{color},#{size},#{classifiction1},#{classifiction2})
    	</insert>
    
    	<delete id="removeCommodity" parameterType="CommodityInfo">
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	
    	
    	<update id="updateCommodity" parameterType="CommodityInfo">
-        update commodity set(name=#{name},price=#{price},des=#{des},pic=#{pic},shop_id=#{shopId},seller_account=#{seller_account},state=#{state},classifiction1=#{classifiction1},classifiction2=#{classifiction2}) where id=#{id}
+        update commodity set(name=#{name},price=#{price},des=#{des},pic=#{pic},shop_id=#{shopId},seller_account=#{seller_account},classifiction1=#{classifiction1},classifiction2=#{classifiction2}) where id=#{id}
    	</update>  	
 	<select id="getCommoditysLike" parameterType="CommodityInfo" resultMap="commoditymap">
         select * from commodity where des like '%#{des}%'
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	</select>
    	
    	<select id="getCommodityByUserAccount" parameterType="UserInfo" resultMap="commoditymap">
-        select * from commodity where seller_account=#{seller_account}       
+        select * from commodity where seller_account=#{account}       
    	</select>
 </mapper>
 

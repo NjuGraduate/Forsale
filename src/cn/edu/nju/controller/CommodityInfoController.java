@@ -62,7 +62,7 @@ public class CommodityInfoController {
 		
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
-		com.setSellerAccount(user.getAccount());
+		com.setSeller_account(user.getAccount());
 		com.setDes(formGoodsDesc);
 		com.setPrice(Double.valueOf(formGoodsPrice).doubleValue());
 		com.setColor(formGoodsColor);
@@ -79,7 +79,7 @@ public class CommodityInfoController {
 	public String getCommodities(Model model){
 		UserInfo info = (UserInfo)session.getAttribute("user_info");
 		ObjectMapper mapper = new ObjectMapper();
-		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserId(info);
+		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserAccount(info);
 		try {
 			return mapper.writeValueAsString(commodities);
 		} catch (JsonProcessingException e) {

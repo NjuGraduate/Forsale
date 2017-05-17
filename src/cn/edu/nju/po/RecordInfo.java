@@ -65,11 +65,18 @@ public class RecordInfo implements Serializable{
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getSellerAccount() {
+
+	public String getBuyer_account() {
+		return buyer_account;
+	}
+	public void setBuyer_account(String buyer_account) {
+		this.buyer_account = buyer_account;
+	}
+	public String getSeller_account() {
 		return seller_account;
 	}
-	public void setSellerAccount(String sellerAccount) {
-		this.seller_account = sellerAccount;
+	public void setSeller_account(String seller_account) {
+		this.seller_account = seller_account;
 	}
 	@Override
 	public String toString() {
@@ -99,7 +106,7 @@ public class RecordInfo implements Serializable{
 		this.coDes = co.getDes();
 		this.coPrice = co.getPrice();
 		this.date=date;
-		this.seller_account=co.getSellerAccount();
+		this.seller_account=co.getSeller_account();
 		
 	}
 
