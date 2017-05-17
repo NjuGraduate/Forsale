@@ -102,11 +102,11 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("removeCommodity.do")
-	public String removeCommodity(HttpServletRequest request){
+	public String removeCommodity(@RequestParam("id") int id){
 		CommodityInfo com = new CommodityInfo();
-		com.setId(Integer.parseInt(request.getParameter("form-id")));
+		com.setId(id);
 		commodityInfoMapper.removeCommodity(com);
-		return null;
+		return "";
 	}
 	
 	@RequestMapping("updateCommodity.do")
@@ -147,11 +147,24 @@ public class CommodityInfoController {
 		return "";
 	}
 	
-	@RequestMapping("showOrder.do")
-	public String showOrder(Model model){
+	@RequestMapping("showbuyerOrder.do")
+	public String showbuyerOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		List<RecordInfo> list = recordInfoMapper.getRecordByUserAccount(user);
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("showSellerOrder.do")
+	public String showSellerOrder(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		List<RecordInfo> list = recordInfoMapper.getRecordBySellerAccount(user);
 		try {
 			return mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
