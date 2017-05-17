@@ -15,7 +15,7 @@ public interface CommodityInfoMapper {
 	public CommodityInfo getCommodityById(CommodityInfo co);
 	public List<CommodityInfo> getCommodityByUserId(UserInfo user);
 	public CommodityInfo addOrder(CommodityInfo co,UserInfo user);
-	public CommodityInfo showOrder(CommodityInfo co,UserInfo user);
+	public List<CommodityInfo> showOrder(UserInfo user);
 	public CommodityInfo removeOrder(CommodityInfo co);
 	public void collectCommodity(CommodityInfo co,UserInfo user);
 	public void removeCollectCommodity(CommodityInfo co,UserInfo user);
