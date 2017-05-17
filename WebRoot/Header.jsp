@@ -4,7 +4,7 @@
 
 <script>
     	$(document).ready(function () {
-			headerText(${user});
+			headerText(${user}); 
 		});
 		
 		function headerText(account){
