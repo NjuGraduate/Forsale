@@ -13,7 +13,7 @@ public interface CommodityInfoMapper {
 	public List<CommodityInfo> getCommoditiesByDes(String str);
 	public List<CommodityInfo> getCommodities();
 	public CommodityInfo getCommodityById(CommodityInfo co);
-	public List<CommodityInfo> getCommodityByUserId(UserInfo user);
+	public List<CommodityInfo> getCommodityByUserAccount(UserInfo user);
 	public CommodityInfo addOrder(CommodityInfo co,UserInfo user);
 	public List<CommodityInfo> showOrder(UserInfo user);
 	public CommodityInfo removeOrder(CommodityInfo co);
