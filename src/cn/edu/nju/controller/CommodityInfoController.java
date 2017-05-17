@@ -67,7 +67,6 @@ public class CommodityInfoController {
 		com.setClassifiction1(formGoodsClasses);
 		com.setClassifiction2(formGoodsClassesDetail);
 		com.setPic(url);
-		com.setState("0");
 		commodityInfoMapper.addCommodity(com);
 		return "Seller";
 	}
@@ -122,7 +121,7 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("retrieveCommodity.do")
-	public String retrieveCommodity(String str,Model model){
+	public String retrieveCommodity(HttpServletRequest request){
 		return null;
 	}
 	
@@ -138,10 +137,7 @@ public class CommodityInfoController {
 		CommodityInfo com = new CommodityInfo();
 		com.setId(Integer.parseInt(request.getParameter("id")));
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
-		if(co.getState()=="0"){
-			co.setState("1");
-			commodityInfoMapper.addOrder(co,user);
-		}
+		commodityInfoMapper.addOrder(co,user);
 		return "";
 	}
 	
