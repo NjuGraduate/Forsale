@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +34,6 @@ public class CommodityInfoController {
 	
 	@Resource(name="commodityInfoMapper")
 	private CommodityInfoMapper commodityInfoMapper;
-	
-	List<CommodityInfo> list = new ArrayList<CommodityInfo>();
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile formGoodsLogoPic,String formGoodsDesc,
@@ -79,8 +78,19 @@ public class CommodityInfoController {
 		UserInfo info = (UserInfo)session.getAttribute("user_info");
 		ObjectMapper mapper = new ObjectMapper();
 		List<CommodityInfo> commodities = commodityInfoMapper.getCommodityByUserId(info);
-		System.out.println(info.getId());
-		System.out.println(commodities.size());
+		try {
+			return mapper.writeValueAsString(commodities);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("getAllCommodities.do")
+	@ResponseBody
+	public String getAllCommodities(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		List<CommodityInfo> commodities = commodityInfoMapper.getCommodities();
 		try {
 			return mapper.writeValueAsString(commodities);
 		} catch (JsonProcessingException e) {
@@ -113,8 +123,6 @@ public class CommodityInfoController {
 	
 	@RequestMapping("retrieveCommodity.do")
 	public String retrieveCommodity(String str,Model model){
-		list = commodityInfoMapper.getCommoditiesByDes(str);
-		model.addAttribute("list", list);
 		return null;
 	}
 	
@@ -125,8 +133,48 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("buyCommodity.do")
-	public String buyCommodity(@RequestBody ArrayList<CommodityInfo> list){
+	public String buyCommodity(HttpServletRequest request,Model model){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		CommodityInfo com = new CommodityInfo();
+		com.setId(Integer.parseInt(request.getParameter("id")));
+		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
+		if(co.getState()=="0"){
+			co.setState("1");
+			commodityInfoMapper.addOrder(co,user);
+		}
+		return "";
+	}
+	
+	@RequestMapping("showOrder.do")
+	public String showOrder(Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		List<CommodityInfo> list = commodityInfoMapper.getCommodityByUserId(user);
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("collectCommodity.do")
+	public String collectCommodity(HttpServletRequest request,Model model){
 		//TODO
-		return null;
+		return "";
+	}
+	
+	@RequestMapping("goodsDetail.do")
+	public String goodsDetail(@RequestParam("id") int id, Model model) {
+		CommodityInfo com = new CommodityInfo();
+		ObjectMapper mapper = new ObjectMapper();
+		com.setId(id);
+		CommodityInfo commodity = commodityInfoMapper.getCommodityById(com);
+		try {
+			model.addAttribute("detail", mapper.writeValueAsString(commodity));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "GoodsDetail";
 	}
 }

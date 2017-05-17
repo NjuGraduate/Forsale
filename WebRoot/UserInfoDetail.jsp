@@ -29,9 +29,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script>
     	$(document).ready(function () {
 			userText(${user});
+			
 		});
 		function userText(user){
-			alert(user.account);
+			let pUsername = document.getElementsByClassName("pUsername")[0];
+			let pAccount = document.getElementsByClassName("pAccount")[0];
+			let pPhone = document.getElementsByClassName("pPhone")[0];
+			let userLogo = document.getElementsByClassName("userLogo")[0];
+			let userDesc = document.getElementsByClassName("userDesc")[0];
+			let userName = document.getElementsByClassName("userName")[0];
+			if(!user){
+				pUsername.innerHTML = "当前无用户登录";
+				pAccount.innerHTML = "当前无用户登录";
+				userDesc.innerHTML = "设置昵称";
+			}else{
+				pUsername.innerHTML ="用  户  名  : "+ user.name;
+				pAccount.innerHTML ="当前账户邮箱:  "+ user.account;
+				if(!user.phonenumber){
+					pPhone.innerHTML = "手机号码： 当前未绑定手机";
+				}else{
+					pPhone.innerHTML = user.phonenumber;
+				}
+				userLogo = user.logo;
+				userDesc.value = user.des;
+				userName.value = user.name;
+			}
+			
 		}
     </script>
 </head>
@@ -46,17 +69,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li><a href="#xw2" data-toggle="tab">密码修改<span>&raquo;</span></a></li>
                     <li><a href="#xw3" data-toggle="tab">个人交易信息<span>&raquo;</span></a></li>
                     <li><a href="#xw4" data-toggle="tab">我的积分<span>&raquo;</span></a></li>
-                    <li><a href="#xw5" data-toggle="tab">退款维护<span>&raquo;</span></a></li>
-                    <li><a href="#xw6" data-toggle="tab">举报中心<span>&raquo;</span></a></li>
+                    <li><a href="#xw5" data-toggle="tab">举报中心<span>&raquo;</span></a></li>
                 </ul>
             </div>
         </div>
         <div class="userInfoDetailMapper">
             <p class="detailTitle">您的基本信息</p>
             <div class="detailBase">
-                <p>用户名：</p>
-                <p>登录邮箱：</p>
-                <p>绑定手机：</p>
+                <p class="pUsername">用户名：</p>
+                <p class="pAccount">登录邮箱：</p>
+                <p class="pPhone">绑定手机：</p>
             </div>
             <img src="./images/components/line.png" class="line">
             <p class="detailTitle">您的安全服务</p>
@@ -89,31 +111,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="./images/components/line.png" class="line">
             <div class="tab-content">
                 <div class="tab-pane active fade in" id="xw1">
-                    <p><strong>个人资料</strong></p>
-                    <p>请您输入准确的个人信息便于您完成交易<p/>
-                    当前头像：<img src="./images/userLogo/logo1.jpg" class="userLogo"><br><br>
-                    当前昵称：<input type="text" placeholder="查无此人"><br><br>
-                    真实姓名：<input type="text" placeholder="刘昌鑫"><br><br>
-                    <form>
-                        性&nbsp;&nbsp;&nbsp;&nbsp;别：&nbsp;&nbsp;
-                        <input type="radio" name="sex" value="男" checked>男
-                        <input type="radio" name="sex" value="女">女
-                    </form><br>
-                    出生日期：
-                    <input type="text" value="2012-05-15 21:05" id="datetimepicker" data-date-format="yyyy-mm-dd hh:ii">
-                    <br><br>
-                    <button class="btn btn-primary">保存</button>
+	                <form role="form" action="userinfo/update.do" method="post">
+	                	<p><strong>个人资料</strong></p>
+	                    <p>请您输入准确的个人信息便于您完成交易<p/>
+	           	         	当前头像：<img src="./images/userLogo/logo1.jpg" class="userLogo"><br><br>
+	                   		个性签名：<input type="text" class="userDesc"><br><br>
+	                    	真实姓名：<input type="text" class="userName"><br><br>
+	                       	 性&nbsp;&nbsp;&nbsp;&nbsp;别：&nbsp;&nbsp;
+	                    <input type="radio" name="sex" value="男" class="sexMale" checked>男
+	                    <input type="radio" name="sex" value="女" class="sexFemale">女
+	                    <br>
+	                   	 出生日期：
+	                    <input type="text" value="1994-09-03" id="datetimepicker" data-date-format="yyyy-mm-dd">
+	                    <br><br>
+	                    <button class="btn btn-primary" type="submit">保存</button>
+	                </form>
                 </div>
                 <div class="tab-pane fade in" id="xw2">
-                    <p>密码修改</p>
-                    当前密码：<input type="password" placeholder="请输入当前密码···"><br><br>
-                    新&nbsp;密&nbsp;码&nbsp;： <input type="password" placeholder="请输入新密码"><br><br>
-                    重复密码： <input type="password" placeholder="请再次输入新密码"><br><br>
+                	<form role="form" action="userinfo/update.do">
+                		<p>密码修改</p>
+                    	当前密码：<input type="password" name="oldPassword" placeholder="请输入当前密码···"><br><br>
+                 	  	新&nbsp;密&nbsp;码&nbsp;： <input type="password"  name="newPassword" placeholder="请输入新密码"><br><br>
+                    	重复密码： <input type="password" placeholder="请再次输入新密码"><br><br>
+                    	<button class="btn btn-primary" type="submit">确定</button>
+                	</form>
                 </div>
                 <div class="tab-pane fade in" id="xw3"><p>个人交易信息</p></div>
                 <div class="tab-pane fade in" id="xw4"><p>我的积分</p></div>
-                <div class="tab-pane fade in" id="xw5"><p>退款维护</p></div>
-                <div class="tab-pane fade in" id="xw6"><p>举报中心</p></div>
+                <div class="tab-pane fade in" id="xw5"><p>举报中心</p></div>
             </div>
         </div>
         <%@ include file="Footer.jsp" %>

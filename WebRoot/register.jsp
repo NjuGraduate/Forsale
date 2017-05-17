@@ -25,6 +25,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			height: 800px;
 		}
 	</style>
+	<script>
+		$(document).ready(function (){
+			alert(${msg});  
+			if(${msg} == "fail"){
+				alert("此账号已注册！");
+			}else if(${msg} == "fail"){
+				alert("请使用学生身份注册");
+			}
+		});
+	</script>
 </head>
 <body>
 	<div class="container">
