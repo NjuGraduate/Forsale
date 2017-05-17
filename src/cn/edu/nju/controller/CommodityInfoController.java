@@ -60,9 +60,9 @@ public class CommodityInfoController {
 		
 		String url=request.getContextPath()+"/upload/commodity/"+systime;
 		
-		String u = (String)session.getAttribute("user");
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
-		com.setSellerId(Integer.parseInt(u.split(":")[1].split(",")[0]));
+		com.setSellerAccount(user.getAccount());
 		com.setDes(formGoodsDesc);
 		com.setPrice(Double.valueOf(formGoodsPrice).doubleValue());
 		com.setColor(formGoodsColor);
