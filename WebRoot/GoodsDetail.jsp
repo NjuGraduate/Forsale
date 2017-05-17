@@ -71,14 +71,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <br><br><br><br><br><br>
                 <div class="btnGroup">
-
-                    <button class="btn col-sm-3" id="likeBtn">收藏</button>
+					<form role="form" action="commodityInfo/collectCommodity.do" method="post">
+						<button class="btn col-sm-3" id="likeBtn" name="commodity_id" type="submit">加入购物车</button>
+					</form>
                     <span class="col-sm-4"></span>
-                    <button class="btn col-sm-3" id="buyBtn">立即购买</button>
+                    <form role="form" action="commodityInfo/buyCommodity.do" method="post">
+	                    <button class="btn col-sm-3" name="id" id="buyBtn" type="submit">立即购买</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="goodsImages">
+        <div class="goodsComments">
+        	<div class="publishComments"> 
+        		
+        	</div>
+        	<div class="checkComments">
+        		
+        	</div>
         </div>
     </div>
     <%@ include file="Footer.jsp" %>
