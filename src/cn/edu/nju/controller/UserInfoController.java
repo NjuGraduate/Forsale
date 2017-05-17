@@ -93,17 +93,35 @@ public class UserInfoController {
 
 	@RequestMapping("update.do")
 	public String update(HttpServletRequest request,Model model){
-		String account = request.getParameter("form-email");
-		String password = request.getParameter("form-password");
-		String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
-		String des = request.getParameter("form-about-yourself");
-		UserInfo user = new UserInfo();
-		user.setAccount(account);
-		user.setPassword(password);
-		user.setName(name);
-		user.setDescription(des);
-		userInfoMapper.updateUser(user);
-		//TODO
+		UserInfo info = (UserInfo)session.getAttribute("user_info");
+		String oldPassword = request.getParameter("oldPassword");
+		String newPassword = request.getParameter("newPassword");
+		info.setPassword(oldPassword);
+		UserInfo u = userInfoMapper.getUserByAccountAndPwd(info);
+		if(u!=null){
+			u.setPassword(newPassword);
+			userInfoMapper.updateUser(u);
+			model.addAttribute("success", "msg");
+		}else{
+			model.addAttribute("fail", "msg");
+		}
+		return "UserInfoDetail";
+	}
+	
+	@RequestMapping("complete.do")
+	public String complete(HttpServletRequest request,Model model){
+		UserInfo info = (UserInfo)session.getAttribute("user_info");
+		String oldPassword = request.getParameter("oldPassword");
+		String newPassword = request.getParameter("newPassword");
+		info.setPassword(oldPassword);
+		UserInfo u = userInfoMapper.getUserByAccountAndPwd(info);
+		if(u!=null){
+			u.setPassword(newPassword);
+			userInfoMapper.updateUser(u);
+			model.addAttribute("success", "msg");
+		}else{
+			model.addAttribute("fail", "msg");
+		}
 		return "UserInfoDetail";
 	}
 	
@@ -153,11 +171,11 @@ public class UserInfoController {
 	
 	private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail) throws Exception {
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sendMail, "Forsale网", "UTF-8"));
-        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal用户", "UTF-8"));
-        message.setSubject("欢迎使用Forsale网", "UTF-8");
+        message.setFrom(new InternetAddress(sendMail, "Forsale缃�", "UTF-8"));
+        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal鐢ㄦ埛", "UTF-8"));
+        message.setSubject("娆㈣繋浣跨敤Forsale缃�", "UTF-8");
         String url = "http://localhost:8080/forsale/index.jsp";
-        message.setContent("您已注册Forsale网账号，若有疑问请访问   "+url, "text/html;charset=UTF-8");
+        message.setContent("鎮ㄥ凡娉ㄥ唽Forsale缃戣处鍙凤紝鑻ユ湁鐤戦棶璇疯闂�   "+url, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
 

@@ -130,8 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="tab-pane fade in" id="xw2">
                 	<form role="form" action="userinfo/update.do">
                 		<p>密码修改</p>
-                    	当前密码：<input type="password" placeholder="请输入当前密码···"><br><br>
-                 	  	新&nbsp;密&nbsp;码&nbsp;： <input type="password" placeholder="请输入新密码"><br><br>
+                    	当前密码：<input type="password" name="oldPassword" placeholder="请输入当前密码···"><br><br>
+                 	  	新&nbsp;密&nbsp;码&nbsp;： <input type="password"  name="newPassword" placeholder="请输入新密码"><br><br>
                     	重复密码： <input type="password" placeholder="请再次输入新密码"><br><br>
                     	<button class="btn btn-primary" type="submit">确定</button>
                 	</form>
