@@ -5,14 +5,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cn.edu.nju.mapper.RecordInfoMapper">
    	<resultMap type="RecordInfo" id="recordmap">
    	  <result property="id" column="id"/>
-      <result property="date" column="date"/>
       <result property="buyer_account" column="buyer_account"/>
-      <result property="commodityId" column="commodity_id"/>
+      <result property="commodity_id" column="commodity_id"/>
+   	  <result property="coName" column="coName"/>
+   	  <result property="coPic" column="coPic"/>
+   	  <result property="coColor" column="coColor"/>
+   	  <result property="coSize" column="coSize"/>
+   	  <result property="coDes" column="coDes"/>
+   	  <result property="coPrice" column="coPrice"/>
+      <result property="date" column="date"/>
       <result property="seller_account" column="seller_account"/>
    </resultMap>
      
    <insert id="addRecord" parameterType="RecordInfo">
-        insert into record(date,buyer_account,commodity_id,seller_account) values(#{date},#{buyer_account},#{commodityId},#{seller_account})
+        insert into record(buyer_account,commodity_id,coName,coPic,coColor,coSize,coDes,coPrice,date,seller_account) values(#{buyer_account},#{commodity_id},#{coName},#{coPic},#{coColor},#{coSize},#{coDes},#{Price},#{date},#{seller_account})
    </insert>
  
    <delete id="removeRecord" parameterType="RecordInfo">
@@ -33,13 +39,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from record where id=#{id}
    </select>
    
-   <select id="getRecordByUserAccount" parameterType="RecordInfo" resultMap="recordmap">
+   <select id="getRecordByBuyerAccount" parameterType="RecordInfo" resultMap="recordmap">
         select * from record where user_account=#{user_account}
    </select>
    <select id="getRecordBySellerAccount" parameterType="RecordInfo" resultMap="recordmap">
         select * from record where seller_account=#{seller_account}
    </select>
    <select id="getRecordByCommodityId" parameterType="RecordInfo" resultMap="recordmap">
-        select * from record where commodity_id=#{commodityId}
+        select * from record where commodity_id=#{commodity_id}
    </select>  
 </mapper>

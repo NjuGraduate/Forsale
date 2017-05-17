@@ -3,42 +3,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.CartInfoMapper">
-   	<resultMap type="ShopInfo" id="shopmap">
+   	<resultMap type="CartInfo" id="cartmap">
    	  <result property="id" column="id"/>
-      <result property="name" column="name"/>
-      <result property="rank" column="rank"/>
-      <result property="des" column="des"/>
-      <result property="user_account" column="user_account"/>
+      <result property="buyer_account" column="buyer_account"/>
+      <result property="commodity_id" column="commodity_id"/>
    </resultMap>
      
-   <insert id="addShop" parameterType="ShopInfo">
-        insert into shop(name,rank,des,user_account) values(#{name},#{rank},#{des},#{user_account})
+   <insert id="addCart" parameterType="CartInfo">
+        insert into cart(buyer_account,commodity_id) values(#{buyer_account},#{commodity_id})
    </insert>
  
-   <delete id="removeShop" parameterType="ShopInfo">
-        delete * from shop where id=#{id}
+   <delete id="removeCart" parameterType="CartInfo">
+        delete * from cart where id=#{id}
    </delete>
-   
-   <update id="updateShop" parameterType="ShopInfo">
-        update shop set(name=#{name},rank=#{rank},des=#{des}) where id=#{id}
-   </update>
-   
-   <select id="getShopsLike" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where des like '%#{des}%'
+
+   <select id="getCartByBuyerAccount" parameterType="CartInfo" resultMap="cartmap">
+        select * from cart where user_account=#{user_account}
    </select>
-   
-   
-   <select id="getShops" resultMap="shopmap">
-        select * from shop
-   </select>
-   
-   
-   <select id="getShopById" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where id=#{id}
-   </select>
-   
-   <select id="getShopByUserAccount" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where user_account=#{user_account}
-   </select>
-   
+  
 </mapper>
+
