@@ -1,1 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.mapper.CartInfoMapper">
+   	<resultMap type="ShopInfo" id="shopmap">
+   	  <result property="id" column="id"/>
+      <result property="name" column="name"/>
+      <result property="rank" column="rank"/>
+      <result property="des" column="des"/>
+      <result property="user_account" column="user_account"/>
+   </resultMap>
+     
+   <insert id="addShop" parameterType="ShopInfo">
+        insert into shop(name,rank,des,user_account) values(#{name},#{rank},#{des},#{user_account})
+   </insert>
+ 
+   <delete id="removeShop" parameterType="ShopInfo">
+        delete * from shop where id=#{id}
+   </delete>
+   
+   <update id="updateShop" parameterType="ShopInfo">
+        update shop set(name=#{name},rank=#{rank},des=#{des}) where id=#{id}
+   </update>
+   
+   <select id="getShopsLike" parameterType="ShopInfo" resultMap="shopmap">
+        select * from shop where des like '%#{des}%'
+   </select>
+   
+   
+   <select id="getShops" resultMap="shopmap">
+        select * from shop
+   </select>
+   
+   
+   <select id="getShopById" parameterType="ShopInfo" resultMap="shopmap">
+        select * from shop where id=#{id}
+   </select>
+   
+   <select id="getShopByUserAccount" parameterType="ShopInfo" resultMap="shopmap">
+        select * from shop where user_account=#{user_account}
+   </select>
+   
+</mapper>

@@ -12,7 +12,7 @@ public interface RecordInfoMapper {
 	public List<RecordInfo> getRecordsLike(RecordInfo re);
 	public List<RecordInfo> getRecords();
 	public RecordInfo getRecordById(RecordInfo re);
-	public RecordInfo getRecordByUserId(UserInfo user);
-	public RecordInfo getRecordByCommodityId(CommodityInfo co);
-	public RecordInfo getRecordBySellerId(UserInfo user);
+	public List<RecordInfo> getRecordByUserAccount(UserInfo user);
+	public List<RecordInfo> getRecordByCommodityId(CommodityInfo co);
+	public List<RecordInfo> getRecordBySellerAccount(UserInfo user);
 }

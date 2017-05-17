@@ -8,12 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="title" column="title"/>     
       <result property="state" column="state"/>
       <result property="commodity_id" column="commodity_id"/>
-      <result property="user_id" column="user_id"/>
+      <result property="user_account" column="user_account"/>
       <result property="shop_id" column="shop_id"/>
    </resultMap>
      
    <insert id="addAdvertisement" parameterType="AdvertisementInfo">
-        insert into advertisement(title,state,commodity_id,shop_id,user_id) values(#{title},#{state},#{commodity_id},#{shop_id},#{user_id})
+        insert into advertisement(title,state,commodity_id,shop_id,user_account) values(#{title},#{state},#{commodity_id},#{shop_id},#{user_account})
    </insert>
    
    
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
    
    <update id="updateAdvertisement" parameterType="AdvertisementInfo">
-        update advertisement set(title=#{title},state=#{state},commodity_id=#{commodity_id},shop_id=#{shop_id},user_id={user_id}) where id=#{id}
+        update advertisement set(title=#{title},state=#{state},commodity_id=#{commodity_id},shop_id=#{shop_id},user_account={user_account}) where id=#{id}
    </update>
    
    <select id="getAdvertisementsLike" parameterType="AdvertisementInfo" resultMap="advertisementmap">
@@ -38,8 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from advertisement where id=#{id}
    </select>
    
-   <select id="getAdvertisementByUser" parameterType="AdvertisementInfo" resultMap="advertisementmap">
-        select * from advertisement where user_id=#{user_id}
+   <select id="getAdvertisementByUserAccount" parameterType="AdvertisementInfo" resultMap="advertisementmap">
+        select * from advertisement where user_account=#{user_account}
    </select>
   
 

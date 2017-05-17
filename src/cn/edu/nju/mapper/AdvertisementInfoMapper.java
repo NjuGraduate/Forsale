@@ -11,5 +11,5 @@ public interface AdvertisementInfoMapper {
 	public List<AdvertisementInfo> getAdvertisementsLike(String str);
 	public List<AdvertisementInfo> getAdvertisements();
 	public AdvertisementInfo getAdvertisementById(AdvertisementInfo ad);
-	public AdvertisementInfo getAdvertisementByUser(AdvertisementInfo ad);
+	public AdvertisementInfo getAdvertisementByUserAccount(AdvertisementInfo ad);
 }

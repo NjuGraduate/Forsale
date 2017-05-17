@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 <result property="price" column="price"/>
 		 <result property="des" column="des"/>
 		 <result property="pic" column="pic"/>
-		 <result property="sellerId" column="seller_id"/>
+		 <result property="seller_account" column="seller_account"/>
 		 <result property="shopId" column="shop_id"/>
 		 <result property="color" column="color"/>
 		 <result property="size" column="size"/>
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<insert id="addCommodity" parameterType="CommodityInfo">
-        insert into Commodity(id,name,price,des,pic,shop_id,seller_id,state,color,size,classifiction1,classifiction2) values(#{id},#{name},#{price},#{des},#{pic},#{shopId},#{sellerId},#{state},#{color},#{size},#{classifiction1},#{classifiction2})
+        insert into Commodity(id,name,price,des,pic,shop_id,seller_account,state,color,size,classifiction1,classifiction2) values(#{id},#{name},#{price},#{des},#{pic},#{shopId},#{seller_account},#{state},#{color},#{size},#{classifiction1},#{classifiction2})
    	</insert>
    
    	<delete id="removeCommodity" parameterType="CommodityInfo">
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	
    	
    	<update id="updateCommodity" parameterType="CommodityInfo">
-        update commodity set(name=#{name},price=#{price},des=#{des},pic=#{pic},shop_id=#{shopId},seller_id=#{sellerId},state=#{state},classifiction1=#{classifiction1},classifiction2=#{classifiction2}) where id=#{id}
+        update commodity set(name=#{name},price=#{price},des=#{des},pic=#{pic},shop_id=#{shopId},seller_account=#{seller_account},state=#{state},classifiction1=#{classifiction1},classifiction2=#{classifiction2}) where id=#{id}
    	</update>  	
 	<select id="getCommoditysLike" parameterType="CommodityInfo" resultMap="commoditymap">
         select * from commodity where des like '%#{des}%'
@@ -41,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from commodity where id=#{id}      
    	</select>
    	
-   	<select id="getCommodityByUserId" parameterType="UserInfo" resultMap="commoditymap">
-        select * from commodity where seller_id=#{id}       
+   	<select id="getCommodityByUserAccount" parameterType="UserInfo" resultMap="commoditymap">
+        select * from commodity where seller_account=#{seller_account}       
    	</select>
 </mapper>
 

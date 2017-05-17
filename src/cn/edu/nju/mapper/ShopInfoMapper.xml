@@ -8,11 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="name" column="name"/>
       <result property="rank" column="rank"/>
       <result property="des" column="des"/>
-      <result property="user_id" column="user_id"/>
+      <result property="user_account" column="user_account"/>
    </resultMap>
      
    <insert id="addShop" parameterType="ShopInfo">
-        insert into shop(name,rank,des,user_id) values(#{name},#{rank},#{des},#{user_id})
+        insert into shop(name,rank,des,user_account) values(#{name},#{rank},#{des},#{user_account})
    </insert>
  
    <delete id="removeShop" parameterType="ShopInfo">
@@ -37,8 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from shop where id=#{id}
    </select>
    
-   <select id="getShopByUserId" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where user_id=#{user_id}
+   <select id="getShopByUserAccount" parameterType="ShopInfo" resultMap="shopmap">
+        select * from shop where user_account=#{user_account}
    </select>
    
 </mapper>

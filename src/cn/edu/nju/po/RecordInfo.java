@@ -12,10 +12,10 @@ public class RecordInfo implements Serializable{
 		this.id = id;
 	}
 	public String getBuyerAccount() {
-		return buyerAccount;
+		return buyer_account;
 	}
 	public void setBuyerAccount(String buyerAccount) {
-		this.buyerAccount = buyerAccount;
+		this.buyer_account = buyerAccount;
 	}
 	public int getCommodityId() {
 		return commodityId;
@@ -66,19 +66,19 @@ public class RecordInfo implements Serializable{
 		this.date = date;
 	}
 	public String getSellerAccount() {
-		return sellerAccount;
+		return seller_account;
 	}
 	public void setSellerAccount(String sellerAccount) {
-		this.sellerAccount = sellerAccount;
+		this.seller_account = sellerAccount;
 	}
 	@Override
 	public String toString() {
-		return "RecordInfo [id=" + id + ", buyerAccount=" + buyerAccount + ", commodityId=" + commodityId + ", coName="
+		return "RecordInfo [id=" + id + ", buyerAccount=" + buyer_account + ", commodityId=" + commodityId + ", coName="
 				+ coName + ", coPic=" + coPic + ", coColor=" + coColor + ", coSize=" + coSize + ", coDes=" + coDes
-				+ ", coPrice=" + coPrice + ", date=" + date + ", sellerAccount=" + sellerAccount + "]";
+				+ ", coPrice=" + coPrice + ", date=" + date + ", sellerAccount=" + seller_account + "]";
 	}
 	private int id;
-	private String buyerAccount;
+	private String buyer_account;
 	private int commodityId;
 	private String coName;
 	private String coPic;
@@ -88,9 +88,9 @@ public class RecordInfo implements Serializable{
 	private double coPrice;
 	private String date;
 	// yyyy/mm/dd
-	private String sellerAccount;
+	private String seller_account;
 	public RecordInfo(UserInfo buyer,CommodityInfo co,String date){
-		this.buyerAccount = buyer.getAccount();
+		this.buyer_account = buyer.getAccount();
 		this.commodityId = co.getId();
 		this.coName = co.getName();
 		this.coPic = co.getPic();
@@ -99,7 +99,7 @@ public class RecordInfo implements Serializable{
 		this.coDes = co.getDes();
 		this.coPrice = co.getPrice();
 		this.date=date;
-		this.sellerAccount=co.getSellerAccount();
+		this.seller_account=co.getSellerAccount();
 		
 	}
 

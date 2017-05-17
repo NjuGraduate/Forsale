@@ -9,7 +9,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
        <typeAlias type="cn.edu.nju.po.CommodityInfo" alias="CommodityInfo"/>
        <typeAlias type="cn.edu.nju.po.ShopInfo" alias="ShopInfo"/>
        <typeAlias type="cn.edu.nju.po.AdvertisementInfo" alias="AdvertisementInfo"/>
+       <typeAlias type="cn.edu.nju.po.AdministratorInfo" alias="AdministratorInfo"/>
+       <typeAlias type="cn.edu.nju.po.CartInfo" alias="CartInfo"/>
+       <typeAlias type="cn.edu.nju.po.GoodsInfo" alias="GoodsInfo"/>
        <typeAlias type="cn.edu.nju.po.RecordInfo" alias="RecordInfo"/>
+       <typeAlias type="cn.edu.nju.po.CommentInfo" alias="CommentInfo"/>
      </typeAliases>
 
      <mappers>
