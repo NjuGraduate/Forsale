@@ -9,11 +9,17 @@ public class CommodityInfo implements Serializable{
 	private String des;
 	private String pic;
 	private int shopId;
-	private int sellerId;
+	private String sellerAccount;
 	private String color;
 	private String size;
 	private String classifiction1;
 	private String classifiction2;	
+	public String getSellerAccount() {
+		return sellerAccount;
+	}
+	public void setSellerAccount(String sellerAccount) {
+		this.sellerAccount = sellerAccount;
+	}
 	public int getId() {
 		return id;
 	}
@@ -31,12 +37,6 @@ public class CommodityInfo implements Serializable{
 	}
 	public void setShopId(int shopId) {
 		this.shopId = shopId;
-	}
-	public int getSellerId() {
-		return sellerId;
-	}
-	public void setSellerId(int sellerId) {
-		this.sellerId = sellerId;
 	}
 	public String getColor() {
 		return color;
@@ -83,7 +83,7 @@ public class CommodityInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "CommodityInfo [id=" + id + ", name=" + name + ", price=" + price + ", des=" + des + ", pic=" + pic
-				+ ", shopId=" + shopId + ", sellerId=" + sellerId + ", color=" + color + ", size="
-				+ size + ", classifiction1=" + classifiction1 + ", classifiction2=" + classifiction2 + "]";
+				+ ", shopId=" + shopId + ", sellerAccount=" + sellerAccount + ", color=" + color + ", size=" + size
+				+ ", classifiction1=" + classifiction1 + ", classifiction2=" + classifiction2 + "]";
 	}
 }
