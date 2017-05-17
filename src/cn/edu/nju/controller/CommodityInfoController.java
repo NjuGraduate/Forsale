@@ -142,7 +142,7 @@ public class CommodityInfoController {
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
 		Calendar now = Calendar.getInstance(); 
 		String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
-		RecordInfo rec = new RecordInfo(co,user,time);
+		RecordInfo rec = new RecordInfo(user,co,time);
 		recordInfoMapper.addRecord(rec);
 		return "";
 	}
