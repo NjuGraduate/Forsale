@@ -35,7 +35,7 @@ public class AdvertisementInfoController {
 	
 	@RequestMapping("addAdvertisement.do")
 	public String addAdvertisement(@RequestBody AdvertisementInfo ad,Model model){
-		AdvertisementInfo adif =advertisementInfoMapper.getAdvertisementByUser(ad);
+		AdvertisementInfo adif =advertisementInfoMapper.getAdvertisementByUserAccount(ad);
 		if(adif==null){
 			advertisementInfoMapper.addAdvertisement(ad);
 			model.addAttribute("ad", ad);

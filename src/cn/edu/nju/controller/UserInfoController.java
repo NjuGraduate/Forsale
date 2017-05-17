@@ -43,18 +43,19 @@ public class UserInfoController {
 			user.setAccount(account);
 			user.setPassword(password);
 			UserInfo info = userInfoMapper.getUserByAccountAndPwd(user);
-			session.setAttribute("user_info", info);
-			try{
-				ObjectMapper mapper = new ObjectMapper();
-				u = mapper.writeValueAsString(info);			
-				session.setAttribute("user", u);
-			}catch(IOException e) {
-				e.printStackTrace();
+			if (info != null) {				
+				session.setAttribute("user_info", info);
+				try{
+					ObjectMapper mapper = new ObjectMapper();
+					u = mapper.writeValueAsString(info);			
+					session.setAttribute("user", u);
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		if(u!=null){
 			return "index";
-			
 		}else{
 			try {
 				ObjectMapper mapper = new ObjectMapper();
@@ -84,7 +85,7 @@ public class UserInfoController {
 			UserInfo u = userInfoMapper.getUserByAccount(user);
 			if(u==null){
 				userInfoMapper.addUser(user);
-				sendEmail(account,password);
+				sendEmail(account,"your"+password);
 				return "login";
 			}else{
 				try {
@@ -96,7 +97,7 @@ public class UserInfoController {
 			}
 		}else{
 			try {
-				model.addAttribute("msg",mapper.writeValueAsString(new String("fail")));
+				model.addAttribute("msg",mapper.writeValueAsString(new String("fail-email")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -153,7 +154,7 @@ public class UserInfoController {
 		return "login";
 	}
 	
-	private static void sendEmail(String receiveMailAccount,String password) {
+	private static void sendEmail(String receiveMailAccount,String description) {
 	    String myEmailAccount = "18795979720@163.com";
 	    String myEmailPassword = "18795979720xy";
 
@@ -174,7 +175,7 @@ public class UserInfoController {
 
         MimeMessage message;
 		try {
-			message = createMimeMessage(session, myEmailAccount, receiveMailAccount, password);
+			message = createMimeMessage(session, myEmailAccount, receiveMailAccount, description);
 	        Transport transport = session.getTransport();
 	        transport.connect(myEmailAccount, myEmailPassword);
 	        transport.sendMessage(message, message.getAllRecipients());
@@ -184,13 +185,13 @@ public class UserInfoController {
 		}
 	}
 	
-	private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String password) throws Exception {
+	private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String description) throws Exception {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sendMail, "Forsale网", "UTF-8"));
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal用户", "UTF-8"));
         message.setSubject("Welcome to Forsale", "UTF-8");
         String url = "http://localhost:8080/forsale/index.jsp";
-        message.setContent("Thank you for resgitering "+url+" You new password: "+ password, "text/html;charset=UTF-8");
+        message.setContent("Thank you for using "+url+" "+ description, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
 
