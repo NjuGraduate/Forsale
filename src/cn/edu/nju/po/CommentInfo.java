@@ -13,18 +13,6 @@ public class CommentInfo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getSeller_id() {
-		return seller_id;
-	}
-	public void setSeller_id(int seller_id) {
-		this.seller_id = seller_id;
-	}
-	public int getBuyer_id() {
-		return buyer_id;
-	}
-	public void setBuyer_id(int buyer_id) {
-		this.buyer_id = buyer_id;
-	}
 	public int getCommodity_id() {
 		return commodity_id;
 	}
@@ -33,12 +21,24 @@ public class CommentInfo {
 	}
 	@Override
 	public String toString() {
-		return "CommentInfo [id=" + id + ", content=" + content + ", seller_id=" + seller_id + ", buyer_id=" + buyer_id
-				+ ", commodity_id=" + commodity_id + "]";
+		return "CommentInfo [id=" + id + ", content=" + content + ", seller_account=" + seller_account
+				+ ", buyer_account=" + buyer_account + ", commodity_id=" + commodity_id + "]";
+	}
+	public String getSeller_account() {
+		return seller_account;
+	}
+	public void setSeller_account(String seller_account) {
+		this.seller_account = seller_account;
+	}
+	public String getBuyer_account() {
+		return buyer_account;
+	}
+	public void setBuyer_account(String buyer_account) {
+		this.buyer_account = buyer_account;
 	}
 	private int id;
 	private String content;
-	private int seller_id;
-	private int buyer_id;
+	private String seller_account;
+	private String buyer_account;
 	private int commodity_id;
 }

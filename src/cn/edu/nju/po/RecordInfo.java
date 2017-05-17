@@ -89,7 +89,7 @@ public class RecordInfo implements Serializable{
 	private String date;
 	// yyyy/mm/dd
 	private String sellerAccount;
-	public RecordInfo(UserInfo buyer,UserInfo seller,CommodityInfo co,String date){
+	public RecordInfo(UserInfo buyer,CommodityInfo co,String date){
 		this.buyerAccount = buyer.getAccount();
 		this.commodityId = co.getId();
 		this.coName = co.getName();
