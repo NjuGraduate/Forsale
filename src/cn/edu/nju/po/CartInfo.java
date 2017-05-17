@@ -2,20 +2,21 @@ package cn.edu.nju.po;
 
 public class CartInfo {
 	private int id;
-	private int buyer_id;
+	private String buyer_account;
 	private int commodity_id;
+	public String getBuyer_account() {
+		return buyer_account;
+	}
+	public void setBuyer_account(String buyer_account) {
+		this.buyer_account = buyer_account;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getBuyer_id() {
-		return buyer_id;
-	}
-	public void setBuyer_id(int buyer_id) {
-		this.buyer_id = buyer_id;
-	}
+
 	public int getCommodity_id() {
 		return commodity_id;
 	}
@@ -25,7 +26,7 @@ public class CartInfo {
 	
 	@Override
 	public String toString() {
-		return "CartInfo [id=" + id + ", buyer_id=" + buyer_id + ", commodity_id=" + commodity_id + "]";
+		return "CartInfo [id=" + id + ", buyer_account=" + buyer_account + ", commodity_id=" + commodity_id + "]";
 	}
 	
 }

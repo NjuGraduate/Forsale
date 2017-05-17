@@ -8,18 +8,18 @@ public class GoodsInfo implements Serializable{
 	private String des;
 	private String desiredgoods; 
 	private String desdg;//期望物品的描述
-	private int user_id;
+	private String user_account;
+	public String getUser_account() {
+		return user_account;
+	}
+	public void setUser_account(String user_account) {
+		this.user_account = user_account;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
 	}
 	public String getName() {
 		return name;
@@ -48,7 +48,7 @@ public class GoodsInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "GoodsInfo [id=" + id + ", name=" + name + ", des=" + des + ", desiredgoods=" + desiredgoods + ", desdg="
-				+ desdg + ", user_id=" + user_id + "]";
+				+ desdg + ", user_account=" + user_account + "]";
 	}
 	
 }

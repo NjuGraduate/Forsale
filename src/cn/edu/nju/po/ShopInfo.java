@@ -7,8 +7,14 @@ public class ShopInfo implements Serializable{
 	private String name;
 	private String rank;
 	private String des;
-	private int user_id;
+	private String user_account;
 	
+	public String getUser_account() {
+		return user_account;
+	}
+	public void setUser_account(String user_account) {
+		this.user_account = user_account;
+	}
 	public int getId() {
 		return id;
 	}
@@ -33,16 +39,11 @@ public class ShopInfo implements Serializable{
 	public void setDes(String des) {
 		this.des = des;
 	}
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
+	
 	private int id;
 	@Override
 	public String toString() {
-		return "ShopInfo [id=" + id + ", name=" + name + ", rank=" + rank + ", des=" + des + ", user_id=" + user_id
-				+ "]";
+		return "ShopInfo [name=" + name + ", rank=" + rank + ", des=" + des + ", user_account=" + user_account + ", id="
+				+ id + "]";
 	}
 }
