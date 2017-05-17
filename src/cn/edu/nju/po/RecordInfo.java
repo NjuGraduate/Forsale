@@ -1,6 +1,7 @@
 package cn.edu.nju.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class RecordInfo implements Serializable{
 	
@@ -9,6 +10,11 @@ public class RecordInfo implements Serializable{
 	private int commodityId;
 	private String date;
 	private int sellerId;
+
+	public RecordInfo(CommodityInfo co,UserInfo user,Date date){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

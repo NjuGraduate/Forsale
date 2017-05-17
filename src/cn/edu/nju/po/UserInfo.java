@@ -5,12 +5,18 @@ import java.io.Serializable;
 
 
 public class UserInfo implements Serializable{
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String name;
+    private String account;
+    private String password;
+    private Double balance;
+    private int point;
+    private int rank;
+    private String des;
+    private String logo;
+    private String gender;
+    private String phonenumber;
+    private String dateofbirth;
+    
 	public int getPoint() {
 		return point;
 	}
@@ -44,18 +50,7 @@ public class UserInfo implements Serializable{
 	public void setDes(String des) {
 		this.des = des;
 	}
-	private int id;
-    private String name;
-    private String account;
-    private String password;
-    private Double balance;
-    private int point;
-    private int rank;
-    private String des;
-    private String logo;
-    private String gender;
-    private String phonenumber;
-    private String dateofbirth;
+	
     public String getName() {
 		return name;
 	}
@@ -94,7 +89,7 @@ public class UserInfo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", name=" + name + ", account=" + account + ", password=" + password
+		return "UserInfo [name=" + name + ", account=" + account + ", password=" + password
 				+ ", balance=" + balance + ", point=" + point + ", rank=" + rank + ", des=" + des + ", logo=" + logo
 				+ ", gender=" + gender + ", phonenumber=" + phonenumber + ", dateofbirth=" + dateofbirth + "]";
 	}
