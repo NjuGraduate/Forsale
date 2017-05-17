@@ -99,7 +99,7 @@ public class RecordInfo implements Serializable{
 		this.coDes = co.getDes();
 		this.coPrice = co.getPrice();
 		this.date=date;
-		this.seller_account=co.getSellerAccount();
+		this.seller_account=co.getSeller_account();
 		
 	}
 

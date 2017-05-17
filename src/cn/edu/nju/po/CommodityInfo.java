@@ -14,11 +14,11 @@ public class CommodityInfo implements Serializable{
 	private String size;
 	private String classifiction1;
 	private String classifiction2;	
-	public String getSellerAccount() {
+	public String getSeller_account() {
 		return seller_account;
 	}
-	public void setSellerAccount(String sellerAccount) {
-		this.seller_account = sellerAccount;
+	public void setSeller_account(String seller_account) {
+		this.seller_account = seller_account;
 	}
 	public int getId() {
 		return id;
@@ -83,7 +83,7 @@ public class CommodityInfo implements Serializable{
 	@Override
 	public String toString() {
 		return "CommodityInfo [id=" + id + ", name=" + name + ", price=" + price + ", des=" + des + ", pic=" + pic
-				+ ", shopId=" + shopId + ", sellerAccount=" + seller_account + ", color=" + color + ", size=" + size
+				+ ", shopId=" + shopId + ", seller_account=" + seller_account + ", color=" + color + ", size=" + size
 				+ ", classifiction1=" + classifiction1 + ", classifiction2=" + classifiction2 + "]";
 	}
 }
