@@ -44,23 +44,24 @@
     		url:"commodityInfo/buyCommodity.do",
     		success:buy
     	});
+    	
     	function buy(json){
     		let data = JSON.parse(json);
     		let xw1 = document.getElementById("xw1");
     		for(var i = 0; i <data.length;i++){
-    			let cartDiv = document.createElement("div");
-    			cartDiv.classList.add("exchangeGoods");
-    			let cartImg = document.createElement("img");
-    			cartImg.src = data[i].pic;
-    			let cartP = document.createElement("p");
-    			cartP.innerHTML = data[i].des;
-    			cartDiv.appendChild(cartImg);
-    			cartDiv.appendChild(cartP);
-    			let cartA = document.createElement("a");
-    			cartA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
-    			cartA.appendChild(cartDiv);
-    			xw1.appendChild(cartA);
-    		}
+    			let buyDiv = document.createElement("div");
+    			buyDiv.classList.add("exchangeGoods");
+    			let buyImg = document.createElement("img");
+    			buyImg.src = data[i].pic;
+    			let buyP = document.createElement("p");
+    			buyP.innerHTML = data[i].des;
+    			buyDiv.appendChild(buyImg);
+    			buyDiv.appendChild(buyP);
+    			let buyA = document.createElement("a");
+    			buyA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			buyA.appendChild(buyDiv);
+    			xw1.appendChild(buyA);
+    	}
     	}
     </script>
 
