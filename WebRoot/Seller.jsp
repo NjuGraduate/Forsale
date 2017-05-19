@@ -71,6 +71,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			a.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     		}
     	}
+    	
+    	$.getJSON({
+    		url:"/shopInfo/getShop.do",
+    		success:shop
+    	});
+    	function shop(json){
+    		if(json != null && json != ""){
+    			alert(json);
+    		}else{
+    			alert("no shops");
+    		}
+    	}
     </script>
 
 </head>

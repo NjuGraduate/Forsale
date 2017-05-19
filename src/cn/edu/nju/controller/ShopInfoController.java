@@ -11,6 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.ShopInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
@@ -33,6 +37,19 @@ public class ShopInfoController {
 		shop.setRank("0");
 		shopInfoMapper.addShop(shop);
 		return "Seller";
+	}
+	
+	@RequestMapping("getShop.do")
+	@ResponseBody
+	public String getShop(){
+		ObjectMapper mapper = new ObjectMapper();
+		String str = "ok";
+		try {
+			return mapper.writeValueAsString(str);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 	
 	@RequestMapping("updateCommodity.do")
