@@ -1,6 +1,7 @@
 package cn.edu.nju.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
@@ -143,16 +144,19 @@ public class CommodityInfoController {
 	public String buyCommodity(HttpServletRequest request,Model model){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
-		com.setId(Integer.parseInt(request.getParameter("id")));
+		String str = request.getParameter("commodity");
+		com.setId(Integer.parseInt(str.split(",")[0].split(":")[1]));
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
 		Calendar now = Calendar.getInstance(); 
 		String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
+		System.out.println(user.toString());
 		RecordInfo rec = new RecordInfo(user,co,time);
 		recordInfoMapper.addRecord(rec);
-		return "";
+		return "Cart";
 	}
 	
 	@RequestMapping("showbuyerOrder.do")
+	@ResponseBody
 	public String showbuyerOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
@@ -166,6 +170,7 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("showSellerOrder.do")
+	@ResponseBody
 	public String showSellerOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
@@ -179,13 +184,34 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("collectCommodity.do")
-	public String collectCommodity(String commodity_id){
+	public String collectCommodity(HttpServletRequest request){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CartInfo cart = new CartInfo();
 		cart.setBuyer_account(user.getAccount());
-		cart.setCommodity_id(Integer.parseInt(commodity_id));
+		String str = request.getParameter("commodity");
+		cart.setCommodity_id(Integer.parseInt(str.split(",")[0].split(":")[1]));
 		cartInfoMapper.addCart(cart);
-		return "";
+		return "index";
+	}
+	
+	@RequestMapping("showCollectCommodity.do")
+	@ResponseBody
+	public String showCollectCommodity(){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		ObjectMapper mapper = new ObjectMapper();
+		List<CartInfo> listcart = cartInfoMapper.getCartByUserAccount(user);
+		List<CommodityInfo> list = new ArrayList<>();
+		for(CartInfo c:listcart){
+			CommodityInfo co = new CommodityInfo();
+			co.setId(c.getCommodity_id());
+			list.add(commodityInfoMapper.getCommodityById(co));
+		}
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 	
 	@RequestMapping("goodsDetail.do")

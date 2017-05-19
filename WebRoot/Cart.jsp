@@ -17,6 +17,52 @@
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+    	$.getJSON({
+    		url:"commodityInfo/showCollectCommodity.do",
+    		success:cart
+    	});
+    	function cart(json){
+    		let data = JSON.parse(json);
+    		let xw2 = document.getElementById("xw2");
+    		for(var i = 0; i <data.length;i++){
+    			let cartDiv = document.createElement("div");
+    			cartDiv.classList.add("exchangeGoods");
+    			let cartImg = document.createElement("img");
+    			cartImg.src = data[i].pic;
+    			let cartP = document.createElement("p");
+    			cartP.innerHTML = data[i].des;
+    			cartDiv.appendChild(cartImg);
+    			cartDiv.appendChild(cartP);
+    			let cartA = document.createElement("a");
+    			cartA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			cartA.appendChild(cartDiv);
+    			xw2.appendChild(cartA);
+    		}
+    	}
+    	$.getJSON({
+    		url:"commodityInfo/buyCommodity.do",
+    		success:buy
+    	});
+    	function buy(json){
+    		let data = JSON.parse(json);
+    		let xw1 = document.getElementById("xw1");
+    		for(var i = 0; i <data.length;i++){
+    			let cartDiv = document.createElement("div");
+    			cartDiv.classList.add("exchangeGoods");
+    			let cartImg = document.createElement("img");
+    			cartImg.src = data[i].pic;
+    			let cartP = document.createElement("p");
+    			cartP.innerHTML = data[i].des;
+    			cartDiv.appendChild(cartImg);
+    			cartDiv.appendChild(cartP);
+    			let cartA = document.createElement("a");
+    			cartA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			cartA.appendChild(cartDiv);
+    			xw1.appendChild(cartA);
+    		}
+    	}
+    </script>
 
 </head>
 <body>
@@ -38,7 +84,7 @@
                     </li>
                     <li>
                         <div class="linkDiv">
-                            <a href="#xw2" data-toggle="tab">准备买的</a>
+                            <a href="#xw2" data-toggle="tab">购物车</a>
                         </div>
                     </li>
                 </ul>
@@ -72,10 +118,6 @@
                 </div>
             </div>
             <div class="tab-pane" id="xw2">
-                <div class="exchangeGoods">
-                    <img src="images/shoes/shoes/001.jpg" alt="商品图片">
-                    <p>这是我手里的一双李宁篮球鞋，95成新，42码，我想要换一双41码的蓝球鞋<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
             </div>
         </div>
     </div>

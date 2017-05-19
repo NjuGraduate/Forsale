@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </resultMap>
      
    <insert id="addRecord" parameterType="RecordInfo">
-        insert into record(buyer_account,commodity_id,coName,coPic,coColor,coSize,coDes,coPrice,date,seller_account) values(#{buyer_account},#{commodity_id},#{coName},#{coPic},#{coColor},#{coSize},#{coDes},#{Price},#{date},#{seller_account})
+        insert into record(buyer_account,commodity_id,coName,coPic,coColor,coSize,coDes,coPrice,date,seller_account) values(#{buyer_account},#{commodity_id},#{coName},#{coPic},#{coColor},#{coSize},#{coDes},#{coPrice},#{date},#{seller_account})
    </insert>
  
    <delete id="removeRecord" parameterType="RecordInfo">

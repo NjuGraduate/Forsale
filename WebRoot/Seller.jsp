@@ -60,7 +60,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let adBtn = document.createElement("a");
     			adBtn.href = "${pageContext.request.contextPath}/commodityInfo/removeCommodity.do?id=" +item.id;
     			btn1.appendChild(adBtn);
-    			btn1.onclick=like();
     			
     			let deleteA = document.createElement("a");
     			deleteA.href = "${pageContext.request.contextPath}/advertisementInfo/addAdvertisement.do?id=" +item.id;
@@ -71,10 +70,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			container.appendChild(div);
     			a.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     		}
-    		
-    	}
-    	function like(){
-    		alert(12344);
     	}
     </script>
 
