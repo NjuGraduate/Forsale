@@ -141,18 +141,36 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("buyCommodity.do")
+	@ResponseBody
 	public String buyCommodity(HttpServletRequest request,Model model){
+		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
 		String str = request.getParameter("commodity");
 		com.setId(Integer.parseInt(str.split(",")[0].split(":")[1]));
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
-		Calendar now = Calendar.getInstance(); 
-		String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
-		System.out.println(user.toString());
-		RecordInfo rec = new RecordInfo(user,co,time);
-		recordInfoMapper.addRecord(rec);
-		return "Cart";
+		String msg = "loading";
+		if(co!=null){
+			Calendar now = Calendar.getInstance(); 
+			String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
+			System.out.println(user.toString());
+			RecordInfo rec = new RecordInfo(user,co,time);
+			recordInfoMapper.addRecord(rec);
+			try {
+				msg = mapper.writeValueAsString(new String("success"));
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return msg;
+		}else{
+			try {
+				msg = mapper.writeValueAsString(new String("fail"));
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return msg;
+		}
+		
 	}
 	
 	@RequestMapping("showbuyerOrder.do")
