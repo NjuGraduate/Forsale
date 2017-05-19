@@ -38,7 +38,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		let temp = btn2.innerText;
     		let class2 = document.getElementById("class2");
     		class2.value = temp;
-    		alert(class2.value);
     	}
     </script>
 </head>

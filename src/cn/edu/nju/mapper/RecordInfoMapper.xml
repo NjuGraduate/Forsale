@@ -39,11 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from record where id=#{id}
    </select>
    
-   <select id="getRecordByBuyerAccount" parameterType="RecordInfo" resultMap="recordmap">
-        select * from record where user_account=#{user_account}
+   <select id="getRecordByBuyerAccount" parameterType="UserInfo" resultMap="recordmap">
+        select * from record where buyer_account=#{account}
    </select>
-   <select id="getRecordBySellerAccount" parameterType="RecordInfo" resultMap="recordmap">
-        select * from record where seller_account=#{seller_account}
+   <select id="getRecordBySellerAccount" parameterType="UserInfo" resultMap="recordmap">
+        select * from record where seller_account=#{account}
    </select>
    <select id="getRecordByCommodityId" parameterType="RecordInfo" resultMap="recordmap">
         select * from record where commodity_id=#{commodity_id}

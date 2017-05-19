@@ -109,5 +109,9 @@ public class RecordInfo implements Serializable{
 		this.seller_account=co.getSeller_account();
 		
 	}
+	
+	public RecordInfo(){
+		super();
+	}
 
 }

@@ -60,11 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let adBtn = document.createElement("a");
     			adBtn.href = "${pageContext.request.contextPath}/commodityInfo/removeCommodity.do?id=" +item.id;
     			btn1.appendChild(adBtn);
-    			
-    			let deleteA = document.createElement("a");
-    			deleteA.href = "${pageContext.request.contextPath}/advertisementInfo/addAdvertisement.do?id=" +item.id;
-    			btn2.appendChild(deleteA);
-    			
+    			btn2.onclick = function() {test(item.id);};
     			div.appendChild(btn1);
     			div.appendChild(btn2);
     			container.appendChild(div);
@@ -72,17 +68,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
     	}
     	
-    	$.getJSON({
-    		url:"/shopInfo/getShop.do",
-    		success:shop
-    	});
-    	function shop(json){
-    		if(json != null && json != ""){
-    			alert(json);
-    		}else{
-    			alert("no shops");
-    		}
+    	function test(id){
+    		$.post({
+    			url:"commodityInfo/removeCommodity.do",
+    			data: { id: id },
+    			success:refresh
+    		})
     	}
+    	function refresh(){
+    		window.location.reload();
+    	}
+    	
     </script>
 
 </head>

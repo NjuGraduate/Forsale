@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	</insert>
    
    	<delete id="removeCommodity" parameterType="CommodityInfo">
-        delete * from commodity where id=#{id}
+        delete from commodity where id=#{id}
    	</delete>
    	
    	

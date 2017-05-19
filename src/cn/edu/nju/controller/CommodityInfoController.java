@@ -112,7 +112,15 @@ public class CommodityInfoController {
 		CommodityInfo com = new CommodityInfo();
 		com.setId(id);
 		commodityInfoMapper.removeCommodity(com);
-		return "";
+		CartInfo cart = new CartInfo();
+		cart.setCommodity_id(id);
+		List<CartInfo> clist = cartInfoMapper.getCartByCommodityId(cart);
+		if(clist!=null){
+			for(CartInfo c:clist){
+				cartInfoMapper.removeCart(c);
+			}
+		}
+		return "Seller";
 	}
 	
 	@RequestMapping("updateCommodity.do")
@@ -141,7 +149,6 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("buyCommodity.do")
-	@ResponseBody
 	public String buyCommodity(HttpServletRequest request,Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
@@ -150,7 +157,6 @@ public class CommodityInfoController {
 		int commodityId = Integer.parseInt(str.split(",")[0].split(":")[1]);
 		com.setId(commodityId);
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
-		String msg = "loading";
 		if(co!=null){
 			Calendar now = Calendar.getInstance(); 
 			String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
@@ -159,20 +165,12 @@ public class CommodityInfoController {
 			commodityInfoMapper.removeCommodity(co);
 			CartInfo cart = new CartInfo();
 			cart.setCommodity_id(commodityId);
-			cartInfoMapper.removeCart(cart);
-			try {
-				msg = mapper.writeValueAsString(new String("success"));
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
+			if(cartInfoMapper.getCartByCommodityId(cart)!=null){
+				cartInfoMapper.removeCart(cart);
 			}
-			return msg;
+			return "Cart";
 		}else{
-			try {
-				msg = mapper.writeValueAsString(new String("fail"));
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-			return msg;
+			return "index";
 		}
 	}
 	
@@ -212,7 +210,7 @@ public class CommodityInfoController {
 		String str = request.getParameter("commodity");
 		cart.setCommodity_id(Integer.parseInt(str.split(",")[0].split(":")[1]));
 		cartInfoMapper.addCart(cart);
-		return "index";
+		return "Cart";
 	}
 	
 	@RequestMapping("removeCollectCommodity.do")
@@ -239,6 +237,7 @@ public class CommodityInfoController {
 			list.add(commodityInfoMapper.getCommodityById(co));
 		}
 		try {
+			System.out.println(mapper.writeValueAsString(list));
 			return mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

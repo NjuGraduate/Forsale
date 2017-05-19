@@ -59,7 +59,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		function test2(){
 			let test2 = document.getElementById("test2");
-			test2.value = ${detail}.id;
+			if(${detail}.id)
+				test2.value = ${detail}.id;
+			else{
+				alert("商品已不存在");
+			}
 		}
 	</script>
 </head>
