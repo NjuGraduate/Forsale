@@ -147,15 +147,19 @@ public class CommodityInfoController {
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
 		String str = request.getParameter("commodity");
-		com.setId(Integer.parseInt(str.split(",")[0].split(":")[1]));
+		int commodityId = Integer.parseInt(str.split(",")[0].split(":")[1]);
+		com.setId(commodityId);
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
 		String msg = "loading";
 		if(co!=null){
 			Calendar now = Calendar.getInstance(); 
 			String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
-			System.out.println(user.toString());
 			RecordInfo rec = new RecordInfo(user,co,time);
 			recordInfoMapper.addRecord(rec);
+			commodityInfoMapper.removeCommodity(co);
+			CartInfo cart = new CartInfo();
+			cart.setCommodity_id(commodityId);
+			cartInfoMapper.removeCart(cart);
 			try {
 				msg = mapper.writeValueAsString(new String("success"));
 			} catch (JsonProcessingException e) {
@@ -170,7 +174,6 @@ public class CommodityInfoController {
 			}
 			return msg;
 		}
-		
 	}
 	
 	@RequestMapping("showbuyerOrder.do")
@@ -203,6 +206,17 @@ public class CommodityInfoController {
 	
 	@RequestMapping("collectCommodity.do")
 	public String collectCommodity(HttpServletRequest request){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		CartInfo cart = new CartInfo();
+		cart.setBuyer_account(user.getAccount());
+		String str = request.getParameter("commodity");
+		cart.setCommodity_id(Integer.parseInt(str.split(",")[0].split(":")[1]));
+		cartInfoMapper.addCart(cart);
+		return "index";
+	}
+	
+	@RequestMapping("removeCollectCommodity.do")
+	public String removeCollectCommodity(HttpServletRequest request){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CartInfo cart = new CartInfo();
 		cart.setBuyer_account(user.getAccount());
