@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cn.edu.nju.mapper.GoodsInfoMapper">
    	<resultMap type="GoodsInfo" id="goodsmap">
    	  <result property="id" column="id"/>
-      <result property="name" column="name"/>
-      <result property="rank" column="rank"/>
       <result property="des" column="des"/>
+      <result property="desiregoods" column="desiregoods"/>
+      <result property="contactInf" column="contactInf"/>
       <result property="user_account" column="user_account"/>
    </resultMap>
      

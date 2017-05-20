@@ -3,29 +3,23 @@ package cn.edu.nju.po;
 import java.io.Serializable;
 
 public class GoodsInfo implements Serializable{
+	
+	@Override
+	public String toString() {
+		return "GoodsInfo [id=" + id + ", des=" + des + ", desiregoods=" + desiregoods + ", contactInf=" + contactInf
+				+ ", user_account=" + user_account + "]";
+	}
 	private int id;
-	private String name;
-	private String des;
-	private String desiredgoods; 
-	private String desdg;//期望物品的描述
+	private String des;//描述
+	private String desiregoods; //期望物品描述
+	private String contactInf;//联系方式
 	private String user_account;
-	public String getUser_account() {
-		return user_account;
-	}
-	public void setUser_account(String user_account) {
-		this.user_account = user_account;
-	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getDes() {
 		return des;
@@ -33,22 +27,22 @@ public class GoodsInfo implements Serializable{
 	public void setDes(String des) {
 		this.des = des;
 	}
-	public String getDesiredgoods() {
-		return desiredgoods;
+	public String getDesiregoods() {
+		return desiregoods;
 	}
-	public void setDesiredgoods(String desiredgoods) {
-		this.desiredgoods = desiredgoods;
+	public void setDesiregoods(String desiregoods) {
+		this.desiregoods = desiregoods;
 	}
-	public String getDesdg() {
-		return desdg;
+	public String getContactInf() {
+		return contactInf;
 	}
-	public void setDesdg(String desdg) {
-		this.desdg = desdg;
+	public void setContactInf(String contactInf) {
+		this.contactInf = contactInf;
 	}
-	@Override
-	public String toString() {
-		return "GoodsInfo [id=" + id + ", name=" + name + ", des=" + des + ", desiredgoods=" + desiredgoods + ", desdg="
-				+ desdg + ", user_account=" + user_account + "]";
+	public String getUser_account() {
+		return user_account;
 	}
-	
+	public void setUser_account(String user_account) {
+		this.user_account = user_account;
+	}
 }
