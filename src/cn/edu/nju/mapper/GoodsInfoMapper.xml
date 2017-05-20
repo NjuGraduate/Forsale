@@ -12,23 +12,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </resultMap>
      
    <insert id="addGoods" parameterType="GoodsInfo">
-        insert into goods(name,rank,des,user_account) values(#{name},#{rank},#{des},#{user_account})
+        insert into goods(des,desiregoods,contactInf,user_account) values(#{des},#{desiregoods},#{contactInf},#{user_account})
    </insert>
  
    <delete id="removeGoods" parameterType="GoodsInfo">
-        delete * from goods where id=#{id}
+        delete from goods where id=#{id}
    </delete>
    
    <update id="updateGoods" parameterType="GoodsInfo">
-        update goods set(name=#{name},rank=#{rank},des=#{des}) where id=#{id}
+        update goods set(des=#{des},desiregoods=#{disiregoods},contactInf=#{contactInf}) where id=#{id}
    </update>
    
-   <select id="getGoodssLike" parameterType="GoodsInfo" resultMap="goodsmap">
+   <select id="getGoodsLike" parameterType="GoodsInfo" resultMap="goodsmap">
         select * from goods where des like '%#{des}%'
    </select>
    
    
-   <select id="getGoodss" resultMap="goodsmap">
+   <select id="getGoods" resultMap="goodsmap">
         select * from goods
    </select>
    
@@ -37,8 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from goods where id=#{id}
    </select>
    
-   <select id="getGoodsByUserAccount" parameterType="GoodsInfo" resultMap="goodsmap">
-        select * from goods where user_account=#{user_account}
+   <select id="getGoodsByUserAccount" parameterType="UserInfo" resultMap="goodsmap">
+        select * from goods where user_account=#{account}
    </select>
    
 </mapper>
