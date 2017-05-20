@@ -1,6 +1,7 @@
 package cn.edu.nju.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
@@ -20,8 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.edu.nju.mapper.CartInfoMapper;
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.RecordInfoMapper;
+import cn.edu.nju.po.CartInfo;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.RecordInfo;
 import cn.edu.nju.po.UserInfo;
@@ -37,6 +40,9 @@ public class CommodityInfoController {
 
 	@Resource(name="recordInfoMapper")
 	private RecordInfoMapper recordInfoMapper;
+	
+	@Resource(name="cartInfoMapper")
+	private CartInfoMapper cartInfoMapper;
 	
 	@RequestMapping("addCommodity.do")
 	public String addCommodity(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile formGoodsLogoPic,String formGoodsDesc,
@@ -135,23 +141,47 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("buyCommodity.do")
+	@ResponseBody
 	public String buyCommodity(HttpServletRequest request,Model model){
+		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
-		com.setId(Integer.parseInt(request.getParameter("id")));
+		String str = request.getParameter("commodity");
+		int commodityId = Integer.parseInt(str.split(",")[0].split(":")[1]);
+		com.setId(commodityId);
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
-		Calendar now = Calendar.getInstance(); 
-		String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
-		RecordInfo rec = new RecordInfo(user,co,time);
-		recordInfoMapper.addRecord(rec);
-		return "";
+		String msg = "loading";
+		if(co!=null){
+			Calendar now = Calendar.getInstance(); 
+			String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
+			RecordInfo rec = new RecordInfo(user,co,time);
+			recordInfoMapper.addRecord(rec);
+			commodityInfoMapper.removeCommodity(co);
+			CartInfo cart = new CartInfo();
+			cart.setCommodity_id(commodityId);
+			cartInfoMapper.removeCart(cart);
+			try {
+				msg = mapper.writeValueAsString(new String("success"));
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return msg;
+		}else{
+			try {
+				msg = mapper.writeValueAsString(new String("fail"));
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			return msg;
+		}
 	}
 	
 	@RequestMapping("showbuyerOrder.do")
+	@ResponseBody
 	public String showbuyerOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
-		List<RecordInfo> list = recordInfoMapper.getRecordByUserAccount(user);
+		List<RecordInfo> list = recordInfoMapper.getRecordByBuyerAccount(user);
 		try {
 			return mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
@@ -161,6 +191,7 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("showSellerOrder.do")
+	@ResponseBody
 	public String showSellerOrder(Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
@@ -174,9 +205,45 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("collectCommodity.do")
-	public String collectCommodity(HttpServletRequest request,Model model){
-		//TODO
-		return "";
+	public String collectCommodity(HttpServletRequest request){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		CartInfo cart = new CartInfo();
+		cart.setBuyer_account(user.getAccount());
+		String str = request.getParameter("commodity");
+		cart.setCommodity_id(Integer.parseInt(str.split(",")[0].split(":")[1]));
+		cartInfoMapper.addCart(cart);
+		return "index";
+	}
+	
+	@RequestMapping("removeCollectCommodity.do")
+	public String removeCollectCommodity(HttpServletRequest request){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		CartInfo cart = new CartInfo();
+		cart.setBuyer_account(user.getAccount());
+		String str = request.getParameter("commodity");
+		cart.setCommodity_id(Integer.parseInt(str.split(",")[0].split(":")[1]));
+		cartInfoMapper.addCart(cart);
+		return "index";
+	}
+	
+	@RequestMapping("showCollectCommodity.do")
+	@ResponseBody
+	public String showCollectCommodity(){
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		ObjectMapper mapper = new ObjectMapper();
+		List<CartInfo> listcart = cartInfoMapper.getCartByUserAccount(user);
+		List<CommodityInfo> list = new ArrayList<>();
+		for(CartInfo c:listcart){
+			CommodityInfo co = new CommodityInfo();
+			co.setId(c.getCommodity_id());
+			list.add(commodityInfoMapper.getCommodityById(co));
+		}
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 	
 	@RequestMapping("goodsDetail.do")

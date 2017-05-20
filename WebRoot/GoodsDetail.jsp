@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/scripts.js"></script>
 	<script>
 		$(document).ready(function (){
-			detail(${detail}) ;
+			detail(${detail});
 		}); 
 		function detail(goods){
 			let container = document.getElementsByClassName("goodsDesc")[0];
@@ -53,6 +53,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			img1.style.margin="10px 0 10px 0";
 			imgContainer.appendChild(img1);
 		};
+		function test(){
+			let te = document.getElementById("test");
+			te.value = ${detail}.id;
+		}
+		function test2(){
+			let test2 = document.getElementById("test2");
+			test2.value = ${detail}.id;
+		}
 	</script>
 </head>
 <body>
@@ -71,14 +79,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <br><br><br><br><br><br>
                 <div class="btnGroup">
-
-                    <button class="btn col-sm-3" id="likeBtn">收藏</button>
+					<form role="form" action="commodityInfo/collectCommodity.do" method="post">
+						<button class="btn col-sm-3" id="likeBtn" type="submit" onclick=test()>加入购物车</button>
+						<input class="hidden" name="commodity" id="test" value=${detail}> 
+					</form>
                     <span class="col-sm-4"></span>
-                    <button class="btn col-sm-3" id="buyBtn">立即购买</button>
+                    <form role="form" action="commodityInfo/buyCommodity.do" method="post">
+	                    <button class="btn col-sm-3" id="buyBtn" type="submit">立即购买</button>
+	                    <input class="hidden" name="commodity" id="test2" value=${detail}>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="goodsImages">
+        <div class="goodsComments">
+        	<div class="publishComments"> 
+        		
+        	</div>
+        	<div class="checkComments">
+        		
+        	</div>
         </div>
     </div>
     <%@ include file="Footer.jsp" %>

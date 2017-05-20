@@ -44,10 +44,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let xxx = document.createElement("p");
     			xxx.innerHTML = item.des+'<br><br>'+'有意者联系QQ：<span>543372027</span>';
     			a.appendChild(xxx);
+    			let btn1 = document.createElement("button");
+    			btn1.classList.add("btn-primary");
+    			btn1.classList.add("btn");
+    			btn1.style.width="95%";
+    			btn1.style.margin = "5px";
+    			btn1.innerHTML = "申请广告";
+    			let btn2 = document.createElement("button");
+    			btn2.classList.add("btn-danger");
+    			btn2.classList.add("btn");
+    			btn2.innerHTML = "删除商品";
+    			btn2.style.width="95%";
+    			btn2.style.margin="5px";
+    			
+    			let adBtn = document.createElement("a");
+    			adBtn.href = "${pageContext.request.contextPath}/commodityInfo/removeCommodity.do?id=" +item.id;
+    			btn1.appendChild(adBtn);
+    			
+    			let deleteA = document.createElement("a");
+    			deleteA.href = "${pageContext.request.contextPath}/advertisementInfo/addAdvertisement.do?id=" +item.id;
+    			btn2.appendChild(deleteA);
+    			
+    			div.appendChild(btn1);
+    			div.appendChild(btn2);
     			container.appendChild(div);
     			a.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     		}
-    		
+    	}
+    	
+    	$.getJSON({
+    		url:"/shopInfo/getShop.do",
+    		success:shop
+    	});
+    	function shop(json){
+    		if(json != null && json != ""){
+    			alert(json);
+    		}else{
+    			alert("no shops");
+    		}
     	}
     </script>
 

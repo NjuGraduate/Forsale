@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.edu.nju.mapper.UserInfoMapper;
 import cn.edu.nju.po.UserInfo;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -67,11 +70,37 @@ public class UserInfoController {
 		}
 	}
 	
+	@RequestMapping("validate.do")
+	public void validate(HttpServletRequest request,Model model){
+		String account = request.getParameter("form-email");
+		try {
+			MessageDigest md;
+			md = MessageDigest.getInstance("MD5");
+			md.update(account.getBytes());
+			String validate1 = new BigInteger(1, md.digest()).toString(16);
+			String validate2 = validate1.substring(0,4);
+			sendEmail(account,"your verification code:"+validate2);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping("register.do")
 	public String register(HttpServletRequest request,Model model){
 		String account = request.getParameter("form-email");
+		String validate = request.getParameter("form-email");
+		String validate2 = "4396";
 		ObjectMapper mapper = new ObjectMapper();
-		if(account.endsWith("edu.cn")){
+		try {
+			MessageDigest md;
+			md = MessageDigest.getInstance("MD5");
+			md.update(account.getBytes());
+			String validate1 = new BigInteger(1, md.digest()).toString(16);
+			validate2 = validate1.substring(0,4);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		if(account.endsWith("edu.cn")&&validate==validate2){
 			String password = request.getParameter("form-password");
 			String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
 			String des = request.getParameter("form-about-yourself");
@@ -85,7 +114,7 @@ public class UserInfoController {
 			UserInfo u = userInfoMapper.getUserByAccount(user);
 			if(u==null){
 				userInfoMapper.addUser(user);
-				sendEmail(account,"your"+password);
+				sendEmail(account,"your password:"+password);
 				return "login";
 			}else{
 				try {
