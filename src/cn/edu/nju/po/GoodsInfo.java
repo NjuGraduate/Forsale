@@ -6,15 +6,22 @@ public class GoodsInfo implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "GoodsInfo [id=" + id + ", des=" + des + ", desiregoods=" + desiregoods + ", contactInf=" + contactInf
-				+ ", user_account=" + user_account + "]";
+		return "GoodsInfo [id=" + id + ", pic=" + pic + ", des=" + des + ", desiregoods=" + desiregoods
+				+ ", contactInf=" + contactInf + ", user_account=" + user_account + "]";
 	}
 	private int id;
+	private String pic;
 	private String des;//描述
 	private String desiregoods; //期望物品描述
 	private String contactInf;//联系方式
 	private String user_account;
 	
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	public int getId() {
 		return id;
 	}
