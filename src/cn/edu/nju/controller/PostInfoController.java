@@ -57,6 +57,7 @@ public class PostInfoController {
 		goods.setContactInf(connect);
 		goods.setDes(exchangeDesc);
 		goods.setDesiregoods(needDesc);
+		goods.setPic(url);
 		goodsInfoMapper.addGoods(goods);
 		return "exchangeReq";
 	}
