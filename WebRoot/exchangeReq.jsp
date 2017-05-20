@@ -100,18 +100,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="tab-pane" id="xw2">
                     <div class="exchangeReq">
-                        <form role="form">
+                        <form role="form" method="post" action="postInfo/post.do">
                             <div class="form-group">
-                                <label for="hold">描述</label>
-                                <input type="text" class="form-control"  name="form-exchangeDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过30个字" maxlength="30">
+                                <label for="hold">手头的二手物品</label>
+                                <input type="text" class="form-control"  name="exchangeDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过30个字" maxlength="30">
                             </div>
                             <div class="form-group">
-                                <label for="need">描述</label>
-                                <input type="text" class="form-control"  name="form-needDesc" id="need" placeholder="请输入您所需物品的描述，最多不超过30个字" maxlength="30">
+                                <label for="need">需要的二手物品</label>
+                                <input type="text" class="form-control"  name="needDesc" id="need" placeholder="请输入您所需物品的描述，最多不超过30个字" maxlength="30">
                             </div>
                             <div class="form-group">
-                                <label for="need">描述</label>
-                                <input type="text" class="form-control"  name="form-needDesc" id="need" placeholder="请输入您所需物品的描述，最多不超过30个字" maxlength="30">
+                                <label for="need">联系方式</label>
+                                <input type="text" class="form-control"  name="connect" id="need" placeholder="请留下您的联系方式" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <label for="inputfile">请上传你的闲置物品的照片一张</label>
