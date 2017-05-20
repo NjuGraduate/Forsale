@@ -7,6 +7,7 @@ public class AdvertisementInfo implements Serializable{
 	private String title;
 	private String id;
 	private String state;
+	//state="wait";state="success";state="fail"
 	private String user_account;
 	private int commodity_id;
 	private int shop_id;

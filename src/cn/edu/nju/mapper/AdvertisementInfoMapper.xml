@@ -38,8 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from advertisement where id=#{id}
    </select>
    
-   <select id="getAdvertisementByUserAccount" parameterType="AdvertisementInfo" resultMap="advertisementmap">
-        select * from advertisement where user_account=#{user_account}
+   <select id="getAdvertisementByUserAccount" parameterType="UserInfo" resultMap="advertisementmap">
+        select * from advertisement where user_account=#{account}
    </select>
   
 	<select id="getAdvertisementByCommodityId" parameterType="AdvertisementInfo" resultMap="advertisementmap">

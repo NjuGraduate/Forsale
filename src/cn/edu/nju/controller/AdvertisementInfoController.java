@@ -3,6 +3,7 @@ package cn.edu.nju.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,19 @@ public class AdvertisementInfoController {
 	
 	@RequestMapping("showAdvertisement.do")
 	public String showAdvertisement(Model model){
-		List<AdvertisementInfo> list = advertisementInfoMapper.getAdvertisements();
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		List<AdvertisementInfo> list = advertisementInfoMapper.getAdvertisementByUserAccount(user);
 		model.addAttribute("allads", list);
-		//TODO
-		return null;
+		return "";
 	}
 	
 	@RequestMapping("addAdvertisement.do")
-	public String addAdvertisement(@RequestParam("id") int id,Model model){
+	public String addAdvertisement(String CommodityId,Model model){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		AdvertisementInfo adif = new AdvertisementInfo();
-		adif.setCommodity_id(id);
+		adif.setCommodity_id(Integer.parseInt(CommodityId));
 		adif.setUser_account(user.getAccount());
+		adif.setState("wait");
 		String msg = "";
 		if(advertisementInfoMapper.getAdvertisementByCommodityId(adif)==null){
 			advertisementInfoMapper.addAdvertisement(adif);
@@ -60,27 +62,8 @@ public class AdvertisementInfoController {
 		return "";
 	}
 	
-	@RequestMapping("removeAdvertisement.do")
-	public String removeAdvertisement(String title){
-		AdvertisementInfo ad = new AdvertisementInfo();
-		ad.setTitle(title);;
-		advertisementInfoMapper.removeAdvertisement(ad);
-		return null;
-	}
+
 	
-	@RequestMapping("updateAdvertisement.do")
-	public String updateAdvertisement(@RequestBody AdvertisementInfo ad){
-		advertisementInfoMapper.updateAdvertisement(ad);
-		//TODO
-		return null;
-	}
-	
-	@RequestMapping("retrieveAdvertisement.do")
-	public String retrieveAdvertisement(String str){
-		advertisementInfoMapper.getAdvertisementsLike(str);
-		//TODO
-		return null;
-	}
 	
 	@RequestMapping("getAllAds.do")
 	@ResponseBody
