@@ -3,42 +3,42 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.CommentInfoMapper">
-   	<resultMap type="ShopInfo" id="shopmap">
+   	<resultMap type="CommentInfo" id="commentmap">
    	  <result property="id" column="id"/>
-      <result property="name" column="name"/>
-      <result property="rank" column="rank"/>
-      <result property="des" column="des"/>
-      <result property="user_id" column="user_id"/>
+      <result property="content" column="content"/>
+      <result property="time" column="time"/>
+      <result property="seller_account" column="seller-account"/>
+      <result property="buyer_account" column="buyer_account"/>
    </resultMap>
      
-   <insert id="addShop" parameterType="ShopInfo">
-        insert into shop(name,rank,des,user_id) values(#{name},#{rank},#{des},#{user_id})
+   <insert id="addComment" parameterType="CommentInfo">
+        insert into comment(name,rank,des,user_account) values(#{name},#{rank},#{des},#{user_account})
    </insert>
  
-   <delete id="removeShop" parameterType="ShopInfo">
-        delete * from shop where id=#{id}
+   <delete id="removeComment" parameterType="CommentInfo">
+        delete * from comment where id=#{id}
    </delete>
    
-   <update id="updateShop" parameterType="ShopInfo">
-        update shop set(name=#{name},rank=#{rank},des=#{des}) where id=#{id}
+   <update id="updateComment" parameterType="CommentInfo">
+        update comment set(name=#{name},rank=#{rank},des=#{des}) where id=#{id}
    </update>
    
-   <select id="getShopsLike" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where des like '%#{des}%'
+   <select id="getCommentsLike" parameterType="CommentInfo" resultMap="commentmap">
+        select * from comment where des like '%#{des}%'
    </select>
    
    
-   <select id="getShops" resultMap="shopmap">
-        select * from shop
+   <select id="getComments" resultMap="commentmap">
+        select * from comment
    </select>
    
    
-   <select id="getShopById" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where id=#{id}
+   <select id="getCommentById" parameterType="CommentInfo" resultMap="commentmap">
+        select * from comment where id=#{id}
    </select>
    
-   <select id="getShopByUserId" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where user_id=#{user_id}
+   <select id="getCommentByUserAccount" parameterType="CommentInfo" resultMap="commentmap">
+        select * from comment where user_account=#{user_account}
    </select>
    
 </mapper>
