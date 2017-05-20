@@ -111,7 +111,9 @@ public class CommodityInfoController {
 	public String removeCommodity(@RequestParam("id") int id){
 		CommodityInfo com = new CommodityInfo();
 		com.setId(id);
-		commodityInfoMapper.removeCommodity(com);
+		if(commodityInfoMapper.getCommodityById(com)!=null){
+			commodityInfoMapper.removeCommodity(com);
+		}
 		return "";
 	}
 	
