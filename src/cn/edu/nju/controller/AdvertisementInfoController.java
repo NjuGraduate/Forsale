@@ -47,13 +47,13 @@ public class AdvertisementInfoController {
 		String msg = "";
 		if(advertisementInfoMapper.getAdvertisementByCommodityId(adif)==null){
 			advertisementInfoMapper.addAdvertisement(adif);
-			msg="success post";
+			msg="success";
 		}else{
-			msg="fail post";
+			msg="fail";
 		}
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			model.addAttribute("msg",msg);
+			model.addAttribute("msg",mapper.writeValueAsString(msg));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

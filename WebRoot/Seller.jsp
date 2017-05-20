@@ -50,16 +50,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			btn1.style.width="95%";
     			btn1.style.margin = "5px";
     			btn1.innerHTML = "申请广告";
+    			btn1.onclick = function() {requestAdvertisement(item.id)};
     			let btn2 = document.createElement("button");
     			btn2.classList.add("btn-danger");
     			btn2.classList.add("btn");
     			btn2.innerHTML = "删除商品";
     			btn2.style.width="95%";
     			btn2.style.margin="5px";
-    			
-    			let adBtn = document.createElement("a");
-    			adBtn.href = "${pageContext.request.contextPath}/commodityInfo/removeCommodity.do?id=" +item.id;
-    			btn1.appendChild(adBtn);
     			btn2.onclick = function() {test(item.id);};
     			div.appendChild(btn1);
     			div.appendChild(btn2);
@@ -77,6 +74,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	function refresh(){
     		window.location.reload();
+    	}
+    	
+    	
+    	function requestAdvertisement(id){
+    		$.post({
+    			url:"advertisementInfo/addAdvertisement.do",
+    			data: {id:id}
+    		});
     	}
     	
     </script>
