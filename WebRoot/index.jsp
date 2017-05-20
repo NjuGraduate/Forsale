@@ -112,6 +112,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			}
     		}
     	}
+    	
+    	$.getJSON({
+    		url:"advertisementInfo/getAllAds.do",
+    		success: addAdvertisement
+    	});
+    	
+    	function addAdvertisement(json){
+    		let data = JSON.parse(json);
+    		let advertisement1 = document.getElementById("xw1");
+    		for(var i = 0; i < data.length;i++){
+    			if(data[i].classifiction1 == "衣服"){
+    				let adDiv = document.getElementsByClassName("adPic")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
+    			}else if(data[i].classifiction1 == "鞋靴"){
+    				
+    			}else if(data[i].classifiction1 == "数码"){
+    				
+    			}else if(data[i].classifiction1 == "美妆"){
+    				
+    			}else if(data[i].classifiction1 == "手表"){
+    				
+    			}else if(data[i].classifiction1 == "户外"){
+    				
+    			}else if(data[i].classifiction1 == "房子"){
+    				
+    			}else if(data[i].classifiction1 == "汽车"){
+    				
+    			}else{
+    				
+    			}
+    		}
+    	}
     </script>
     
 </head>
@@ -193,12 +231,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="tab-content advertisement" id="banner">
         <div class="tab-pane active fade in" id="xw1">
             <div class="adPic">
-                <img src="./images/clothes/advertisement/018.jpg"
-                     title="旗下淘宝平台" style="display: block">
-                <img src="./images/clothes/advertisement/010.jpg" title="旗下新浪平台">
-                <img src="./images/clothes/advertisement/015.jpg" title="旗下咸鱼平台">
-                <img src="./images/clothes/advertisement/016.jpg" title="旗下58同城">
-                <img src="./images/clothes/advertisement/017.jpg" title="签约艺人科比-布莱恩特">
             </div>
         </div>
         <div class="tab-pane" id="xw2">

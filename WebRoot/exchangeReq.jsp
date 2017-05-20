@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>发起物物置换</title>
     <link rel="stylesheet" href="css/common.css">
@@ -98,6 +104,10 @@
                             <div class="form-group">
                                 <label for="hold">描述</label>
                                 <input type="text" class="form-control"  name="form-exchangeDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过30个字" maxlength="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="need">描述</label>
+                                <input type="text" class="form-control"  name="form-needDesc" id="need" placeholder="请输入您所需物品的描述，最多不超过30个字" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <label for="need">描述</label>

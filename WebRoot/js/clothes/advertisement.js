@@ -26,3 +26,19 @@ $(document).ready(function () {
         $(".lib span").eq(index).trigger("click");
     },2000);
 });
+
+$.getJSON({
+	url:"advertisementInfo/getAllAds.do",
+	success: addAdvertisement
+});
+
+function addAdvertisement(json){
+	let data = JSON.parse(json);
+	let advertisement1 = document.getElementById("xw1");
+	let temp = 0;
+	for(var i = 0; i < data.length;i++){
+		if(data[i].classifiction1 == "衣服"){
+			temp++;
+		}
+	}
+}

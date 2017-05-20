@@ -1,5 +1,6 @@
 package cn.edu.nju.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,7 +19,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.AdvertisementInfoMapper;
+import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.po.AdvertisementInfo;
+import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.UserInfo;
 
 
@@ -31,6 +34,10 @@ public class AdvertisementInfoController {
 	@Resource(name="advertisementInfoMapper")
 	private AdvertisementInfoMapper advertisementInfoMapper;
 	
+	@Resource(name="commodityInfoMapper")
+	private CommodityInfoMapper commodityInfoMapper;
+	
+	
 	@RequestMapping("showAdvertisement.do")
 	public String showAdvertisement(Model model){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
@@ -40,10 +47,10 @@ public class AdvertisementInfoController {
 	}
 	
 	@RequestMapping("addAdvertisement.do")
-	public String addAdvertisement(String CommodityId,Model model){
+	public String addAdvertisement(@RequestParam("id") int id,Model model){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		AdvertisementInfo adif = new AdvertisementInfo();
-		adif.setCommodity_id(Integer.parseInt(CommodityId));
+		adif.setCommodity_id(id);
 		adif.setUser_account(user.getAccount());
 		adif.setState("wait");
 		String msg = "";
@@ -67,14 +74,23 @@ public class AdvertisementInfoController {
 	
 	@RequestMapping("getAllAds.do")
 	@ResponseBody
-	public String getAllAds(Model model){
+	public String getAllAds(){
 		ObjectMapper mapper = new ObjectMapper();
 		List<AdvertisementInfo> ads = advertisementInfoMapper.getAdvertisements();
-		try {
-			return mapper.writeValueAsString(ads);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return "[]";
+		List<CommodityInfo> colist = new ArrayList<>();
+		for(AdvertisementInfo ad:ads){
+			if(ad.getState().equals("success")){
+				CommodityInfo co = new CommodityInfo();
+				co.setId(ad.getCommodity_id());
+				colist.add(commodityInfoMapper.getCommodityById(co));
+				try {
+					return mapper.writeValueAsString(colist);
+					
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+		return "";
 	}
 }
