@@ -151,16 +151,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
     	}
     	function getText(){
+    		let div = document.getElementById("shopDiv");
+    		let btn = document.getElementById("shopSearch");
     		let input = document.getElementById("inputText").value;
-    		let shop = document.getElementById("getInputShop");
-    		shop.value = input;
-    		alert(shop.value);
+    		let a = document.createElement("a");
+    		a.href = "${pageContext.request.contextPath}/shopInfo/retrieveShop.do?input="+input;
+    		a.appendChild(btn);
+    		div.appendChild(a);
     	}
     	
     	function getText2(){
+    		let div = document.getElementById("goodsDiv");
+    		let btn = document.getElementById("goodsSearch");
     		let input = document.getElementById("inputText").value;
-    		let goods = document.getElementById("getInputGoods");
-    		goods.value = input;
+    		let a = document.createElement("a");
+    		a.href = "${pageContext.request.contextPath}/commodityInfo/retrieveCommodity.do?input="+input;
+    		a.appendChild(btn);
+    		div.appendChild(a);
     	}
     	
     </script>
@@ -171,14 +178,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%@ include file="Header.jsp" %>
     <div class="input-group">
         <input type="text" class="form-control input-lg" id="inputText">
-        <form method="post" action="shopInfo/retrieveShop.do" style="display: inline-block;margin-top: 5px">
-        	<input name="searchShop" class="hidden" id="getInputShop">
-            <button class="btn btn-primary" type="submit" onclick=getText()>搜索店铺</button>
-        </form>
-        <form method="post" action="commodityInfo/retrieveCommodity.do" style="display:inline-block;float: right;margin-top: 5px">
-        	<input name="searchGoods" class="hidden" id="getInputGoods">
-            <button class="btn btn-primary" type="submit" onclick=getText2()>搜索商品</button>
-        </form>
+        <div style="display: inline-block;margin-top: 5px" id="shopDiv">
+            <button class="btn btn-primary" id="shopSearch" onclick=getText()>搜索店铺</button>
+        </div>
+        <div style="display:inline-block;float: right;margin-top: 5px" id="goodsDiv">
+            <button class="btn btn-primary" id="goodsSearch" type="submit" onclick=getText2()>搜索商品</button>
+        </div>
     </div>
     <div class="nav nav-tabs useTab">
         <h3>主题市场</h3>

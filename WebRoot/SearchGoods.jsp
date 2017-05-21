@@ -31,9 +31,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-	    $(document).ready(function(){
-			alert(${list});
+	    $(document).ready(function () {
+	    	goodsShow(${list}); 
 		});
+	    function goodsShow(list){
+		    let searchContainer = document.getElementsByClassName("searchContainer")[0];
+	    	for(let item of list){ 
+	    		let div = document.createElement("div");
+	    		div.classList.add("searchRes");
+		    	let img = document.createElement("img");
+		    	img.src = item.pic;
+		    	let p = document.createElement("p");
+		    	p.innerHTML = item.des;
+		    	div.appendChild(img);
+		    	div.appendChild(p);
+		    	searchContainer.appendChild(div);
+	    	}
+	    }
     </script>
    
 </head>
@@ -45,9 +59,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<span class="input-group-addon btn btn-primary searchBtn"><strong>搜索商品</strong></span>
     	</div>
 	    <div class="searchContainer">
-	        <div class="searchRes">
-	
-	        </div>
 	    </div>
 		<%@ include file="Footer.jsp" %>
 	</div>

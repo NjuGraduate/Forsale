@@ -32,8 +32,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/scripts.js"></script>
     <script>
     	$(document).ready(function(){
-    		alert(${list});
+    		shop(${list});
     	});
+    	
+    	function shop(list){
+    		let shopBody = document.getElementsByClassName("shopBody")[0];
+    		for(let item of list){ 
+				let shoptr = document.createElement("tr");
+				
+    			let shopId = document.createElement("td");
+    			shopId.innerHTML = item.id;
+    			
+    			let shopName = document.createElement("td");
+    			shopName.innerHTML = item.name;
+    			
+    			let shopAccount = document.createElement("td");
+    			shopAccount.innerHTML = item.user_account;
+    			
+    			let shopCheck = document.createElement("td");
+    			let checkBtn = document.createElement("button");
+    			checkBtn.innerHTML = "查看";
+    			checkBtn.classList.add("btn-primary");
+    			let adA = document.createElement("a");
+    			adA.appendChild(checkBtn);
+    			shopCheck.appendChild(adA);
+    			shoptr.appendChild(shopId);
+    			shoptr.appendChild(shopName);
+    			shoptr.appendChild(shopAccount);
+    			shoptr.appendChild(shopCheck);
+    			shopBody.appendChild(shoptr); 
+    		}
+    	}
     </script>
 </head>
 <body>
@@ -44,9 +73,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<span class="input-group-addon btn btn-primary searchBtn"><strong>搜索店铺</strong></span>
     	</div>
 	    <div class="searchContainer">
-	        <div class="searchRes">
-	
-	        </div>
+	        <table class="table table-hover">
+				<caption>广告列表</caption>
+				<thead>
+					<tr>
+						<th>店铺ID</th>
+					    <th>店铺名</th>
+					    <th>卖家账号</th>
+					    <th>查看</th>
+					</tr>
+				</thead>
+				<tbody class="shopBody">
+					
+				</tbody>
+			</table>
 	    </div>
 		<%@ include file="Footer.jsp" %>
 	</div>

@@ -81,7 +81,7 @@ public class ShopInfoController {
 	}
 	
 	@RequestMapping("retrieveShop.do")
-	public String retrieveShop(@RequestParam("searchShop") String str,Model model){
+	public String retrieveShop(@RequestParam("input") String str,Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		ShopInfo shop = new ShopInfo();
 		shop.setDes(str);

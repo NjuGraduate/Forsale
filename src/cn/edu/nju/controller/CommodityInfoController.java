@@ -149,7 +149,7 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("retrieveCommodity.do")
-	public String retrieveCommodity(@RequestParam("searchGoods") String str,Model model){
+	public String retrieveCommodity(@RequestParam("input") String str,Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		CommodityInfo c = new CommodityInfo();
 		c.setDes(str);
@@ -158,8 +158,16 @@ public class CommodityInfoController {
 			model.addAttribute("list",mapper.writeValueAsString(commodities));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
-			return "[]";
 		}
+//		int n = 0;
+//		for(CommodityInfo co:commodities){
+//			try {
+//				model.addAttribute("Commodity"+n,mapper.writeValueAsString(co));
+//			} catch (JsonProcessingException e) {
+//				e.printStackTrace();
+//			}
+//			n++;
+//		}
 		return "SearchGoods";
 	}
 	

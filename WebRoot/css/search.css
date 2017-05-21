@@ -14,3 +14,14 @@
     border-radius: 5px;
     background: rgba(255,255,255,0.5);
 }
+
+.searchRes img{
+    width: 100%;
+    height: 80%;
+    
+}
+
+#searchP{
+	display:inline-block;
+	overflow:hidden;
+}
