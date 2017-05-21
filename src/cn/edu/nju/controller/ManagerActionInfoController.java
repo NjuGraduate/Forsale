@@ -68,9 +68,9 @@ public class ManagerActionInfoController {
 	}
 	
 	@RequestMapping("banUser.do")
-	public String banUser(String account){
+	public String banUser(@RequestParam("account") String account){
 		UserInfo adminuser = (UserInfo)session.getAttribute("user_info");
-		if(adminuser.getAccount().equals("131250037@smail.nju.edu.cn")){
+		if(adminuser.getAccount().equals("admin@smail.nju.edu.cn")){
 			UserInfo user = new UserInfo();
 			user.setAccount(account);
 			if(userInfoMapper.getUserByAccount(user)!=null){
@@ -93,7 +93,7 @@ public class ManagerActionInfoController {
 				advertisementInfoMapper.removeAdvertisement(a);
 			}
 		}
-		return "banUser";
+		return "Master";
 	}
 	
 	@RequestMapping("reviewAdSuccess.do")
@@ -113,10 +113,10 @@ public class ManagerActionInfoController {
 	}
 	
 	@RequestMapping("reviewAdFail.do")
-	public String reviewAdFail(@RequestParam("id") String id){
+	public String reviewAdFail(@RequestParam("id") int id){
 		AdvertisementInfo ad = new AdvertisementInfo();
-		ad.setId(id);
-		AdvertisementInfo adr = advertisementInfoMapper.getAdvertisementById(ad);
+		ad.setCommodity_id(id);
+		AdvertisementInfo adr = advertisementInfoMapper.getAdvertisementByCommodityId(ad);
 		CommodityInfo com = new CommodityInfo();
 		com.setId(adr.getCommodity_id());
 		CommodityInfo comr = commodityInfoMapper.getCommodityById(com);
@@ -124,7 +124,7 @@ public class ManagerActionInfoController {
 			advertisementInfoMapper.removeAdvertisement(adr);
 			sendEmail(adr.getUser_account(),"sorry for rejecting your advertisement about:Id"+comr.getId()+"Description:"+comr.getDes());
 		}
-		return "adManage";
+		return "Master";
 	}
 	
 	private static void sendEmail(String receiveMailAccount,String description) {

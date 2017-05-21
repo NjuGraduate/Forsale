@@ -32,31 +32,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	function user(json){
     		let data = JSON.parse(json);
     		let userBody = document.getElementsByClassName("userBody")[0];
-    		for(var i = 0; i <data.length; i++){
-    			let usertr = document.createElement("tr");
-    			let username = document.createElement("td");
-    			username.innerHTML = data[i].name;
-    			let userAccount = document.createElement("td");
-    			userAccount.innerHTML = data[i].account;
-    			
-    			let userChange = document.createElement("td");
-    			let changeBtn = document.createElement("button");
-    			changeBtn.innerHTML = "修改";
-    			changeBtn.classList.add("btn-primary");
-    			userChange.appendChild(changeBtn);
-    			
-    			let userDelete = document.createElement("td");
-    			let deleteBtn = document.createElement("button");
-    			deleteBtn.innerHTML = "踢出";
-    			deleteBtn.classList.add("btn-danger");
-    			userDelete.appendChild(deleteBtn);
-    			
-    			usertr.appendChild(username);
-    			usertr.appendChild(userAccount);
-    			usertr.appendChild(userChange);
-    			usertr.appendChild(userDelete);
-				userBody.appendChild(usertr);    			
+    		for(let item of data){
+    			if(item.account != "admin@smail.nju.edu.cn"){
+    				let usertr = document.createElement("tr");
+        			let username = document.createElement("td");
+        			username.innerHTML = item.name;
+        			let userAccount = document.createElement("td");
+        			userAccount.innerHTML = item.account;
+        			
+        			let userChange = document.createElement("td");
+        			let changeBtn = document.createElement("button");
+        			changeBtn.innerHTML = "修改";
+        			changeBtn.classList.add("btn-primary");
+        			userChange.appendChild(changeBtn);
+        			
+        			let userDelete = document.createElement("td");
+        			let deleteBtn = document.createElement("button");
+        			deleteBtn.innerHTML = "踢出";
+        			deleteBtn.classList.add("btn-danger");
+        			deleteBtn.onclick = function (){deleteUser(item.account)};
+        			userDelete.appendChild(deleteBtn);
+        			
+        			usertr.appendChild(username);
+        			usertr.appendChild(userAccount);
+        			usertr.appendChild(userChange);
+        			usertr.appendChild(userDelete);
+    				userBody.appendChild(usertr);  
+    			}
     		}
+    	}
+    	function deleteUser(account){
+    		$.post({
+    			url:"managerActionInfo/banUser.do",
+    			data: { account: account },
+    			success:refresh
+    		})
     	}
     	
     	$.getJSON({
@@ -66,22 +76,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	function advertisement(json){
     		let data = JSON.parse(json);
     		let adBody = document.getElementsByClassName("advertisementBody")[0];
-    		for(var i = 0; i <data.length; i++){
-    			
+    		for(let item of data){
     			let adtr = document.createElement("tr");
     			
     			let adId = document.createElement("td");
-    			adId.innerHTML = data[i].id;
+    			adId.innerHTML = item.id;
     			
     			let adAccount = document.createElement("td");
-    			adAccount.innerHTML = data[i].seller_account;
+    			adAccount.innerHTML = item.seller_account;
     			
     			let adCheck = document.createElement("td");
     			let checkBtn = document.createElement("button");
     			checkBtn.innerHTML = "查看";
     			checkBtn.classList.add("btn-primary");
     			let adA = document.createElement("a");
-    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     			adA.appendChild(checkBtn);
     			adCheck.appendChild(adA);
     			
@@ -95,6 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let denyBtn = document.createElement("button");
     			denyBtn.innerHTML = "删除";
     			denyBtn.classList.add("btn-danger");
+    			denyBtn.onclick = function (){deleteAds(item.id);};
     			adDeny.appendChild(denyBtn);
     			
     			adtr.appendChild(adId);
@@ -114,25 +124,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	function commodities(json){
     		let data = JSON.parse(json);
     		let comBody = document.getElementsByClassName("commodityBody")[0];
-    		for(var i = 0; i <data.length; i++){
+    		for(let item of data){
     			
     			let comtr = document.createElement("tr");
     			
     			let comId = document.createElement("td");
-    			comId.innerHTML = data[i].id;
+    			comId.innerHTML = item.id;
     			
     			let comAccount = document.createElement("td");
-    			comAccount.innerHTML = data[i].seller_account;
+    			comAccount.innerHTML = item.seller_account;
     			
     			let comDes = document.createElement("td");
-    			comDes.innerHTML = data[i].des;
+    			comDes.innerHTML = item.des;
     			
     			let comCheck = document.createElement("td");
     			let comBtn = document.createElement("button");
     			comBtn.innerHTML = "查看";
     			comBtn.classList.add("btn-primary");
     			let adA = document.createElement("a");
-    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     			adA.appendChild(comBtn);
     			comCheck.appendChild(adA);
     			
@@ -140,6 +150,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let denyBtn = document.createElement("button");
     			denyBtn.innerHTML = "删除";
     			denyBtn.classList.add("btn-danger");
+    			
+    			denyBtn.onclick = function(){deleteCommodity(item.id)}
+    			
     			comDeny.appendChild(denyBtn);
     			
     			comtr.appendChild(comId);
@@ -151,6 +164,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
     	}
     	
+    	function deleteCommodity(id){
+    		$.post({
+    			url:"commodityInfo/removeCommodity.do",
+    			data: { id: id },
+    			success:refresh
+    		})
+    	}
+    	function refresh(){
+    		window.location.reload();
+    	}
+    	
+    	
     	
     	$.getJSON({
     		url:"advertisementInfo/getAllAds.do",
@@ -159,22 +184,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	function advertisement2(json){
     		let data = JSON.parse(json);
     		let adBody = document.getElementsByClassName("advertisementBody2")[0];
-    		for(var i = 0; i <data.length; i++){
+    		for(let item of data){
     			
     			let adtr = document.createElement("tr");
     			
     			let adId = document.createElement("td");
-    			adId.innerHTML = data[i].id;
+    			adId.innerHTML = item.id;
     			
     			let adAccount = document.createElement("td");
-    			adAccount.innerHTML = data[i].seller_account;
+    			adAccount.innerHTML = item.seller_account;
     			
     			let adCheck = document.createElement("td");
     			let checkBtn = document.createElement("button");
     			checkBtn.innerHTML = "查看";
     			checkBtn.classList.add("btn-primary");
     			let adA = document.createElement("a");
-    			adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     			adA.appendChild(checkBtn);
     			adCheck.appendChild(adA);
     			
@@ -183,6 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			denyBtn.innerHTML = "删除";
     			denyBtn.classList.add("btn-danger");
     			adDeny.appendChild(denyBtn);
+    			denyBtn.onclick = function (){deleteAds(item.id)};
     			
     			adtr.appendChild(adId);
     			adtr.appendChild(adAccount);
@@ -190,6 +216,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			adtr.appendChild(adDeny);
     			adBody.appendChild(adtr);    			
     		}
+    	}
+    	
+    	function deleteAds(id){
+    		$.post({
+    			url:"managerActionInfo/reviewAdFail.do",
+    			data: { id: id },
+    			success:refresh
+    		})
     	}
     	
     </script>

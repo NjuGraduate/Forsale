@@ -37,8 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from comment where id=#{id}
    </select>
    
-   <select id="getCommentByUserAccount" parameterType="CommentInfo" resultMap="commentmap">
-        select * from comment where user_account=#{user_account}
+   <select id="getCommentByUserAccount" parameterType="UserInfo" resultMap="commentmap">
+        select * from comment where user_account=#{account}
    </select>
    
 </mapper>
