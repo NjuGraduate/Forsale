@@ -154,12 +154,6 @@ public class CommodityInfoController {
 		CommodityInfo c = new CommodityInfo();
 		c.setDes(str);
 		List<CommodityInfo> commodities = commodityInfoMapper.getCommoditiesLike(c);
-		List<CommodityInfo> commodities2 = commodityInfoMapper.getCommoditiesByClassification(str);
-		if(commodities2!=null){
-			for(CommodityInfo co:commodities2){
-				commodities.add(co);
-			}
-		}
 		try {
 			model.addAttribute("list",mapper.writeValueAsString(commodities));
 		} catch (JsonProcessingException e) {
