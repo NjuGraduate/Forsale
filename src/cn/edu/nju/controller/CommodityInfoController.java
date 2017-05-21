@@ -160,7 +160,7 @@ public class CommodityInfoController {
 			e.printStackTrace();
 			return "[]";
 		}
-		return "";
+		return "searchGoods";
 	}
 	
 	@RequestMapping("evaluateCommodity.do")

@@ -72,6 +72,6 @@ public class ShopInfoController {
 			e.printStackTrace();
 			return "[]";
 		}
-		return "";
+		return "searchShop";
 	}
 }
