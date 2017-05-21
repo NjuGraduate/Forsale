@@ -150,6 +150,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			}
     		}
     	}
+    	function getText(){
+    		let input = document.getElementById("inputText").value;
+    		let shop = document.getElementById("getInputShop");
+    		shop.value = input;
+    		alert(shop.value);
+    	}
+    	
+    	function getText2(){
+    		let input = document.getElementById("inputText").value;
+    		let goods = document.getElementById("getInputGoods");
+    		goods.value = input;
+    	}
+    	
     </script>
     
 </head>
@@ -157,8 +170,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="container">
     <%@ include file="Header.jsp" %>
     <div class="input-group">
-        <input type="text" class="form-control input-lg">
-        <span class="input-group-addon btn btn-primary searchBtn"><strong>搜索</strong></span>
+        <input type="text" class="form-control input-lg" id="inputText">
+        <form method="post" action="shopInfo/retrieveShop.do" style="display: inline-block;margin-top: 5px">
+        	<input name="searchShop" class="hidden" id="getInputShop">
+            <button class="btn btn-primary" type="submit" onclick=getText()>搜索店铺</button>
+        </form>
+        <form method="post" action="commodityInfo/retrieveCommodity.do" style="display:inline-block;float: right;margin-top: 5px">
+        	<input name="searchGoods" class="hidden" id="getInputGoods">
+            <button class="btn btn-primary" type="submit" onclick=getText2()>搜索商品</button>
+        </form>
     </div>
     <div class="nav nav-tabs useTab">
         <h3>主题市场</h3>

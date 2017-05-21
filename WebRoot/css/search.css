@@ -1,0 +1,16 @@
+.searchContainer{
+    width: 100%;
+    border-radius: 5px;
+    height: 600px;
+    margin: 10px auto;
+    background: rgba(255,255,255,0.5);
+}
+
+.searchRes{
+    display: inline-block;
+    width: 17%;
+    margin: 10px 20px;
+    height: 250px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.5);
+}
