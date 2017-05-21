@@ -58,7 +58,6 @@ public class ShopInfoController {
 	}
 	
 	@RequestMapping("getShopContent.do")
-	@ResponseBody
 	public String getShopContent(@RequestParam("id") int id,Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		ShopInfo shop = new ShopInfo();
@@ -70,7 +69,7 @@ public class ShopInfoController {
 			e.printStackTrace();
 			return "[]";
 		}
-		return "searchGoods";
+		return "SearchGoods";
 	}
 	
 	@RequestMapping("updateCommodity.do")

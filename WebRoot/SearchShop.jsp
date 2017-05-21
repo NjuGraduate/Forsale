@@ -54,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			checkBtn.innerHTML = "查看";
     			checkBtn.classList.add("btn-primary");
     			let adA = document.createElement("a");
+    			adA.href = "${pageContext.request.contextPath}/shopInfo/getShopContent.do?id=" +item.id;
     			adA.appendChild(checkBtn);
     			shopCheck.appendChild(adA);
     			shoptr.appendChild(shopId);
