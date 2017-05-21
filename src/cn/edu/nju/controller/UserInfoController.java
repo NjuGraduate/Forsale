@@ -39,6 +39,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 @Controller
 @RequestMapping("/userinfo/")
 public class UserInfoController {
+	UserInfo usertemp = new UserInfo();
+	
     @Autowired
     private HttpSession session;
     
@@ -83,35 +85,35 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping("validate.do")
-	public void validate(HttpServletRequest request,Model model){
+	public String validate(HttpServletRequest request,Model model){
 		String account = request.getParameter("form-email");
-		String validate2 = makeCode(account);
-		System.out.println("send code:"+validate2);
-		sendEmail(account,"your verification code:"+validate2);
+		String password = request.getParameter("form-password");
+		String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
+		String des = request.getParameter("form-about-yourself");
+		usertemp.setAccount(account);
+		usertemp.setPassword(password);
+		usertemp.setName(name);
+		usertemp.setDescription(des);
+		usertemp.setBalance(0.0);
+		usertemp.setRank(1);
+		if(account.endsWith("edu.cn")&&userInfoMapper.getUserByAccount(usertemp)==null){
+			sendEmail(account,"your verification code:"+makeCode(account));
+			return "code";
+		}else{
+			return "register";
+		}
 	}
 	
 	@RequestMapping("register.do")
 	public String register(HttpServletRequest request,Model model){
-		String account = request.getParameter("form-email");
+		String account = usertemp.getAccount();
 		String validate = request.getParameter("code");
 		String validate2 = makeCode(account);
-		System.out.println("validate:"+validate+"validate2:"+validate2);
 		ObjectMapper mapper = new ObjectMapper();
-		if(account.endsWith("edu.cn")&&validate==validate2){
-			String password = request.getParameter("form-password");
-			String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
-			String des = request.getParameter("form-about-yourself");
-			UserInfo user = new UserInfo();
-			user.setAccount(account);
-			user.setPassword(password);
-			user.setName(name);
-			user.setDescription(des);
-			user.setBalance(0.0);
-			user.setRank(1);
-			UserInfo u = userInfoMapper.getUserByAccount(user);
+		if(validate==validate2){
+			UserInfo u = userInfoMapper.getUserByAccount(usertemp);
 			if(u==null){
-				userInfoMapper.addUser(user);
-				sendEmail(account,"your password:"+password);
+				userInfoMapper.addUser(usertemp);
 				return "login";
 			}else{
 				try {
@@ -200,7 +202,7 @@ public class UserInfoController {
 			String validate1 = new BigInteger(1, md.digest()).toString(16);
 			validate2 = validate1.substring(0,4);
 			Calendar now = Calendar.getInstance(); 
-			validate2 += (now.get(Calendar.MONTH)+1)+now.get(Calendar.DAY_OF_MONTH);
+			validate2 +=(now.get(Calendar.MONTH)+1)+now.get(Calendar.DAY_OF_MONTH);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
