@@ -112,14 +112,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		success:dealShop
     	});
     	function dealShop(json){
-    		alert(json);
-    		if(!json){
+    		if(json == "null"){
     			let add = document.getElementById("addshop");
     			let p = document.createElement("p");
     			p.classList.add("add");
     			p.innerHTML = "您当前暂无店铺，您可以选择";
     			let a = document.createElement("a");
     			a.href = "./BuildShop.jsp";
+    			a.innerHTML="创建店铺";
     			a.target = "_blank";
     			p.appendChild(a);
     			add.appendChild(p);

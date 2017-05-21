@@ -57,7 +57,7 @@ public class ShopInfoController {
 			return mapper.writeValueAsString(shop);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
-			return "[]";
+			return "";
 		}
 	}
 	
