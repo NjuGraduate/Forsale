@@ -1,5 +1,16 @@
 package cn.edu.nju.mapper;
 
-public interface CommentInfoMapper {
+import java.util.List;
 
+import cn.edu.nju.po.CommentInfo;
+import cn.edu.nju.po.UserInfo;
+
+public interface CommentInfoMapper {
+	public boolean addComment(CommentInfo user);
+	public boolean removeComment(CommentInfo co);
+	public boolean updateComment(CommentInfo co);
+	public List<CommentInfo> getCommentsLike(CommentInfo co);
+	public List<CommentInfo> getComments();
+	public CommentInfo getCommentById(CommentInfo co);
+	public List<CommentInfo> getCommentByUserAccount(UserInfo user);
 }
