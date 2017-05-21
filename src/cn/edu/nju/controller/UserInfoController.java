@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -83,33 +85,18 @@ public class UserInfoController {
 	@RequestMapping("validate.do")
 	public void validate(HttpServletRequest request,Model model){
 		String account = request.getParameter("form-email");
-		try {
-			MessageDigest md;
-			md = MessageDigest.getInstance("MD5");
-			md.update(account.getBytes());
-			String validate1 = new BigInteger(1, md.digest()).toString(16);
-			String validate2 = validate1.substring(0,4);
-			sendEmail(account,"your verification code:"+validate2);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+		String validate2 = makeCode(account);
+		System.out.println("send code:"+validate2);
+		sendEmail(account,"your verification code:"+validate2);
 	}
 	
 	@RequestMapping("register.do")
 	public String register(HttpServletRequest request,Model model){
 		String account = request.getParameter("form-email");
-		String validate = request.getParameter("form-email");
-		String validate2 = "4396";
+		String validate = request.getParameter("code");
+		String validate2 = makeCode(account);
+		System.out.println("validate:"+validate+"validate2:"+validate2);
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			MessageDigest md;
-			md = MessageDigest.getInstance("MD5");
-			md.update(account.getBytes());
-			String validate1 = new BigInteger(1, md.digest()).toString(16);
-			validate2 = validate1.substring(0,4);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
 		if(account.endsWith("edu.cn")&&validate==validate2){
 			String password = request.getParameter("form-password");
 			String name = request.getParameter("form-first-name")+request.getParameter("form-last-name");
@@ -145,7 +132,6 @@ public class UserInfoController {
 		
 	}
 	
-
 	@RequestMapping("update.do")
 	public String update(HttpServletRequest request,Model model){
 		UserInfo info = (UserInfo)session.getAttribute("user_info");
@@ -203,6 +189,22 @@ public class UserInfoController {
 		session.removeAttribute("user");
 		session.removeAttribute("user_info");
 		return "login";
+	}
+	
+	private String makeCode(String account){
+		String validate2 = "4396";
+		try {
+			MessageDigest md;
+			md = MessageDigest.getInstance("MD5");
+			md.update(account.getBytes());
+			String validate1 = new BigInteger(1, md.digest()).toString(16);
+			validate2 = validate1.substring(0,4);
+			Calendar now = Calendar.getInstance(); 
+			validate2 += (now.get(Calendar.MONTH)+1)+now.get(Calendar.DAY_OF_MONTH);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return validate2;
 	}
 	
 	private static void sendEmail(String receiveMailAccount,String description) {
