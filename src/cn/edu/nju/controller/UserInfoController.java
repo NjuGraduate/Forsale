@@ -63,7 +63,7 @@ public class UserInfoController {
 					ObjectMapper mapper = new ObjectMapper();
 					u = mapper.writeValueAsString(info);			
 					session.setAttribute("user", u);
-					if(account=="131250037@smail.nju.edu.cn"){
+					if(account.equals("131250037@smail.nju.edu.cn")){
 						return "Master";
 					}
 				}catch(IOException e) {
@@ -109,8 +109,10 @@ public class UserInfoController {
 		String account = usertemp.getAccount();
 		String validate = request.getParameter("code");
 		String validate2 = makeCode(account);
+		System.out.println("zhanghu:"+account);
+		System.out.println("tianxie:"+validate+"zhengque:"+validate2);
 		ObjectMapper mapper = new ObjectMapper();
-		if(validate==validate2){
+		if(validate.equals(validate2)&&usertemp!=null){
 			UserInfo u = userInfoMapper.getUserByAccount(usertemp);
 			if(u==null){
 				userInfoMapper.addUser(usertemp);

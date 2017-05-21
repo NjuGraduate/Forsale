@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3 form-box">
-								<form role="form" action="userinfo/register.do" method="post" class="registration-form" onsubmit="return checkForm()">
+								<form role="form" action="userinfo/register.do" method="post" class="registration-form">
 									<div id="code">
 										<input type="text" name = "code" placeholder="输入验证码:" class="col-sm-7">
 										<button type="submit" class="btn btn-primary col-sm-4" id="code">提交验证码</button>
