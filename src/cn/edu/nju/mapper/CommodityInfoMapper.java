@@ -3,6 +3,7 @@ package cn.edu.nju.mapper;
 import java.util.List;
 
 import cn.edu.nju.po.CommodityInfo;
+import cn.edu.nju.po.ShopInfo;
 import cn.edu.nju.po.UserInfo;
 
 public interface CommodityInfoMapper {
@@ -21,4 +22,5 @@ public interface CommodityInfoMapper {
 	public void removeCollectCommodity(CommodityInfo co,UserInfo user);
 	public List<CommodityInfo> getCollectCommodity(UserInfo user);
 	public List<CommodityInfo> getCommoditiesLike(CommodityInfo co);
+	public List<CommodityInfo> getCommoditiesByShopId(ShopInfo shop);
 }

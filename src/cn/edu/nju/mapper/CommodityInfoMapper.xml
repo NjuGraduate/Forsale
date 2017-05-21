@@ -44,5 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	<select id="getCommodityByUserAccount" parameterType="UserInfo" resultMap="commoditymap">
         select * from commodity where seller_account=#{account}       
    	</select>
+   	<select id="getCommodityByShopId" parameterType="ShopInfo" resultMap="commoditymap">
+        select * from commodity where shopId=#{id}       
+   	</select>
 </mapper>
 
