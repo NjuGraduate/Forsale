@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.ShopInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.ShopInfo;
@@ -29,6 +30,9 @@ public class ShopInfoController {
 	
 	@Resource(name="shopInfoMapper")
 	private ShopInfoMapper shopInfoMapper;
+	
+	@Resource(name="commodityInfoMapper")
+	private CommodityInfoMapper commodityInfoMapper;
 	
 	@RequestMapping("addShop.do")
 	public String addShop(HttpServletRequest request){
@@ -51,6 +55,22 @@ public class ShopInfoController {
 			e.printStackTrace();
 			return "[]";
 		}
+	}
+	
+	@RequestMapping("getShopContent.do")
+	@ResponseBody
+	public String getShopContent(@RequestParam("id") int id,Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		ShopInfo shop = new ShopInfo();
+		shop.setId(id);
+		List<CommodityInfo> list = commodityInfoMapper.getCommoditiesByShopId(shop);
+		try {
+			model.addAttribute("list",mapper.writeValueAsString(list));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+		return "searchGoods";
 	}
 	
 	@RequestMapping("updateCommodity.do")
