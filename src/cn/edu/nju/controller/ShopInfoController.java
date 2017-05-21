@@ -21,6 +21,7 @@ import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.ShopInfoMapper;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.ShopInfo;
+import cn.edu.nju.po.UserInfo;
 
 @Controller
 @RequestMapping("/shopInfo/")
@@ -48,13 +49,26 @@ public class ShopInfoController {
 	@ResponseBody
 	public String getShop(){
 		ObjectMapper mapper = new ObjectMapper();
-		String str = "ok";
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		ShopInfo shop = shopInfoMapper.getShopByUserAccount(user);
 		try {
-			return mapper.writeValueAsString(str);
+			return mapper.writeValueAsString(shop);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return "[]";
 		}
+	}
+	
+	@RequestMapping("getIntoShop.do")
+	public String getIntoShop(@RequestParam("id") int id){
+		CommodityInfo com = new CommodityInfo();
+		com.setId(id);
+		CommodityInfo coms = commodityInfoMapper.getCommodityById(com);
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		ShopInfo shop = shopInfoMapper.getShopByUserAccount(user);
+		coms.setShopId(shop.getId());
+		commodityInfoMapper.updateCommodity(coms);
+		return "Seller";
 	}
 	
 	@RequestMapping("getShopContent.do")
