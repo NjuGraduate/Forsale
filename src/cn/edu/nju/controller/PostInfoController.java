@@ -33,7 +33,7 @@ public class PostInfoController {
 	private GoodsInfoMapper goodsInfoMapper;
 	
 	@RequestMapping("post.do")
-	public String post(@RequestParam(value="formGoodsLogoPic",required=false) MultipartFile exchangePic,String exchangeDesc,String needDesc,String connect,HttpServletRequest request,Model model){
+	public String post(@RequestParam(value="exchangePic",required=false) MultipartFile exchangePic,String exchangeDesc,String needDesc,String connect,HttpServletRequest request,Model model){
 		String path= request.getSession().getServletContext().getRealPath("/upload/post");
 		String fileName=exchangePic.getOriginalFilename();
 		String extfileName = fileName.substring(Math.max(fileName.lastIndexOf("."), 0));
@@ -82,8 +82,17 @@ public class PostInfoController {
 	}
 	
 	@RequestMapping("retrieve.do")
-	public String retrieve(){
-		//TODO
-		return null;
+	@ResponseBody
+	public String retrieve(String str){
+		GoodsInfo goods = new GoodsInfo();
+		goods.setDes(str);;
+		ObjectMapper mapper = new ObjectMapper();
+		List<GoodsInfo> list = goodsInfoMapper.getGoodsLike(goods);
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 }
