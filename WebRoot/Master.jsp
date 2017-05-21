@@ -22,6 +22,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    
+    <script>
+    	$.getJSON({
+    		url:"userinfo/getAllUsers.do",
+    		success: user
+    	});
+    	
+    	function user(json){
+    		let data = JSON.parse(json);
+    		let userBody = document.getElementsByClassName("userBody")[0];
+    		for(var i = 0; i <data.length; i++){
+    			let usertr = document.createElement("tr");
+    			let username = document.createElement("td");
+    			username.innerHTML = data[i].name;
+    			let userAccount = document.createElement("td");
+    			userAccount.innerHTML = data[i].account;
+    			
+    			let userChange = document.createElement("td");
+    			let changeBtn = document.createElement("button");
+    			changeBtn.innerHTML = "修改";
+    			changeBtn.classList.add("btn-primary");
+    			userChange.appendChild(changeBtn);
+    			
+    			let userDelete = document.creatwElement("td");
+    			let deleteBtn = document.createElement("button");
+    			deleteBtn.innerHTML = "踢出";
+    			deleteBtn.classList.add("btn-danger");
+    			userDelete.appendChild(deleteBtn);
+    			
+    			usertr.appendChild(username);
+    			usertr.appendChild(userAccount);
+    			usertr.appendChild(userChange);
+    			usertr.appendChild(userDelete);
+				userBody.appendChild(usertr);    			
+    		}
+    	}
+    	
+    	$.getJSON({
+    		url:"advertisementInfo/getAllAds.do",
+    		success: advertisement
+    	});
+    	function advertisement(json){
+    		let data = JSON.parse(json);
+    		let adBody = document.getElementsByClassName("advertisementBody")[0];
+    		for(var i = 0; i <data.length; i++){
+    			let adtr = document.createElement("tr");
+    			let adAccount = document.createElement("td");
+    			adAccount.innerHTML = data[i].user_account;
+    			
+    			let adCheck = document.createElement("td");
+    			let checkBtn = document.createElement("button");
+    			checkBtn.innerHTML = "查看";
+    			checkBtn.classList.add("btn-primary");
+    			adCheck.appendChild(checkBtn);
+    			
+    			let adagree = document.createElement("td");
+    			let agreeBtn = document.createElement("button");
+    			agreeBtn.innerHTML = "通过";
+    			agreeBtn.classList.add("btn-primary");
+    			adagree.appendChild(agreeBtn);
+    			
+    			let adDeny = document.creatwElement("td");
+    			let denyBtn = document.createElement("button");
+    			denyBtn.innerHTML = "删除";
+    			denyBtn.classList.add("btn-danger");
+    			adDeny.appendChild(denyBtn);
+    			
+    			adtr.appendChild(adAccount);
+    			adtr.appendChild(adCheck);
+    			adtr.appendChild(adagree);
+    			adtr.appendChild(adDeny);
+    			adBody.appendChild(adtr);    			
+    		}
+    	}
+    	
+    	$.getJSON({
+    		url:"commodityInfo/getCommodities.do",
+    		success: commodities
+    	});
+		
+    	function commodities(json){
+    		let data = JSON.parse(json);
+    		
+    	}
+    	
+    </script>
 
 </head>
 <body>
@@ -48,11 +134,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            	<a href="#xw3" data-toggle="tab">商品管理</a>
 	                        	</div>
 	                    	</li>
-	                    	<li>
-	                        	<div class="linkDiv">
-	                            	<a href="#xw4" data-toggle="tab">举报管理</a>
-	                        	</div>
-	                    	</li>
 	                	</ul>
 	            	</div>
 	        	</div>
@@ -66,30 +147,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    	<tr>
 						      	<th>用户名</th>
 						      	<th>账号</th>
-						      	<th>姓名</th>
 						      	<th>修改</th>
 						      	<th>踢出</th>
 						    	</tr>
 						  	</thead>
-						  	<tbody>
+						  	<tbody class="userBody">
 						    	<tr>
 						      	<td>LCX</td>
 						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td><button class="btn-primary">修改</button></td>
-						      	<td><button class="btn-danger">踢出</button></td>
-						    	</tr>
-						        <tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td><button class="btn-primary">修改</button></td>
-						      	<td><button class="btn-danger">踢出</button></td>
-						    	</tr>
-						    	<tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
 						      	<td><button class="btn-primary">修改</button></td>
 						      	<td><button class="btn-danger">踢出</button></td>
 						    	</tr>
@@ -101,35 +166,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<caption>广告列表</caption>
 						  	<thead>
 						    	<tr>
-						      	<th>卖家</th>
 						      	<th>账号</th>
-						      	<th>姓名</th>
 						      	<th>查看</th>
 						      	<th>通过</th>
 						      	<th>不通过</th>
 						    	</tr>
 						  	</thead>
-						  	<tbody>
+						  	<tbody class="advertisementBody">
 						    	<tr>
-						      	<td>LCX</td>
 						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td><button class="btn-primary">查看</button></td>
-						      	<td><button class="btn-primary">通过</button></td>
-						      	<td><button class="btn-danger">不通过</button></td>
-						    	</tr>
-						        <tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td><button class="btn-primary">查看</button></td>
-						      	<td><button class="btn-primary">通过</button></td>
-						      	<td><button class="btn-danger">不通过</button></td>
-						    	</tr>
-						    	<tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
 						      	<td><button class="btn-primary">查看</button></td>
 						      	<td><button class="btn-primary">通过</button></td>
 						      	<td><button class="btn-danger">不通过</button></td>
@@ -139,51 +184,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            </div>
 		            <div class="tab-pane" id="xw3">
 		                21
-		            </div>
-		            <div class="tab-pane" id="xw4">
-		                <table class="table table-hover">
-							<caption>举报列表</caption>
-						  	<thead>
-						    	<tr>
-						      	<th>举报者</th>
-						      	<th>账号</th>
-						      	<th>姓名</th>
-						      	<th>被举报者</th>
-						      	<th>帐号</th>
-						      	<th>举报原因</th>
-						      	<th>查看</th>
-						    	</tr>
-						  	</thead>
-						  	<tbody>
-						    	<tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td>朱子威</td>
-						      	<td>zzw@nju.edu.cn</td>
-						      	<td>太丑了</td>
-						      	<td><button class="btn-danger">查看</button></td>
-						    	</tr>
-						    	<tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td>朱子威</td>
-						      	<td>zzw@nju.edu.cn</td>
-						      	<td>太丑了</td>
-						      	<td><button class="btn-danger">查看</button></td>
-						    	</tr>
-						    	<tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td>刘昌鑫</td>
-						      	<td>朱子威</td>
-						      	<td>zzw@nju.edu.cn</td>
-						      	<td>太丑了</td>
-						      	<td><button class="btn-danger">查看</button></td>
-						    	</tr>
-						  </tbody>
-						</table>
 		            </div>
 		        </div>
 		    </div>
