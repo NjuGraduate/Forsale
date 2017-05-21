@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
    
    <update id="updateAdvertisement" parameterType="AdvertisementInfo">
-        update advertisement set(title=#{title},state=#{state},commodity_id=#{commodity_id},shop_id=#{shop_id},user_account={user_account}) where id=#{id}
+        update advertisement set state=#{state} where id=#{id}
    </update>
    
    <select id="getAdvertisementsLike" parameterType="AdvertisementInfo" resultMap="advertisementmap">

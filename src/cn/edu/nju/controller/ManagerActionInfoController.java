@@ -97,15 +97,16 @@ public class ManagerActionInfoController {
 	}
 	
 	@RequestMapping("reviewAdSuccess.do")
-	public String reviewAdSuccess(@RequestParam("id") String id){
+	public String reviewAdSuccess(@RequestParam("id") int id){
 		AdvertisementInfo ad = new AdvertisementInfo();
-		ad.setId(id);
-		AdvertisementInfo adr = advertisementInfoMapper.getAdvertisementById(ad);
+		ad.setCommodity_id(id);
+		AdvertisementInfo adr = advertisementInfoMapper.getAdvertisementByCommodityId(ad);
 		CommodityInfo com = new CommodityInfo();
 		com.setId(adr.getCommodity_id());
 		CommodityInfo comr = commodityInfoMapper.getCommodityById(com);
 		if(adr!=null){
 			adr.setState("success");
+			System.out.println(adr);
 			advertisementInfoMapper.updateAdvertisement(adr);
 			sendEmail(adr.getUser_account(),"congratulation for passing your advertisement"+comr.getId()+"Description:"+comr.getDes());
 		}

@@ -112,6 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		success:dealShop
     	});
     	function dealShop(json){
+    		let item = JSON.parse(json);
     		if(json == "null"){
     			let add = document.getElementById("addshop");
     			let p = document.createElement("p");
@@ -124,8 +125,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			p.appendChild(a);
     			add.appendChild(p);
     		}else{
-    			alert(1234);
+   				let shop = document.getElementById("addshop");
+       			let table = document.createElement("table");
+       			table.classList.add("table");
+       			table.classList.add("table-hover");
+       			let thead =document.createElement("thead");
+       			let tr = document.createElement("tr");
+       			let th = document.createElement("th");
+       			th.innerHTML = "店铺名";
+       			let th2 = document.createElement("th");
+       			th2.innerHTML = "店铺描述";
+       			let th3 = document.createElement("th");
+       			th3.innerHTML = "查看";
+       			tr.appendChild(th);
+       			tr.appendChild(th2);
+       			tr.appendChild(th3);
+       			thead.appendChild(tr);
+       			table.appendChild(thead);
+       			
+       			let tbody = document.createElement("tbody");
+       			let tr1 = document.createElement("tr");
+       			let name = document.createElement("td");
+       			name.innerHTML = item.name;
+       			let des = document.createElement("td");
+       			des.innerHTML = item.des;
+       			let che = document.createElement("td");
+       			let check = document.createElement("button");
+       			check.classList.add("btn-primary");
+       			check.innerHTML = "查看";
+       			let checkA = document.createElement("a");
+       			checkA.href = "${pageContext.request.contextPath}/shopInfo/getShopContent.do?id=" +item.id;
+       			checkA.appendChild(check);
+       			che.appendChild(checkA);
+       			tr1.appendChild(name);
+       			tr1.appendChild(des);
+       			tr1.appendChild(che);
+       			tbody.appendChild(tr1);
+       			table.appendChild(thead);
+       			table.appendChild(tbody);
+       			shop.appendChild(table);
     		}
+    			
     	}
     	
     </script>

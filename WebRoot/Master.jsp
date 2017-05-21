@@ -99,6 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			agreeBtn.innerHTML = "通过";
     			agreeBtn.classList.add("btn-primary");
     			adagree.appendChild(agreeBtn);
+    			agreeBtn.onclick = function(){agreeAds(item.id);};
     			
     			let adDeny = document.createElement("td");
     			let denyBtn = document.createElement("button");
@@ -173,6 +174,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	function refresh(){
     		window.location.reload();
+    	}
+    	
+    	function agreeAds(id){
+    		$.post({
+    			url:"managerActionInfo/reviewAdSuccess.do",
+    			data:{id:id},
+    			success:refresh
+    		});
     	}
     	
     	
@@ -277,7 +286,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  	</thead>
 						  	<tbody class="userBody">
 						    	
-						  </tbody>
+						  	</tbody>
 						</table>
 		            </div>
 		            <div class="tab-pane" id="xw2">
