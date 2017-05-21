@@ -21,9 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.edu.nju.mapper.AdvertisementInfoMapper;
 import cn.edu.nju.mapper.CartInfoMapper;
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.RecordInfoMapper;
+import cn.edu.nju.po.AdvertisementInfo;
 import cn.edu.nju.po.CartInfo;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.RecordInfo;
@@ -40,6 +42,9 @@ public class CommodityInfoController {
 
 	@Resource(name="recordInfoMapper")
 	private RecordInfoMapper recordInfoMapper;
+	
+	@Resource(name="advertisementInfoMapper")
+	private AdvertisementInfoMapper advertisementInfoMapper;
 	
 	@Resource(name="cartInfoMapper")
 	private CartInfoMapper cartInfoMapper;
@@ -119,6 +124,12 @@ public class CommodityInfoController {
 			for(CartInfo c:clist){
 				cartInfoMapper.removeCart(c);
 			}
+		}
+		AdvertisementInfo ad = new AdvertisementInfo();
+		ad.setCommodity_id(id);
+		ad= advertisementInfoMapper.getAdvertisementByCommodityId(ad);
+		if(ad!=null){
+			advertisementInfoMapper.removeAdvertisement(ad);
 		}
 		return "Seller";
 	}

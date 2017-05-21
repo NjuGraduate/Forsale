@@ -83,9 +83,30 @@ public class AdvertisementInfoController {
 				CommodityInfo co = new CommodityInfo();
 				co.setId(ad.getCommodity_id());
 				colist.add(commodityInfoMapper.getCommodityById(co));
+			}
+		}
+		try {
+			return mapper.writeValueAsString(colist);
+			
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	@RequestMapping("manageAds.do")
+	@ResponseBody
+	public String manageAds(){
+		ObjectMapper mapper = new ObjectMapper();
+		List<AdvertisementInfo> ads = advertisementInfoMapper.getAdvertisements();
+		List<CommodityInfo> colist = new ArrayList<>();
+		for(AdvertisementInfo ad:ads){
+			if(ad.getState().equals("wait")){
+				CommodityInfo co = new CommodityInfo();
+				co.setId(ad.getCommodity_id());
+				colist.add(commodityInfoMapper.getCommodityById(co));
 				try {
 					return mapper.writeValueAsString(colist);
-					
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}

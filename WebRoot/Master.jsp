@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			changeBtn.classList.add("btn-primary");
     			userChange.appendChild(changeBtn);
     			
-    			let userDelete = document.creatwElement("td");
+    			let userDelete = document.createElement("td");
     			let deleteBtn = document.createElement("button");
     			deleteBtn.innerHTML = "踢出";
     			deleteBtn.classList.add("btn-danger");
@@ -60,22 +60,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	$.getJSON({
-    		url:"advertisementInfo/getAllAds.do",
+    		url:"advertisementInfo/manageAds.do",
     		success: advertisement
     	});
     	function advertisement(json){
     		let data = JSON.parse(json);
     		let adBody = document.getElementsByClassName("advertisementBody")[0];
     		for(var i = 0; i <data.length; i++){
+    			
     			let adtr = document.createElement("tr");
+    			
+    			let adId = document.createElement("td");
+    			adId.innerHTML = data[i].id;
+    			
     			let adAccount = document.createElement("td");
-    			adAccount.innerHTML = data[i].user_account;
+    			adAccount.innerHTML = data[i].seller_account;
     			
     			let adCheck = document.createElement("td");
     			let checkBtn = document.createElement("button");
     			checkBtn.innerHTML = "查看";
     			checkBtn.classList.add("btn-primary");
-    			adCheck.appendChild(checkBtn);
+    			let adA = document.createElement("a");
+    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			adA.appendChild(checkBtn);
+    			adCheck.appendChild(adA);
     			
     			let adagree = document.createElement("td");
     			let agreeBtn = document.createElement("button");
@@ -83,12 +91,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			agreeBtn.classList.add("btn-primary");
     			adagree.appendChild(agreeBtn);
     			
-    			let adDeny = document.creatwElement("td");
+    			let adDeny = document.createElement("td");
     			let denyBtn = document.createElement("button");
     			denyBtn.innerHTML = "删除";
     			denyBtn.classList.add("btn-danger");
     			adDeny.appendChild(denyBtn);
     			
+    			adtr.appendChild(adId);
     			adtr.appendChild(adAccount);
     			adtr.appendChild(adCheck);
     			adtr.appendChild(adagree);
@@ -98,13 +107,89 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	$.getJSON({
-    		url:"commodityInfo/getCommodities.do",
+    		url:"commodityInfo/getAllCommodities.do",
     		success: commodities
     	});
 		
     	function commodities(json){
     		let data = JSON.parse(json);
-    		
+    		let comBody = document.getElementsByClassName("commodityBody")[0];
+    		for(var i = 0; i <data.length; i++){
+    			
+    			let comtr = document.createElement("tr");
+    			
+    			let comId = document.createElement("td");
+    			comId.innerHTML = data[i].id;
+    			
+    			let comAccount = document.createElement("td");
+    			comAccount.innerHTML = data[i].seller_account;
+    			
+    			let comDes = document.createElement("td");
+    			comDes.innerHTML = data[i].des;
+    			
+    			let comCheck = document.createElement("td");
+    			let comBtn = document.createElement("button");
+    			comBtn.innerHTML = "查看";
+    			comBtn.classList.add("btn-primary");
+    			let adA = document.createElement("a");
+    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			adA.appendChild(comBtn);
+    			comCheck.appendChild(adA);
+    			
+    			let comDeny = document.createElement("td");
+    			let denyBtn = document.createElement("button");
+    			denyBtn.innerHTML = "删除";
+    			denyBtn.classList.add("btn-danger");
+    			comDeny.appendChild(denyBtn);
+    			
+    			comtr.appendChild(comId);
+    			comtr.appendChild(comAccount);
+    			comtr.appendChild(comDes);
+    			comtr.appendChild(comCheck);
+    			comtr.appendChild(comDeny);
+    			comBody.appendChild(comtr);    			
+    		}
+    	}
+    	
+    	
+    	$.getJSON({
+    		url:"advertisementInfo/getAllAds.do",
+    		success: advertisement2
+    	});
+    	function advertisement2(json){
+    		let data = JSON.parse(json);
+    		let adBody = document.getElementsByClassName("advertisementBody2")[0];
+    		for(var i = 0; i <data.length; i++){
+    			
+    			let adtr = document.createElement("tr");
+    			
+    			let adId = document.createElement("td");
+    			adId.innerHTML = data[i].id;
+    			
+    			let adAccount = document.createElement("td");
+    			adAccount.innerHTML = data[i].seller_account;
+    			
+    			let adCheck = document.createElement("td");
+    			let checkBtn = document.createElement("button");
+    			checkBtn.innerHTML = "查看";
+    			checkBtn.classList.add("btn-primary");
+    			let adA = document.createElement("a");
+    			adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    			adA.appendChild(checkBtn);
+    			adCheck.appendChild(adA);
+    			
+    			let adDeny = document.createElement("td");
+    			let denyBtn = document.createElement("button");
+    			denyBtn.innerHTML = "删除";
+    			denyBtn.classList.add("btn-danger");
+    			adDeny.appendChild(denyBtn);
+    			
+    			adtr.appendChild(adId);
+    			adtr.appendChild(adAccount);
+    			adtr.appendChild(adCheck);
+    			adtr.appendChild(adDeny);
+    			adBody.appendChild(adtr);    			
+    		}
     	}
     	
     </script>
@@ -126,12 +211,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    	</li>
 	                    	<li>
 	                        	<div class="linkDiv">
-	                            	<a href="#xw2" data-toggle="tab">广告管理</a>
+	                            	<a href="#xw2" data-toggle="tab">广告审核</a>
 	                        	</div>
 	                    	</li>
 	                    	<li>
 	                        	<div class="linkDiv">
 	                            	<a href="#xw3" data-toggle="tab">商品管理</a>
+	                        	</div>
+	                    	</li>
+	                    	<li>
+	                        	<div class="linkDiv">
+	                            	<a href="#xw4" data-toggle="tab">广告管理</a>
 	                        	</div>
 	                    	</li>
 	                	</ul>
@@ -152,12 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    	</tr>
 						  	</thead>
 						  	<tbody class="userBody">
-						    	<tr>
-						      	<td>LCX</td>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td><button class="btn-primary">修改</button></td>
-						      	<td><button class="btn-danger">踢出</button></td>
-						    	</tr>
+						    	
 						  </tbody>
 						</table>
 		            </div>
@@ -166,24 +251,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<caption>广告列表</caption>
 						  	<thead>
 						    	<tr>
-						      	<th>账号</th>
+						      	<th>商品ID</th>
+						      	<th>卖家账号</th>
 						      	<th>查看</th>
 						      	<th>通过</th>
-						      	<th>不通过</th>
+						      	<th>删除</th>
 						    	</tr>
 						  	</thead>
 						  	<tbody class="advertisementBody">
-						    	<tr>
-						      	<td>lcx@nju.edu.cn</td>
-						      	<td><button class="btn-primary">查看</button></td>
-						      	<td><button class="btn-primary">通过</button></td>
-						      	<td><button class="btn-danger">不通过</button></td>
-						    	</tr>
-						  </tbody>
+						    	
+						  	</tbody>
 						</table>
 		            </div>
 		            <div class="tab-pane" id="xw3">
-		                21
+		             	<table class="table table-hover">
+		             		<caption>商品列表</caption>
+		             		<thead>
+		             			<tr>
+						      	<th>商品ID</th>
+						      	<th>卖家账号</th>
+						      	<th>商品描述</th>
+						      	<th>查看</th>
+						      	<th>删除</th>
+						    	</tr>
+		             		</thead>
+		             		<tbody class="commodityBody">
+		             			
+		             		</tbody>
+		             	</table>
+		            </div>
+		            <div class="tab-pane" id="xw4">
+		                <table class="table table-hover">
+							<caption>广告列表</caption>
+						  	<thead>
+						    	<tr>
+						      	<th>商品ID</th>
+						      	<th>卖家账号</th>
+						      	<th>查看</th>
+						      	<th>删除</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody class="advertisementBody2">
+						    	
+						  	</tbody>
+						</table>
 		            </div>
 		        </div>
 		    </div>

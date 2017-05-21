@@ -73,10 +73,13 @@ public class ManagerActionInfoController {
 		AdvertisementInfo ad = new AdvertisementInfo();
 		ad.setId(id);
 		AdvertisementInfo adr = advertisementInfoMapper.getAdvertisementById(ad);
+		CommodityInfo com = new CommodityInfo();
+		com.setId(adr.getCommodity_id());
+		CommodityInfo comr = commodityInfoMapper.getCommodityById(com);
 		if(adr!=null){
 			adr.setState("success");
 			advertisementInfoMapper.updateAdvertisement(adr);
-			sendEmail(adr.getUser_account(),"congratulation for passing your advertisement");
+			sendEmail(adr.getUser_account(),"congratulation for passing your advertisement"+comr.getId()+"Description:"+comr.getDes());
 		}
 		return "adManage";
 	}
@@ -86,22 +89,14 @@ public class ManagerActionInfoController {
 		AdvertisementInfo ad = new AdvertisementInfo();
 		ad.setId(id);
 		AdvertisementInfo adr = advertisementInfoMapper.getAdvertisementById(ad);
+		CommodityInfo com = new CommodityInfo();
+		com.setId(adr.getCommodity_id());
+		CommodityInfo comr = commodityInfoMapper.getCommodityById(com);
 		if(adr!=null){
-			adr.setState("fail");
-			advertisementInfoMapper.updateAdvertisement(adr);
-			sendEmail(adr.getUser_account(),"sorry for rejecting your advertisement");
+			advertisementInfoMapper.removeAdvertisement(adr);
+			sendEmail(adr.getUser_account(),"sorry for rejecting your advertisement about:Id"+comr.getId()+"Description:"+comr.getDes());
 		}
 		return "adManage";
-	}
-	
-	@RequestMapping("removeAd.do")
-	public String removeAd(@RequestParam("id") String id){
-		AdvertisementInfo ad = new AdvertisementInfo();
-		ad.setId(id);
-		if(advertisementInfoMapper.getAdvertisementById(ad)!=null){
-			advertisementInfoMapper.removeAdvertisement(ad);
-		}
-		return "";
 	}
 	
 	private static void sendEmail(String receiveMailAccount,String description) {
@@ -137,8 +132,8 @@ public class ManagerActionInfoController {
 	
 	private static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String description) throws Exception {
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sendMail, "Forsale网", "UTF-8"));
-        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal用户", "UTF-8"));
+        message.setFrom(new InternetAddress(sendMail, "Forsale缃�", "UTF-8"));
+        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Forsal鐢ㄦ埛", "UTF-8"));
         message.setSubject("Welcome to Forsale", "UTF-8");
         String url = "http://localhost:8080/forsale/index.jsp";
         message.setContent("Thank you for using "+url+" "+ description, "text/html;charset=UTF-8");
