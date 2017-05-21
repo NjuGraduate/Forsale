@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -60,10 +61,17 @@ public class ShopInfoController {
 	}
 	
 	@RequestMapping("retrieveShop.do")
-	public String retrieveShop(@RequestBody ShopInfo shop,Model model){
+	public String retrieveShop(@RequestParam("str") String str,Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		ShopInfo shop = new ShopInfo();
+		shop.setDes(str);
 		List<ShopInfo> list = shopInfoMapper.getShopsLike(shop);
-		model.addAttribute("shops", list);
-		//TODO
-		return null;
+		try {
+			model.addAttribute("list",mapper.writeValueAsString(list));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+		return "";
 	}
 }
