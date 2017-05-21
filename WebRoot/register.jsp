@@ -24,6 +24,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		.container{
 			height: 800px;
 		}
+		#code{
+			margin: 5px auto;
+		}
+		#code input{
+			float:right;
+		}
+		#finish{
+			float: right;
+		}
 	</style>
 	<script>
 		$(document).ready(function (){
@@ -55,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3 form-box">
-								<form role="form" action="userinfo/register.do" method="post" class="registration-form" onsubmit="return checkForm()">
+								<form role="form" action="userinfo/validate.do" method="post" class="registration-form" onsubmit="return checkForm()">
 									<fieldset>
 										<div class="form-top">
 											<div class="form-top-left">
@@ -108,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													   class="form-repeat-password form-control" id="form-repeat-password">
 											</div>
 											<button type="button" class="btn btn-previous">上一步</button>
-											<button type="submit" class="btn submit">完成注册</button>
+											<button type="submit" class="btn submit">去验证</button>
 										</div>
 									</fieldset>
 								</form>
