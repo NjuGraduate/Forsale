@@ -149,7 +149,7 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("retrieveCommodity.do")
-	public String retrieveCommodity(@RequestParam("str") String str,Model model){
+	public String retrieveCommodity(@RequestParam("searchGoods") String str,Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		CommodityInfo c = new CommodityInfo();
 		c.setDes(str);
@@ -160,7 +160,7 @@ public class CommodityInfoController {
 			e.printStackTrace();
 			return "[]";
 		}
-		return "";
+		return "SearchGoods";
 	}
 	
 	@RequestMapping("evaluateCommodity.do")
