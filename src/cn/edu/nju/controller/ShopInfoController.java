@@ -41,6 +41,8 @@ public class ShopInfoController {
 		shop.setDes(request.getParameter("need"));
 		shop.setName(request.getParameter("name"));
 		shop.setRank("0");
+		UserInfo user = (UserInfo)session.getAttribute("user_info");
+		shop.setUser_account(user.getAccount());
 		shopInfoMapper.addShop(shop);
 		return "Seller";
 	}
