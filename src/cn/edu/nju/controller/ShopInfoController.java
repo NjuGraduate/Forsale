@@ -61,7 +61,7 @@ public class ShopInfoController {
 	}
 	
 	@RequestMapping("retrieveShop.do")
-	public String retrieveShop(@RequestParam("str") String str,Model model){
+	public String retrieveShop(@RequestParam("searchShop") String str,Model model){
 		ObjectMapper mapper = new ObjectMapper();
 		ShopInfo shop = new ShopInfo();
 		shop.setDes(str);
@@ -72,6 +72,6 @@ public class ShopInfoController {
 			e.printStackTrace();
 			return "[]";
 		}
-		return "searchShop";
+		return "SearchShop";
 	}
 }
