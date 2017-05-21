@@ -6,13 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	<resultMap type="GoodsInfo" id="goodsmap">
    	  <result property="id" column="id"/>
       <result property="des" column="des"/>
+      <result property="pic" column="pic"/>
       <result property="desiregoods" column="desiregoods"/>
       <result property="contactInf" column="contactInf"/>
       <result property="user_account" column="user_account"/>
    </resultMap>
      
    <insert id="addGoods" parameterType="GoodsInfo">
-        insert into goods(des,desiregoods,contactInf,user_account) values(#{des},#{desiregoods},#{contactInf},#{user_account})
+        insert into goods(des,pic,desiregoods,contactInf,user_account) values(#{des},#{pic},#{desiregoods},#{contactInf},#{user_account})
    </insert>
  
    <delete id="removeGoods" parameterType="GoodsInfo">
@@ -20,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </delete>
    
    <update id="updateGoods" parameterType="GoodsInfo">
-        update goods set(des=#{des},desiregoods=#{disiregoods},contactInf=#{contactInf}) where id=#{id}
+        update goods set(des=#{des},pic=#{pic},desiregoods=#{disiregoods},contactInf=#{contactInf}) where id=#{id}
    </update>
    
    <select id="getGoodsLike" parameterType="GoodsInfo" resultMap="goodsmap">
