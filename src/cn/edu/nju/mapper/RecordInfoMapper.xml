@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </insert>
  
    <delete id="removeRecord" parameterType="RecordInfo">
-        delete * from record where id=#{id}
+        delete from record where id=#{id}
    </delete>
    
    <select id="getRecordsLike" parameterType="RecordInfo" resultMap="recordmap">

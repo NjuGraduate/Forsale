@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </insert>
  
    <delete id="removeShop" parameterType="ShopInfo">
-        delete * from shop where id=#{id}
+        delete from shop where id=#{id}
    </delete>
    
    <update id="updateShop" parameterType="ShopInfo">

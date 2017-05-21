@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </insert>
  
    <delete id="removeUser" parameterType="UserInfo">
-        delete * from user where account=#{account}
+        delete from user where account=#{account}
    </delete>
    
    <update id="updateUser" parameterType="UserInfo">

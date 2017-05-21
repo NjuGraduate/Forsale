@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    
    <delete id="removeAdvertisement" parameterType="AdvertisementInfo">
-        delete * from advertisement where id=#{id}
+        delete from advertisement where id=#{id}
    </delete>
    
    <update id="updateAdvertisement" parameterType="AdvertisementInfo">
