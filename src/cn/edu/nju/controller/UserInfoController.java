@@ -63,7 +63,7 @@ public class UserInfoController {
 					ObjectMapper mapper = new ObjectMapper();
 					u = mapper.writeValueAsString(info);			
 					session.setAttribute("user", u);
-					if(account.equals("131250037@smail.nju.edu.cn")){
+					if(account.equals("admin@smail.nju.edu.cn")){
 						return "Master";
 					}
 				}catch(IOException e) {
