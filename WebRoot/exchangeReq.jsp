@@ -24,6 +24,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    
+    <script>
+    	$.getJSON({
+    		url:"postInfo/getPost.do",
+    		success: showAllExchange
+    	});
+    	
+    	//显示所有置换物品的方法
+    	function showAllExchange(json){
+    		let data = JSON.parse(json);
+    		let container = document.getElementById("xw1");
+			if(!json){
+    			let div = document.createElement("div");
+    			div.classList.add("pos");
+    			container.appendChild(div);
+    		}
+    		for(var i = 0;i<data.length;i++){
+    			let exchangeDiv = document.createElement("div");
+    			exchangeDiv.classList.add("exchangeGoods");
+    			let exchangePic = document.createElement("img");
+    			exchangePic.src = data[i].pic;
+    			let des = document.createElement("p");
+    			des.innerHTML = "我的二手物品："+data[i].des;
+    			let desiregoods = document.createElement("p");
+    			desiregoods.innerHTML = "我想要的："+data[i].desiregoods;
+    			let contact = document.createElement("p");
+    			contact.innerHTML = "请联系我："+data[i].contactInf;
+    			exchangeDiv.appendChild(exchangePic);
+    			exchangeDiv.appendChild(des);
+    			exchangeDiv.appendChild(desiregoods);
+    			exchangeDiv.appendChild(contact);
+    			container.appendChild(exchangeDiv);
+    		}
+    	}
+    </script>
 
 </head>
 <body>
@@ -55,52 +90,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="exchangeContainer">
         <div class="tab-content">
                 <div class="tab-pane active fade in" id="xw1">
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/001.jpg" alt="商品图片">
-                        <p>这是我手里的一双李宁篮球鞋，95成新，42码，我想要换一双41码的蓝球鞋<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/002.jpg" alt="商品图片">
-                        <p>这是我手里的一双科比毒液6，9成新，40码，我想要换一双41码的蓝球鞋，最好是白色或者灰色的<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/003.jpg" alt="商品图片">
-                        <p>这是我手里的一双乔1，9成新，42码，换一双41码乔1<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/001.jpg" alt="商品图片">
-                        <p>这是我手里的一双李宁篮球鞋，95成新，42码，我想要换一双41码的蓝球鞋<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/music/002.jpg" alt="商品图片">
-                        <p>这是我手里的一把尤克里里，95成新，买回来没怎么弹过，闲置浪费地方也舍不得扔掉，我想要换一把吉他<br>
-                            有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/clothes/female/001.jpg" alt="商品图片">
-                        <p>这是我手里的一件雪纺衫，95成新，L码，我想要换一件白色M码的雪纺衫<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/002.jpg" alt="商品图片">
-                        <p>这是我手里的一双科比毒液6，9成新，40码，我想要换一双41码的蓝球鞋，最好是白色或者灰色的<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/003.jpg" alt="商品图片">
-                        <p>这是我手里的一双乔1，9成新，42码，换一双41码乔1<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/shoes/003.jpg" alt="商品图片">
-                        <p>这是我手里的一双乔1，9成新，42码，换一双41码乔1<br>有意者联系QQ：<span>543372027</span></p>
-                    </div>
-                    <div class="exchangeGoods">
-                        <img src="./images/shoes/music/002.jpg" alt="商品图片">
-                        <p>这是我手里的一把尤克里里，95成新，买回来没怎么弹过，闲置浪费地方也舍不得扔掉，我想要换一把吉他<br>
-                            有意者联系QQ：<span>543372027</span></p>
-                    </div>
+                
                 </div>
                 <div class="tab-pane" id="xw2">
                     <div class="exchangeReq">
-                        <form role="form" method="post" action="postInfo/post.do">
+                        <form role="form" method="post" enctype="multipart/form-data" action="postInfo/post.do">
                             <div class="form-group">
                                 <label for="hold">手头的二手物品</label>
                                 <input type="text" class="form-control"  name="exchangeDesc" id="hold" placeholder="请输入您闲置物品的描述,最多不超过30个字" maxlength="30">
@@ -115,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="form-group">
                                 <label for="inputfile">请上传你的闲置物品的照片一张</label>
-                                <input type="file" id="inputfile"  name="form-exchangePic">
+                                <input type="file" id="inputfile"  name="exchangePic">
                             </div>
                             <button type="submit" class="btn btn-primary">提交</button>
                         </form>
