@@ -20,4 +20,5 @@ public interface CommodityInfoMapper {
 	public void collectCommodity(CommodityInfo co,UserInfo user);
 	public void removeCollectCommodity(CommodityInfo co,UserInfo user);
 	public List<CommodityInfo> getCollectCommodity(UserInfo user);
+	public List<CommodityInfo> getCommoditiesLike(CommodityInfo co);
 }

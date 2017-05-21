@@ -149,8 +149,24 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("retrieveCommodity.do")
-	public String retrieveCommodity(HttpServletRequest request){
-		return null;
+	public String retrieveCommodity(@RequestParam("str") String str,Model model){
+		ObjectMapper mapper = new ObjectMapper();
+		CommodityInfo c = new CommodityInfo();
+		c.setDes(str);
+		List<CommodityInfo> commodities = commodityInfoMapper.getCommoditiesLike(c);
+		List<CommodityInfo> commodities2 = commodityInfoMapper.getCommoditiesByClassification(str);
+		if(commodities2!=null){
+			for(CommodityInfo co:commodities2){
+				commodities.add(co);
+			}
+		}
+		try {
+			model.addAttribute("list",mapper.writeValueAsString(commodities));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+		return "";
 	}
 	
 	@RequestMapping("evaluateCommodity.do")
