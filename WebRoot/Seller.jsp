@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	function callback(json) {
     		let data = JSON.parse(json);
     		let container = document.getElementById("goodsContainer");
-    		for (let item of data) {
+    		for (let item of data) { 
     			let div = document.createElement("div");
     			div.classList.add("exchangeGoods");
     			let a = document.createElement("a");
@@ -44,6 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let xxx = document.createElement("p");
     			xxx.innerHTML = item.des+'<br><br>'+'有意者联系QQ：<span>543372027</span>';
     			a.appendChild(xxx);
+    			/*申请广告*/
     			let btn1 = document.createElement("button");
     			btn1.classList.add("btn-primary");
     			btn1.classList.add("btn");
@@ -51,6 +52,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			btn1.style.margin = "5px";
     			btn1.innerHTML = "申请广告";
     			btn1.onclick = function() {requestAdvertisement(item.id)};
+    			/*加入店铺*/
+    			let btn3 = document.createElement("button");
+    			btn3.classList.add("btn-primary");
+    			btn3.classList.add("btn");
+    			btn3.innerHTML = "加入店铺";
+    			btn3.style.width="95%";
+    			btn3.style.margin = "5px";
+    			btn3.onclick = function() {addShop(item.id);};
+    			
+    			/*删除商品*/
     			let btn2 = document.createElement("button");
     			btn2.classList.add("btn-danger");
     			btn2.classList.add("btn");
@@ -58,8 +69,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			btn2.style.width="95%";
     			btn2.style.margin="5px";
     			btn2.onclick = function() {test(item.id);};
+    			
     			div.appendChild(btn1);
+    			div.appendChild(btn3);
     			div.appendChild(btn2);
+    			
     			container.appendChild(div);
     			a.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
     		}
@@ -82,6 +96,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			url:"advertisementInfo/addAdvertisement.do",
     			data: {id:id}
     		});
+    	}
+    	
+    	function addShop(id){
+    		$.post({
+    			url:"shopInfo/getIntoShop.do",
+    			data:{id:id}
+    		});
+    	}
+    	
+    	
+    	//我的店铺的判断
+    	$.getJSON({
+    		url:"shopInfo/getShop.do",
+    		success:dealShop
+    	});
+    	function dealShop(json){
+    		alert(json);
+    		if(!json){
+    			let add = document.getElementById("addshop");
+    			let p = document.createElement("p");
+    			p.classList.add("add");
+    			p.innerHTML = "您当前暂无店铺，您可以选择";
+    			let a = document.createElement("a");
+    			a.href = "./BuildShop.jsp";
+    			a.target = "_blank";
+    			p.appendChild(a);
+    			add.appendChild(p);
+    		}else{
+    			alert(1234);
+    		}
     	}
     	
     </script>
@@ -129,7 +173,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="./images/components/line.png" alt="" class="line">
             <h2>我的店铺</h2>
             <img src="./images/components/line.png" alt="" class="line">
-            <p class="add">您当前暂无店铺，您可以选择 <a href="./BuildShop.jsp" target="_blank">创建店铺</a></p>
+            <div id="addshop">
+            </div>
         </div>
         <%@ include file="Footer.jsp" %>
     </div>
