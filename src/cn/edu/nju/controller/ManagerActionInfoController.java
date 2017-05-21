@@ -56,6 +56,7 @@ public class ManagerActionInfoController {
 	public String banUser(String account){
 		UserInfo user = new UserInfo();
 		user.setAccount(account);
+		if(userInfoMapper.getUserByAccount(user)!=null)
 		userInfoMapper.removeUser(user);
 		return "banUser";
 	}

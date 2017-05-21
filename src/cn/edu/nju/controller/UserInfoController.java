@@ -11,15 +11,22 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.nju.mapper.UserInfoMapper;
+import cn.edu.nju.po.CommodityInfo;
+import cn.edu.nju.po.GoodsInfo;
 import cn.edu.nju.po.UserInfo;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -174,6 +181,18 @@ public class UserInfoController {
 	public String forget(HttpServletRequest request,Model model){
 		//TODO
 		return null;
+	}
+	
+	@RequestMapping("getAllUsers.do")
+	@ResponseBody
+	public String getAllUsers(){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.writeValueAsString(userInfoMapper.getUsers());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 	
 	@RequestMapping("logout.do")

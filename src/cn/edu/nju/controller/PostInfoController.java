@@ -82,8 +82,17 @@ public class PostInfoController {
 	}
 	
 	@RequestMapping("retrieve.do")
-	public String retrieve(){
-		//TODO
-		return null;
+	@ResponseBody
+	public String retrieve(String str){
+		GoodsInfo goods = new GoodsInfo();
+		goods.setDes(str);;
+		ObjectMapper mapper = new ObjectMapper();
+		List<GoodsInfo> list = goodsInfoMapper.getGoodsLike(goods);
+		try {
+			return mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
 	}
 }
