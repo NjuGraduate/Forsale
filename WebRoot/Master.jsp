@@ -140,6 +140,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			let denyBtn = document.createElement("button");
     			denyBtn.innerHTML = "删除";
     			denyBtn.classList.add("btn-danger");
+    			
+    			denyBtn.onclick = function(){deleteCommodity(data[i].id)}
+    			
     			comDeny.appendChild(denyBtn);
     			
     			comtr.appendChild(comId);
@@ -150,6 +153,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			comBody.appendChild(comtr);    			
     		}
     	}
+    	
+    	function deleteCommodity(id){
+    		$.post({
+    			url:"commodityInfo/removeCommodity.do",
+    			data: { id: id },
+    			success:refresh
+    		})
+    	}
+    	function refresh(){
+    		window.location.reload();
+    	}
+    	
     	
     	
     	$.getJSON({
@@ -184,12 +199,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			denyBtn.classList.add("btn-danger");
     			adDeny.appendChild(denyBtn);
     			
+    			denyBtn.onclick = function (){deleteAds(data[i].id)}
+    			
     			adtr.appendChild(adId);
     			adtr.appendChild(adAccount);
     			adtr.appendChild(adCheck);
     			adtr.appendChild(adDeny);
     			adBody.appendChild(adtr);    			
     		}
+    	}
+    	
+    	function deleteAds(id){
+    		$.post({
+    			url:"managerActionInfo/reviewAdFail.do",
+    			data: { id: id },
+    			success:refresh
+    		})
     	}
     	
     </script>
