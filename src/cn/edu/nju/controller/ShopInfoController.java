@@ -1,5 +1,6 @@
 package cn.edu.nju.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -96,7 +97,13 @@ public class ShopInfoController {
 	}
 	
 	@RequestMapping("retrieveShop.do")
-	public String retrieveShop(@RequestParam("input") String str,Model model){
+	public String retrieveShop(String input,Model model){
+		String str="";
+		try {
+			str = java.net.URLDecoder.decode(input , "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		ShopInfo shop = new ShopInfo();
 		shop.setDes(str);

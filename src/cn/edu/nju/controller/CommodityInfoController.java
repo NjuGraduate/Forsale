@@ -1,6 +1,7 @@
 package cn.edu.nju.controller;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -149,7 +150,13 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("retrieveCommodity.do")
-	public String retrieveCommodity(@RequestParam("input") String str,Model model){
+	public String retrieveCommodity(String input,Model model){
+		String str="";
+		try {
+			str = java.net.URLDecoder.decode(input , "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		CommodityInfo c = new CommodityInfo();
 		c.setDes(str);
@@ -159,15 +166,6 @@ public class CommodityInfoController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-//		int n = 0;
-//		for(CommodityInfo co:commodities){
-//			try {
-//				model.addAttribute("Commodity"+n,mapper.writeValueAsString(co));
-//			} catch (JsonProcessingException e) {
-//				e.printStackTrace();
-//			}
-//			n++;
-//		}
 		return "SearchGoods";
 	}
 	

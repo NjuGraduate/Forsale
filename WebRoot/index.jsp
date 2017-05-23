@@ -155,7 +155,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		let btn = document.getElementById("shopSearch");
     		let input = document.getElementById("inputText").value;
     		let a = document.createElement("a");
-    		a.href = "${pageContext.request.contextPath}/shopInfo/retrieveShop.do?input="+input;
+    		let url = "${pageContext.request.contextPath}/shopInfo/retrieveShop.do?input="+input;
+    		url=encodeURI(encodeURI(url));
+    		a.href = url;
     		a.appendChild(btn);
     		div.appendChild(a);
     	}
@@ -165,7 +167,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		let btn = document.getElementById("goodsSearch");
     		let input = document.getElementById("inputText").value;
     		let a = document.createElement("a");
-    		a.href = "${pageContext.request.contextPath}/commodityInfo/retrieveCommodity.do?input="+input;
+    		let url ="${pageContext.request.contextPath}/commodityInfo/retrieveCommodity.do?input="+input;
+    		url=encodeURI(encodeURI(url));
+    		a.href = url;
     		a.appendChild(btn);
     		div.appendChild(a);
     	}
