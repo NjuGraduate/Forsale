@@ -112,7 +112,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		function getComments(json){
-			alert(json);
+			let userComment = document.getElementsByClassName("userBody")[0];
+			let data = JSON.parse(json);
+			for(item of data){
+				let tr = document.createElement("tr");
+				let name = document.createElement("td");
+				name.innerHTML = item.buyer_account
+				let account = document.createElement("td");
+				account.innerHTML = item.seller_account;
+				let des = document.createElement("td");
+				des.innerHTML = item.content;
+				let time = document.createElement("td");
+				time.innerHTML = item.time;
+				tr.appendChild(name);
+				tr.appendChild(account);
+				tr.appendChild(des);
+				tr.appendChild(time);
+				userComment.appendChild(tr);
+			}
 		}
 		
 	</script>
@@ -161,19 +178,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="col-sm-2">用户名</th>
-                        <th class="col-sm-2">账号</th>
+                        <th class="col-sm-2">评价者</th>
+                        <th class="col-sm-2">卖家</th>
                         <th class="col-sm-6">评论内容</th>
                         <th class="col-sm-2">评论时间</th>
                     </tr>
                 </thead>
                 <tbody class="userBody">
-                    <tr>
-                        <td>刘昌鑫</td>
-                        <td>刘昌鑫</td>
-                        <td>朱子微你为什么这么丑</td>
-                        <td>2017/05/23</td>
-                    </tr>
                 </tbody>
             </table>
         </table>

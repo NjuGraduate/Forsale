@@ -1,8 +1,12 @@
 package cn.edu.nju.controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.mail.Session;
@@ -16,15 +20,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.edu.nju.mapper.AdvertisementInfoMapper;
+import cn.edu.nju.mapper.CommentInfoMapper;
 import cn.edu.nju.mapper.CommodityInfoMapper;
 import cn.edu.nju.mapper.GoodsInfoMapper;
+import cn.edu.nju.mapper.RecordInfoMapper;
 import cn.edu.nju.mapper.ShopInfoMapper;
 import cn.edu.nju.mapper.UserInfoMapper;
 import cn.edu.nju.po.AdvertisementInfo;
+import cn.edu.nju.po.CommentInfo;
 import cn.edu.nju.po.CommodityInfo;
 import cn.edu.nju.po.GoodsInfo;
+import cn.edu.nju.po.RecordInfo;
 import cn.edu.nju.po.ShopInfo;
 import cn.edu.nju.po.UserInfo;
 
@@ -43,11 +55,18 @@ public class ManagerActionInfoController {
 	@Resource(name="commodityInfoMapper")
 	private CommodityInfoMapper commodityInfoMapper;
 	
+	@Resource(name="commentInfoMapper")
+	private CommentInfoMapper commentInfoMapper;
+	
 	@Resource(name="shopInfoMapper")
 	private ShopInfoMapper shopInfoMapper;
 	
 	@Resource(name="goodsInfoMapper")
 	private GoodsInfoMapper goodsInfoMapper;
+	
+	@Resource(name="recordInfoMapper")
+	private RecordInfoMapper recordInfoMapper;
+	
 	
 	@RequestMapping("updateShop.do")
 	public String update(String username,String password,Model model){
@@ -65,6 +84,167 @@ public class ManagerActionInfoController {
 	public String updateUser(String username,String password,Model model){
 		//TODO
 		return null;
+	}
+	
+	@RequestMapping("commentMax.do")
+	@ResponseBody
+	//获得最活跃评论用户名:评论数量;被评论最多用户:被评论数量；格式{131250037@smail.nju.edu.cn:100;131250@smail.nju.edu.cn:200}
+	public String commentMax(){
+		ObjectMapper mapper = new ObjectMapper();
+		List<CommentInfo> list = commentInfoMapper.getComments();
+		List<String> listBuyer = new ArrayList<>();
+		List<String> listSeller = new ArrayList<>();
+		for(CommentInfo c:list){
+			listBuyer.add(c.getBuyer_account());
+			listSeller.add(c.getSeller_account());
+		}
+		String result = rankMax(listBuyer)+";"+rankMax(listSeller);
+		try {
+			return mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("commentEveryMonth.do")
+	@ResponseBody
+	//获得当年1月，2月，3月。。。12月评论数量,返回格式{0;0;0;0;0;0;0;0;0;0;0;0}
+	public String commentEveryMonth(){
+		int momth1=0;
+		int momth2=0;
+		int momth3=0;
+		int momth4=0;
+		int momth5=0;
+		int momth6=0;
+		int momth7=0;
+		int momth8=0;
+		int momth9=0;
+		int momth10=0;
+		int momth11=0;
+		int momth12=0;
+		ObjectMapper mapper = new ObjectMapper();
+		List<CommentInfo> list = commentInfoMapper.getComments();
+		String time = "";
+		Calendar now = Calendar.getInstance(); 
+		String NowYear = now.get(Calendar.YEAR)+"";
+		for(CommentInfo c:list){
+			time = c.getTime();
+			if(time.contains(NowYear)){
+				if(time.contains("/1/"))momth1++;
+				if(time.contains("/2/"))momth2++;
+				if(time.contains("/3/"))momth3++;
+				if(time.contains("/4/"))momth4++;
+				if(time.contains("/5/"))momth5++;
+				if(time.contains("/6/"))momth6++;
+				if(time.contains("/7/"))momth7++;
+				if(time.contains("/8/"))momth8++;
+				if(time.contains("/9/"))momth9++;
+				if(time.contains("/10/"))momth10++;
+				if(time.contains("/11/"))momth11++;
+				if(time.contains("/12/"))momth12++;
+			}
+		}
+		try {
+			return mapper.writeValueAsString(momth1+";"+momth2+";"+momth3+";"+momth4+";"+momth5+";"+momth6+";"+momth7+";"+momth8+";"+momth9+";"+momth10+";"+momth11+";"+momth12);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
+	@RequestMapping("recordMax.do")
+	@ResponseBody
+	//获得买最多用户名:数量;卖最多用户:数量；格式{131250037@smail.nju.edu.cn:100;131250@smail.nju.edu.cn:200}
+	public String recordMax(){
+		ObjectMapper mapper = new ObjectMapper();
+		List<RecordInfo> list = recordInfoMapper.getRecords();
+		List<String> listBuyer = new ArrayList<>();
+		List<String> listSeller = new ArrayList<>();
+		for(RecordInfo c:list){
+			listBuyer.add(c.getBuyer_account());
+			listSeller.add(c.getSeller_account());
+		}
+		String result = rankMax(listBuyer)+";"+rankMax(listSeller);
+		try {
+			return mapper.writeValueAsString(result);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "[]";
+		}
+	}
+	
+	@RequestMapping("recordEveryMonth.do")
+	@ResponseBody
+	//获得当年1月，2月，3月。。。12月评论数量,返回格式{0;0;0;0;0;0;0;0;0;0;0;0}
+	public String recordEveryMonth(){
+		int momth1=0;
+		int momth2=0;
+		int momth3=0;
+		int momth4=0;
+		int momth5=0;
+		int momth6=0;
+		int momth7=0;
+		int momth8=0;
+		int momth9=0;
+		int momth10=0;
+		int momth11=0;
+		int momth12=0;
+		ObjectMapper mapper = new ObjectMapper();
+		List<RecordInfo> list = recordInfoMapper.getRecords();
+		String time = "";
+		Calendar now = Calendar.getInstance(); 
+		String NowYear = now.get(Calendar.YEAR)+"";
+		for(RecordInfo c:list){
+			time = c.getDate();
+			if(time.contains(NowYear)){
+				if(time.contains("/1/"))momth1++;
+				if(time.contains("/2/"))momth2++;
+				if(time.contains("/3/"))momth3++;
+				if(time.contains("/4/"))momth4++;
+				if(time.contains("/5/"))momth5++;
+				if(time.contains("/6/"))momth6++;
+				if(time.contains("/7/"))momth7++;
+				if(time.contains("/8/"))momth8++;
+				if(time.contains("/9/"))momth9++;
+				if(time.contains("/10/"))momth10++;
+				if(time.contains("/11/"))momth11++;
+				if(time.contains("/12/"))momth12++;
+			}
+		}
+		try {
+			return mapper.writeValueAsString(momth1+";"+momth2+";"+momth3+";"+momth4+";"+momth5+";"+momth6+";"+momth7+";"+momth8+";"+momth9+";"+momth10+";"+momth11+";"+momth12);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
+	private String rankMax(List<String> list){
+		String regex;  
+        Pattern p;  
+        Matcher m;  
+        String tmp = "";          
+        String tot_str = list.toString();  
+        int max_cnt = 0;  
+        String max_str = "";  
+        for(String str : list) {  
+            if (tmp.equals(str)) continue;            
+            tmp = str;  
+            regex = str;  
+            p = Pattern.compile(regex);  
+            m = p.matcher(tot_str);  
+            int cnt = 0;  
+            while(m.find()) {  
+                cnt++;  
+            }  
+            //System.out.println(str + ":" + cnt);  
+            if (cnt > max_cnt) {  
+                max_cnt = cnt;  
+                max_str = str;  
+            }  
+        }
+		return max_str+":"+max_cnt; 
 	}
 	
 	@RequestMapping("banUser.do")
