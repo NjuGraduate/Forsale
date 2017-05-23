@@ -16,6 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <delete id="removeCart" parameterType="CartInfo">
         delete from cart where id=#{id}
    </delete>
+   
+   <delete id="removeCartByCommodityId" parameterType="CartInfo">
+        delete from cart where commodity_id=#{commodity_id}
+   </delete>
 
    <select id="getCartByUserAccount" parameterType="UserInfo" resultMap="cartmap">
         select * from cart where buyer_account=#{account}

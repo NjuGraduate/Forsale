@@ -25,6 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
+    	var shopExist = 0;
+    
     	$.getJSON({
     		url:"commodityInfo/getCommodities.do",
     		success:callback
@@ -99,10 +101,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	function addShop(id){
-    		$.post({
-    			url:"shopInfo/getIntoShop.do",
-    			data:{id:id}
-    		});
+    		var ret = window.confirm("确定?");
+    		if(ret){
+    			alert(shopExist);
+	    		$.post({
+	    			url:"shopInfo/getIntoShop.do",
+	    			data:{id:id}
+	    		});
+    		}
     	}
     	
     	
@@ -125,6 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			p.appendChild(a);
     			add.appendChild(p);
     		}else{
+    			shopExist = 1;
    				let shop = document.getElementById("addshop");
        			let table = document.createElement("table");
        			table.classList.add("table");

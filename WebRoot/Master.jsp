@@ -62,11 +62,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
     	}
     	function deleteUser(account){
-    		$.post({
-    			url:"managerActionInfo/banUser.do",
-    			data: { account: account },
-    			success:refresh
-    		})
+    		var ret = window.confirm("确定?");
+    		if(ret){
+    			$.post({
+        			url:"managerActionInfo/banUser.do",
+        			data: { account: account },
+        			success:reloadMaster
+        		})
+    		}
     	}
     	
     	$.getJSON({
@@ -77,43 +80,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		let data = JSON.parse(json);
     		let adBody = document.getElementsByClassName("advertisementBody")[0];
     		for(let item of data){
-    			let adtr = document.createElement("tr");
-    			
-    			let adId = document.createElement("td");
-    			adId.innerHTML = item.id;
-    			
-    			let adAccount = document.createElement("td");
-    			adAccount.innerHTML = item.seller_account;
-    			
-    			let adCheck = document.createElement("td");
-    			let checkBtn = document.createElement("button");
-    			checkBtn.innerHTML = "查看";
-    			checkBtn.classList.add("btn-primary");
-    			let adA = document.createElement("a");
-    			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
-    			adA.appendChild(checkBtn);
-    			adCheck.appendChild(adA);
-    			
-    			let adagree = document.createElement("td");
-    			let agreeBtn = document.createElement("button");
-    			agreeBtn.innerHTML = "通过";
-    			agreeBtn.classList.add("btn-primary");
-    			adagree.appendChild(agreeBtn);
-    			agreeBtn.onclick = function(){agreeAds(item.id);};
-    			
-    			let adDeny = document.createElement("td");
-    			let denyBtn = document.createElement("button");
-    			denyBtn.innerHTML = "删除";
-    			denyBtn.classList.add("btn-danger");
-    			denyBtn.onclick = function (){deleteAds(item.id);};
-    			adDeny.appendChild(denyBtn);
-    			
-    			adtr.appendChild(adId);
-    			adtr.appendChild(adAccount);
-    			adtr.appendChild(adCheck);
-    			adtr.appendChild(adagree);
-    			adtr.appendChild(adDeny);
-    			adBody.appendChild(adtr);    			
+    			if(item){
+    				let adtr = document.createElement("tr");
+        			let adId = document.createElement("td");
+        			adId.innerHTML = item.id;
+        			
+        			let adAccount = document.createElement("td");
+        			adAccount.innerHTML = item.seller_account;
+        			
+        			let adCheck = document.createElement("td");
+        			let checkBtn = document.createElement("button");
+        			checkBtn.innerHTML = "查看";
+        			checkBtn.classList.add("btn-primary");
+        			let adA = document.createElement("a");
+        			adA.href= "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
+        			adA.appendChild(checkBtn);
+        			adCheck.appendChild(adA);
+        			
+        			let adagree = document.createElement("td");
+        			let agreeBtn = document.createElement("button");
+        			agreeBtn.innerHTML = "通过";
+        			agreeBtn.classList.add("btn-primary");
+        			adagree.appendChild(agreeBtn);
+        			agreeBtn.onclick = function(){agreeAds(item.id);};
+        			
+        			let adDeny = document.createElement("td");
+        			let denyBtn = document.createElement("button");
+        			denyBtn.innerHTML = "删除";
+        			denyBtn.classList.add("btn-danger");
+        			denyBtn.onclick = function (){deleteAds(item.id);};
+        			adDeny.appendChild(denyBtn);
+        			
+        			adtr.appendChild(adId);
+        			adtr.appendChild(adAccount);
+        			adtr.appendChild(adCheck);
+        			adtr.appendChild(adagree);
+        			adtr.appendChild(adDeny);
+        			adBody.appendChild(adtr); 
+    			}
+    			   			
     		}
     	}
     	
@@ -166,11 +171,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	function deleteCommodity(id){
-    		$.post({
-    			url:"commodityInfo/removeCommodity.do",
-    			data: { id: id },
-    			success:refresh
-    		})
+    		var ret = window.confirm("确定?");
+    		//当点击确定时 返回 true 
+    		if(ret){
+    			$.post({
+    				url:"commodityInfo/removeCommodity.do",
+        			data: { id: id },
+        			success:reloadMaster
+        		});
+    		}
     	}
     	function refresh(){
     		window.location.reload();
@@ -180,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		$.post({
     			url:"managerActionInfo/reviewAdSuccess.do",
     			data:{id:id},
-    			success:refresh
+    			success:reloadMaster
     		});
     	}
     	
@@ -194,45 +203,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		let data = JSON.parse(json);
     		let adBody = document.getElementsByClassName("advertisementBody2")[0];
     		for(let item of data){
-    			
-    			let adtr = document.createElement("tr");
-    			
-    			let adId = document.createElement("td");
-    			adId.innerHTML = item.id;
-    			
-    			let adAccount = document.createElement("td");
-    			adAccount.innerHTML = item.seller_account;
-    			
-    			let adCheck = document.createElement("td");
-    			let checkBtn = document.createElement("button");
-    			checkBtn.innerHTML = "查看";
-    			checkBtn.classList.add("btn-primary");
-    			let adA = document.createElement("a");
-    			adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
-    			adA.appendChild(checkBtn);
-    			adCheck.appendChild(adA);
-    			
-    			let adDeny = document.createElement("td");
-    			let denyBtn = document.createElement("button");
-    			denyBtn.innerHTML = "删除";
-    			denyBtn.classList.add("btn-danger");
-    			adDeny.appendChild(denyBtn);
-    			denyBtn.onclick = function (){deleteAds(item.id)};
-    			
-    			adtr.appendChild(adId);
-    			adtr.appendChild(adAccount);
-    			adtr.appendChild(adCheck);
-    			adtr.appendChild(adDeny);
-    			adBody.appendChild(adtr);    			
+    			if(item){
+    				let adtr = document.createElement("tr");
+        			
+        			let adId = document.createElement("td");
+        			adId.innerHTML = item.id;
+        			
+        			let adAccount = document.createElement("td");
+        			adAccount.innerHTML = item.seller_account;
+        			
+        			let adCheck = document.createElement("td");
+        			let checkBtn = document.createElement("button");
+        			checkBtn.innerHTML = "查看";
+        			checkBtn.classList.add("btn-primary");
+        			let adA = document.createElement("a");
+        			adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
+        			adA.appendChild(checkBtn);
+        			adCheck.appendChild(adA);
+        			
+        			let adDeny = document.createElement("td");
+        			let denyBtn = document.createElement("button");
+        			denyBtn.innerHTML = "删除";
+        			denyBtn.classList.add("btn-danger");
+        			adDeny.appendChild(denyBtn);
+        			denyBtn.onclick = function (){deleteAds(item.id)};
+        			
+        			adtr.appendChild(adId);
+        			adtr.appendChild(adAccount);
+        			adtr.appendChild(adCheck);
+        			adtr.appendChild(adDeny);
+        			adBody.appendChild(adtr);    
+    			}
     		}
     	}
     	
     	function deleteAds(id){
-    		$.post({
-    			url:"managerActionInfo/reviewAdFail.do",
-    			data: { id: id },
-    			success:refresh
-    		})
+    		var ret = window.confirm("确定?");
+    		//当点击确定时 返回 true 
+    		if(ret){
+    			$.post({
+        			url:"managerActionInfo/reviewAdFail.do",
+        			data: { id: id },
+        			success:reloadMaster
+        		});
+    		}
+    	}
+    	function reloadMaster(){
+    		window.location.href="http://localhost:8080/forsale/Master.jsp";
     	}
     	
     </script>

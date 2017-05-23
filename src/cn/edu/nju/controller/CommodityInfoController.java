@@ -178,24 +178,23 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("buyCommodity.do")
-	public String buyCommodity(HttpServletRequest request,Model model){
+	public String buyCommodity(@RequestParam("id") int id){
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CommodityInfo com = new CommodityInfo();
-		String str = request.getParameter("commodity");
-		int commodityId = Integer.parseInt(str.split(",")[0].split(":")[1]);
-		com.setId(commodityId);
+		com.setId(id);
 		CommodityInfo co = commodityInfoMapper.getCommodityById(com);
 		if(co!=null){
 			Calendar now = Calendar.getInstance(); 
 			String time = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH)+1)+"/"+now.get(Calendar.DAY_OF_MONTH);
 			RecordInfo rec = new RecordInfo(user,co,time);
+			rec.setSeller_account(co.getSeller_account());
 			recordInfoMapper.addRecord(rec);
 			commodityInfoMapper.removeCommodity(co);
 			CartInfo cart = new CartInfo();
-			cart.setCommodity_id(commodityId);
+			cart.setCommodity_id(id);
 			if(cartInfoMapper.getCartByCommodityId(cart)!=null){
-				cartInfoMapper.removeCart(cart);
+				cartInfoMapper.removeCartByCommodityId(cart);
 			}
 			return "Cart";
 		}else{
@@ -232,12 +231,11 @@ public class CommodityInfoController {
 	}
 	
 	@RequestMapping("collectCommodity.do")
-	public String collectCommodity(HttpServletRequest request){
+	public String collectCommodity(@RequestParam("id") int id){
 		UserInfo user = (UserInfo)session.getAttribute("user_info");
 		CartInfo cart = new CartInfo();
 		cart.setBuyer_account(user.getAccount());
-		String str = request.getParameter("commodity");
-		cart.setCommodity_id(Integer.parseInt(str.split(",")[0].split(":")[1]));
+		cart.setCommodity_id(id);
 		cartInfoMapper.addCart(cart);
 		return "Cart";
 	}

@@ -79,7 +79,9 @@ public class AdvertisementInfoController {
 		List<AdvertisementInfo> ads = advertisementInfoMapper.getAdvertisements();
 		List<CommodityInfo> colist = new ArrayList<>();
 		for(AdvertisementInfo ad:ads){
+			System.out.println(ad.getId()+ad.getState()+"                                                    1");
 			if(ad.getState().equals("success")){
+				System.out.println(ad.getId()+ad.getState()+"                                                    2");
 				CommodityInfo co = new CommodityInfo();
 				co.setId(ad.getCommodity_id());
 				colist.add(commodityInfoMapper.getCommodityById(co));
@@ -105,12 +107,12 @@ public class AdvertisementInfoController {
 				CommodityInfo co = new CommodityInfo();
 				co.setId(ad.getCommodity_id());
 				colist.add(commodityInfoMapper.getCommodityById(co));
-				try {
-					return mapper.writeValueAsString(colist);
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
 			}
+		}
+		try {
+			return mapper.writeValueAsString(colist);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
 		}
 		return "";
 	}

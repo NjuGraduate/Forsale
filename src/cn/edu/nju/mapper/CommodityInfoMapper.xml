@@ -27,10 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    	
    	
    	<update id="updateCommodity" parameterType="CommodityInfo">
-        update commodity set(name=#{name},price=#{price},des=#{des},pic=#{pic},shopId=#{shopId},seller_account=#{seller_account},classifiction1=#{classifiction1},classifiction2=#{classifiction2}) where id=#{id}
+        update commodity set shopId=#{shopId} where id=#{id}
    	</update>  	
 	<select id="getCommoditiesLike" parameterType="CommodityInfo" resultMap="commoditymap">
-        select * from commodity where des like '%${des}%' or classifiction1 like '%${des}'
+        select * from commodity where des like '%${des}%' or classifiction1 like '%${des}%'
    	</select>
    	
    	<select id="getCommodities" parameterType="CommodityInfo" resultMap="commoditymap">
