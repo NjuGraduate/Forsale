@@ -54,10 +54,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="container">
 		<%@ include file="Header.jsp" %>
-		<div class="input-group">
-        	<input type="text" class="form-control input-lg">
-        	<span class="input-group-addon btn btn-primary searchBtn"><strong>搜索商品</strong></span>
-    	</div>
 	    <div class="searchContainer">
 	    </div>
 		<%@ include file="Footer.jsp" %>
