@@ -259,7 +259,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	});
     	
     	function sellerChamp(json){
-    		let data = JSON.parse(json);
     		let buyer = document.getElementsByClassName("buyerChampion")[0];
     		let seller = document.getElementsByClassName("sellerChampion")[0];
     		var s = json;
