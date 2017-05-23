@@ -100,6 +100,7 @@ public class ShopInfoController {
 		ObjectMapper mapper = new ObjectMapper();
 		ShopInfo shop = new ShopInfo();
 		shop.setDes(str);
+		shop.setName(str);
 		List<ShopInfo> list = shopInfoMapper.getShopsLike(shop);
 		try {
 			model.addAttribute("list",mapper.writeValueAsString(list));

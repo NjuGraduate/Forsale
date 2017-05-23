@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <select id="getShopsLike" parameterType="ShopInfo" resultMap="shopmap">
-        select * from shop where name like '%${des}%' or des like '%${des}%'
+        select * from shop where binary name like concat(concat('%',#{des}),'%') or binary des like concat(concat('%',#{des}),'%')
    </select>
    
    
