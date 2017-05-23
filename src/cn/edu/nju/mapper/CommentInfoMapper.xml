@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cn.edu.nju.mapper.CommentInfoMapper">
    	<resultMap type="CommentInfo" id="commentmap">
    	  <result property="id" column="id"/>
+   	  <result property="commodity_id" column="commodity_id"/>
       <result property="content" column="content"/>
       <result property="time" column="time"/>
       <result property="seller_account" column="seller-account"/>
@@ -12,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </resultMap>
      
    <insert id="addComment" parameterType="CommentInfo">
-        insert into comment(name,rank,des,user_account) values(#{name},#{rank},#{des},#{user_account})
+        insert into comment(commodity_id,content,time,buyer_account,seller_account) values(#{commodity_id},#{content},#{time},#{buyer_account},#{seller_account})
    </insert>
  
    <delete id="removeComment" parameterType="CommentInfo">
@@ -37,8 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from comment where id=#{id}
    </select>
    
-   <select id="getCommentByUserAccount" parameterType="UserInfo" resultMap="commentmap">
-        select * from comment where user_account=#{account}
+   <select id="getCommentByCommodityId" parameterType="CommodityInfo" resultMap="commentmap">
+        select * from comment where commodity_id=#{commodity_id}
+   </select>
+   
+   <select id="getCommentByCommodityUserAccount" parameterType="CommodityInfo" resultMap="commentmap">
+        select * from comment where seller_account=#{seller_account}
    </select>
    
 </mapper>

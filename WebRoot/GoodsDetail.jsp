@@ -18,18 +18,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/form-elements.css">
     <link rel="stylesheet" href="css/goodsDetail.css">
+    <link rel="stylesheet" href="css/comments.css">
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/Menu.js"></script>
     <script src="js/clothes/advertisement.js"></script>
-    <script src="js/accordion.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
 	<script>
 		$(document).ready(function (){
-			detail(${detail});
+			detail(${detail}); 
 		}); 
 		function detail(goods){
+			let coId = document.getElementById("commentGoods");
+			coId.value = goods.id;
+			
+			$.getJSON({
+				url:"boardInfoController/getBoard.do?id="+goods.id,
+				success:getComments
+			});
+			
 			let container = document.getElementsByClassName("goodsDesc")[0];
 			let div = document.createElement("div");
 			div.classList.add("imgDesc");
@@ -55,7 +63,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		};
 		function test(){
 			let te = document.getElementById("test");
-			te.value = ${detail}.id;
+			if(${detail}.id)
+				te.value = ${detail}.id;
+			else{
+				alert("商品已不存在");
+			}
 		}
 		function test2(){
 			let test2 = document.getElementById("test2");
@@ -65,6 +77,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				alert("商品已不存在");
 			}
 		}
+		
+		function confirmLike(){
+			var ret = window.confirm("确定?");
+    		if(ret){
+    			$.post({
+    				url:"commodityInfo/collectCommodity.do",
+    				data:{id:${detail}.id},
+    				success:reloadPage
+    			});
+    		}else{
+    			return false;
+    		}
+		}
+		function confirmBuy(){
+			var ret = window.confirm("确定?");
+    		if(ret){
+    			$.post({
+    				url:"commodityInfo/buyCommodity.do",
+    				data:{id:${detail}.id},
+    				success:reloadPage
+    			});
+    		}else{
+    			return false;
+    		}
+		}
+		function reloadPage(){
+			window.location.href="http://localhost:8080/forsale/Cart.jsp";
+		}
+		function refresh(){
+			window.location.href="http://localhost:8080/forsale/GoodsDetail.jsp";
+		}
+		
+		
+		
+		function getComments(json){
+			let userComment = document.getElementsByClassName("userBody")[0];
+			let data = JSON.parse(json);
+			for(item of data){
+				let tr = document.createElement("tr");
+				let name = document.createElement("td");
+				name.innerHTML = item.buyer_account
+				let account = document.createElement("td");
+				account.innerHTML = item.seller_account;
+				let des = document.createElement("td");
+				des.innerHTML = item.content;
+				let time = document.createElement("td");
+				time.innerHTML = item.time;
+				tr.appendChild(name);
+				tr.appendChild(account);
+				tr.appendChild(des);
+				tr.appendChild(time);
+				userComment.appendChild(tr);
+			}
+		}
+		
 	</script>
 </head>
 <body>
@@ -83,26 +150,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <br><br><br><br><br><br>
                 <div class="btnGroup">
-					<form role="form" action="commodityInfo/collectCommodity.do" method="post">
-						<button class="btn col-sm-3" id="likeBtn" type="submit" onclick=test()>加入购物车</button>
-						<input class="hidden" name="commodity" id="test" value=${detail}> 
-					</form>
+					<button class="btn col-sm-3" id="likeBtn" onclick=confirmLike()>加入购物车</button>
                     <span class="col-sm-4"></span>
-                    <form role="form" action="commodityInfo/buyCommodity.do" method="post">
-	                    <button class="btn col-sm-3" id="buyBtn" type="submit">立即购买</button>
-	                    <input class="hidden" name="commodity" id="test2" value=${detail}>
-                    </form>
+	                <button class="btn col-sm-3" id="buyBtn" onclick=confirmBuy()>立即购买</button>
                 </div>
             </div>
         </div>
-        <div class="goodsComments">
-        	<div class="publishComments"> 
-        		
-        	</div>
-        	<div class="checkComments">
-        		
-        	</div>
-        </div>
+            <div class="publishComments">
+        <form role="form" action="boardInfoController/board.do" method="post" class="bootstrap-frm">
+            <h1>评论框
+                <span>请留下您对商品的评论，给其他用户参考</span>
+            </h1>
+            <label>
+                <span>Message :</span>
+                <textarea id="message" name="message" placeholder="请在此输入您的评论..."></textarea>
+                
+                <input class="hidden" name="id" id="commentGoods">
+            </label>
+            <label>
+                <span>&nbsp;</span>
+                <button class="btn btn-primary" type="submit">提交</button>
+            </label>
+        </form>
+    </div>
+    <div class="checkComments">
+        <table>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-sm-2">评价者</th>
+                        <th class="col-sm-2">卖家</th>
+                        <th class="col-sm-6">评论内容</th>
+                        <th class="col-sm-2">评论时间</th>
+                    </tr>
+                </thead>
+                <tbody class="userBody">
+                </tbody>
+            </table>
+        </table>
+    </div>
     </div>
     <%@ include file="Footer.jsp" %>
 </div>
