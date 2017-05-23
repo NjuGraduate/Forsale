@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/chart.js"></script>
     
     <script>
     	$.getJSON({
@@ -252,8 +253,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		window.location.href="http://localhost:8080/forsale/Master.jsp";
     	}
     	
-    </script>
+    	$.getJSON({
+    		url:"managerActionInfo/recordMax.do",
+    		success:sellerChamp
+    	});
+    	
+    	function sellerChamp(json){
+    		let data = JSON.parse(json);
+    		let buyer = document.getElementsByClassName("buyerChampion")[0];
+    		let seller = document.getElementsByClassName("sellerChampion")[0];
+    		var s = json;
+    		var len = s.length-2;
+    		strs = s.substr(1,len);
+    		strs = strs.split(";");
+    		//买的最多的用户
+   			var temp = strs[0];
+   			var strtemp = temp.split(":");
+   			let buyertr = document.createElement("tr");
+   			let buyaccount = document.createElement("td");
+   			buyaccount.innerHTML = strtemp[0];
+   			let buynumber = document.createElement("td");
+   			buynumber.innerHTML = strtemp[1];
+   			buyertr.appendChild(buyaccount);
+   			buyertr.appendChild(buynumber);
+   			buyer.appendChild(buyertr);
+   			//卖最多的用户
+   			var temp2 = strs[1];
+   			var strtemp2 = temp2.split(":");
+   			let sellertr = document.createElement("tr");
+   			let selleraccount = document.createElement("td");
+   			selleraccount.innerHTML = strtemp2[0];
+   			let sellernumber = document.createElement("td");
+   			sellernumber.innerHTML = strtemp2[1];
+   			sellertr.appendChild(selleraccount);
+   			sellertr.appendChild(sellernumber);
+   			seller.appendChild(sellertr);
+    	}
+    	
+    	$.getJSON({
+    		url:"managerActionInfo/commentMax.do",
+    		success:commentsChampion
+    	});
+    	function commentsChampion(json){
+    		let data = JSON.parse(json);
+    		let buyer = document.getElementsByClassName("commentChampion")[0];
+    		let seller = document.getElementsByClassName("becommentChampion")[0];
+    		var s = json;
+    		var len = s.length-2;
+    		strs = s.substr(1,len);
+    		strs = strs.split(";");
+    		//买的最多的用户
+   			var temp = strs[0];
+   			var strtemp = temp.split(":");
+   			let buyertr = document.createElement("tr");
+   			let buyaccount = document.createElement("td");
+   			buyaccount.innerHTML = strtemp[0];
+   			let buynumber = document.createElement("td");
+   			buynumber.innerHTML = strtemp[1];
+   			buyertr.appendChild(buyaccount);
+   			buyertr.appendChild(buynumber);
+   			buyer.appendChild(buyertr);
+   			//卖最多的用户
+   			var temp2 = strs[1];
+   			var strtemp2 = temp2.split(":");
+   			let sellertr = document.createElement("tr");
+   			let selleraccount = document.createElement("td");
+   			selleraccount.innerHTML = strtemp2[0];
+   			let sellernumber = document.createElement("td");
+   			sellernumber.innerHTML = strtemp2[1];
+   			sellertr.appendChild(selleraccount);
+   			sellertr.appendChild(sellernumber);
+   			seller.appendChild(sellertr);
+    	}
+</script>
 
+<style>
+    canvas{position:absolute;top:150px;left:500px;}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -282,6 +358,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    	<li>
 	                        	<div class="linkDiv">
 	                            	<a href="#xw4" data-toggle="tab">广告管理</a>
+	                        	</div>
+	                    	</li>
+	                    	<li>
+	                        	<div class="linkDiv">
+	                            	<a href="#xw5" data-toggle="tab">销量统计</a>
+	                        	</div>
+	                    	</li>
+	                    	<li>
+	                        	<div class="linkDiv">
+	                            	<a href="#xw6" data-toggle="tab">分月销量统计</a>
+	                        	</div>
+	                    	</li>
+	                    	<li>
+	                        	<div class="linkDiv">
+	                            	<a href="#xw7" data-toggle="tab">评论统计</a>
+	                        	</div>
+	                    	</li>
+	                    	<li>
+	                        	<div class="linkDiv">
+	                            	<a href="#xw8" data-toggle="tab">分月评论统计</a>
 	                        	</div>
 	                    	</li>
 	                	</ul>
@@ -355,6 +451,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    	
 						  	</tbody>
 						</table>
+		            </div>
+		            <div class="tab-pane" id="xw5">
+		                <table class="table table-hover">
+							<caption>平台销售冠军</caption>
+						  	<thead>
+						    	<tr>
+						      	<th>卖家账号</th>
+						      	<th>成交数量</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody class="sellerChampion">
+						    	
+						  	</tbody>
+						</table>
+						<table class="table table-hover">
+							<caption>平台购物冠军</caption>
+						  	<thead>
+						    	<tr>
+						      	<th>买家账号</th>
+						      	<th>成交数量</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody class="buyerChampion">
+						    	
+						  	</tbody>
+						</table>
+		            </div>
+		            <div class="tab-pane" id="xw6">
+		            	<p>分月销量统计表</p>
+				        <canvas width="800" height="400" id="canvas"> </canvas>
+		            </div>
+		            <div class="tab-pane" id="xw7">
+		                <table class="table table-hover">
+							<caption>平台评论统计</caption>
+						  	<tbody class="commentsBody">
+							    <table class="table table-hover">
+								<caption>平台活跃冠军</caption>
+							  	<thead>
+							    	<tr>
+							      	<th>用户账号</th>
+							      	<th>评论数量</th>
+							    	</tr>
+							  	</thead>
+							  	<tbody class="commentChampion">
+							    	
+							  	</tbody>
+								</table>
+								<table class="table table-hover">
+									<caption>被评冠军</caption>
+								  	<thead>
+								    	<tr>
+								      	<th>卖家账号</th>
+								      	<th>被评论数量</th>
+								    	</tr>
+								  	</thead>
+								  	<tbody class="becommentChampion">
+								    	
+								  	</tbody>
+								</table>
+						  	</tbody>
+						</table>
+		            </div>
+		            <div class="tab-pane" id="xw8">
+				    	<p>分月评论统计表</p>
+		        		<canvas width="800" height="400" id="canvas2"></canvas>
 		            </div>
 		        </div>
 		    </div>
