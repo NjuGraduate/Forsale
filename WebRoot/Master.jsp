@@ -327,7 +327,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 
 <style>
-    canvas{position:absolute;top:150px;left:500px;}
+    canvas{position:absolute;top:150px;left:650px;}
 </style>
 </head>
 <body>

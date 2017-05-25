@@ -18,6 +18,15 @@
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+    	$.getJSON({
+    		url:"",
+    		success:sell
+    	});
+    	function sell(json){
+    		alert(json);
+    	}
+    </script>
 
 </head>
 <body>
