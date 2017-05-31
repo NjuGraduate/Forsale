@@ -396,7 +396,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        	</div>
 	    	</div>
 		    <div class="manageContainer">
-		        <div class="tab-content">
+		        <div class="tab-content" style="height:auto">
 		            <div class="tab-pane active fade in" id="xw1">
 			        	<table class="table table-hover">
 							<caption>用户列表</caption>
