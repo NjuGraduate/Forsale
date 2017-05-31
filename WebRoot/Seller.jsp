@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/Menu.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/myalert.js"></script>
     <script>
     	var shopExist = 0;
     
@@ -82,11 +83,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	function test(id){
-    		$.post({
-    			url:"commodityInfo/removeCommodity.do",
-    			data: { id: id },
-    			success:refresh
-    		})
+    		zdconfirm('确认框','确定删除此商品？',function(r){  
+    		     if(r)  
+    		      {  
+    		         //...点确定之后执行的内容  
+    		         $.post({
+    					url:"commodityInfo/removeCommodity.do",
+    					data: { id: id },
+    					success:refresh
+    				});
+    		      }  
+    		    });  
+    		
     	}
     	function refresh(){
     		window.location.reload();
@@ -94,21 +102,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	
     	function requestAdvertisement(id){
-    		$.post({
-    			url:"advertisementInfo/addAdvertisement.do",
-    			data: {id:id}
-    		});
+    		zdconfirm('确认框','确定申请广告？',function(r){  
+      		     if(r)  
+      		      {  
+      		         //...点确定之后执行的内容  
+      		    	$.post({
+      	    			url:"advertisementInfo/addAdvertisement.do",
+      	    			data: {id:id}
+      	    		});
+      		      }  
+      		    });
+    		
     	}
-    	
     	function addShop(id){
-    		var ret = window.confirm("确定?");
-    		if(ret){
-    			alert(shopExist);
-	    		$.post({
+    		zdconfirm('确认框','确定加入店铺？',function(r){  
+   		     if(r)  
+   		      {  
+   		         //...点确定之后执行的内容  
+   		    	$.post({
 	    			url:"shopInfo/getIntoShop.do",
 	    			data:{id:id}
 	    		});
-    		}
+   		      }  
+   		    });  
     	}
     	
     	

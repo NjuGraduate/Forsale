@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<base href="<%=basePath%>">
+	<base href="<%=basePath%>"> 
     <meta charset="UTF-8">
     <title>商品详情页面</title>
     <link rel="stylesheet" href="css/common.css">
@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/clothes/advertisement.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/myalert.js"></script>
 	<script>
 		$(document).ready(function (){
 			detail(${detail}); 
@@ -79,28 +80,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		function confirmLike(){
-			var ret = window.confirm("确定?");
-    		if(ret){
-    			$.post({
-    				url:"commodityInfo/collectCommodity.do",
-    				data:{id:${detail}.id},
-    				success:reloadPage
-    			});
-    		}else{
-    			return false;
-    		}
+			zdconfirm('确认框','确定加入购物车？',function(r){  
+	   		     if(r)  
+	   		      {  
+	   		         //...点确定之后执行的内容  
+	   		    	$.post({
+	    				url:"commodityInfo/collectCommodity.do",
+	    				data:{id:${detail}.id},
+	    				success:reloadPage
+	    			});
+	   		      }  
+	   		    }); 
 		}
 		function confirmBuy(){
-			var ret = window.confirm("确定?");
-    		if(ret){
-    			$.post({
-    				url:"commodityInfo/buyCommodity.do",
-    				data:{id:${detail}.id},
-    				success:reloadPage
-    			});
-    		}else{
-    			return false;
-    		}
+			zdconfirm('确认框','确定加入购物车？',function(r){  
+	   		     if(r)  
+	   		      {  
+	   		         //...点确定之后执行的内容  
+	   		    	$.post({
+	    				url:"commodityInfo/buyCommodity.do",
+	    				data:{id:${detail}.id},
+	    				success:reloadPage
+	    			});
+	   		      }  
+	   		    }); 
 		}
 		function reloadPage(){
 			window.location.href="http://localhost:8080/forsale/Cart.jsp";

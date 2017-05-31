@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+ 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/chart.js"></script>
+    <script src="js/myalert.js"></script>
     
     <script>
     	$.getJSON({
@@ -63,14 +64,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
     	}
     	function deleteUser(account){
-    		var ret = window.confirm("确定?");
-    		if(ret){
-    			$.post({
+    		zdconfirm('确认框','确定删除此用户？',function(r){  
+      		     if(r)  
+      		      {  
+      		         //...点确定之后执行的内容  
+      		    	$.post({
         			url:"managerActionInfo/banUser.do",
         			data: { account: account },
         			success:reloadMaster
-        		})
-    		}
+        		});
+      		    }  
+      		});
     	}
     	
     	$.getJSON({
@@ -172,29 +176,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	function deleteCommodity(id){
-    		var ret = window.confirm("确定?");
-    		//当点击确定时 返回 true 
-    		if(ret){
-    			$.post({
-    				url:"commodityInfo/removeCommodity.do",
-        			data: { id: id },
-        			success:reloadMaster
-        		});
-    		}
+    		zdconfirm('确认框','确定删除此商品？',function(r){  
+      		     if(r)  
+      		      {  
+      		         //...点确定之后执行的内容  
+      		    	$.post({
+        				url:"commodityInfo/removeCommodity.do",
+            			data: { id: id },
+            			success:reloadMaster
+            		});
+      		      }  
+      		    });  
     	}
     	function refresh(){
     		window.location.reload();
     	}
     	
     	function agreeAds(id){
-    		$.post({
-    			url:"managerActionInfo/reviewAdSuccess.do",
-    			data:{id:id},
-    			success:reloadMaster
-    		});
+    		zdconfirm('确认框','确定通过此广告？',function(r){  
+     		     if(r)  
+     		      {  
+     		         //...点确定之后执行的内容  
+     		    	$.post({
+     	    			url:"managerActionInfo/reviewAdSuccess.do",
+     	    			data:{id:id},
+     	    			success:reloadMaster
+     	    		});
+     		      }  
+     		    });
     	}
-    	
-    	
     	
     	$.getJSON({
     		url:"advertisementInfo/getAllAds.do",
@@ -239,15 +249,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	}
     	
     	function deleteAds(id){
-    		var ret = window.confirm("确定?");
-    		//当点击确定时 返回 true 
-    		if(ret){
-    			$.post({
-        			url:"managerActionInfo/reviewAdFail.do",
-        			data: { id: id },
-        			success:reloadMaster
-        		});
-    		}
+    		zdconfirm('确认框','确定删除广告？',function(r){  
+      		     if(r)  
+      		      {  
+      		         //...点确定之后执行的内容  
+      		    	$.post({
+            			url:"managerActionInfo/reviewAdFail.do",
+            			data: { id: id },
+            			success:reloadMaster
+            		});
+      		      }  
+      		    });
     	}
     	function reloadMaster(){
     		window.location.href="http://localhost:8080/forsale/Master.jsp";
@@ -327,7 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 
 <style>
-    canvas{position:absolute;top:150px;left:650px;}
+    canvas{position:relative;top:100px;left:20px;}
 </style>
 </head>
 <body>
