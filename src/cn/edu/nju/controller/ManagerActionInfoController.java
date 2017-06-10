@@ -290,7 +290,7 @@ public class ManagerActionInfoController {
 			advertisementInfoMapper.updateAdvertisement(adr);
 			sendEmail(adr.getUser_account(),"congratulation for passing your advertisement"+comr.getId()+"Description:"+comr.getDes());
 		}
-		return "adManage";
+		return "Master";
 	}
 	
 	@RequestMapping("reviewAdFail.do")
