@@ -20,11 +20,76 @@
     <script src="js/scripts.js"></script>
     <script>
     	$.getJSON({
-    		url:"",
+    		url:"commodityInfo/showSellerOrder.do",
     		success:sell
     	});
     	function sell(json){
-    		alert(json);
+    		let data = JSON.parse(json);
+    		let xw1 = document.getElementById("xw1");
+    		for(var i = 0; i <data.length;i++){
+    			let buyDiv = document.createElement("div");
+    			buyDiv.classList.add("exchangeGoods");
+    			let buyImg = document.createElement("img");
+    			buyImg.src = data[i].coPic;
+    			let buyP = document.createElement("p");
+    			buyP.innerHTML = data[i].coDes;
+    			buyDiv.appendChild(buyImg);
+    			buyDiv.appendChild(buyP);
+    			xw1.appendChild(buyDiv);
+    	}
+    	}
+    	
+    	$.getJSON({
+    		url:"commodityInfo/getCommodities.do",
+    		success:notSell
+    	});
+    	function notSell(json){
+    		let data = JSON.parse(json);
+    		let container = document.getElementById("goodsContainer");
+    		for (let item of data) { 
+    			let div = document.createElement("div");
+    			div.classList.add("exchangeGoods");
+    			let a = document.createElement("a");
+    			div.appendChild(a);
+    			let img = document.createElement("img");
+    			img.src = item.pic;
+    			a.appendChild(img);
+    			let xxx = document.createElement("p");
+    			xxx.innerHTML = item.des+'<br><br>'+'有意者联系QQ：<span>543372027</span>';
+    			a.appendChild(xxx);
+    			/*申请广告*/
+    			let btn1 = document.createElement("button");
+    			btn1.classList.add("btn-primary");
+    			btn1.classList.add("btn");
+    			btn1.style.width="95%";
+    			btn1.style.margin = "5px";
+    			btn1.innerHTML = "申请广告";
+    			btn1.onclick = function() {requestAdvertisement(item.id)};
+    			/*加入店铺*/
+    			let btn3 = document.createElement("button");
+    			btn3.classList.add("btn-primary");
+    			btn3.classList.add("btn");
+    			btn3.innerHTML = "加入店铺";
+    			btn3.style.width="95%";
+    			btn3.style.margin = "5px";
+    			btn3.onclick = function() {addShop(item.id);};
+    			
+    			/*删除商品*/
+    			let btn2 = document.createElement("button");
+    			btn2.classList.add("btn-danger");
+    			btn2.classList.add("btn");
+    			btn2.innerHTML = "删除商品";
+    			btn2.style.width="95%";
+    			btn2.style.margin="5px";
+    			btn2.onclick = function() {test(item.id);};
+    			
+    			div.appendChild(btn1);
+    			div.appendChild(btn3);
+    			div.appendChild(btn2);
+    			
+    			container.appendChild(div);
+    			a.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +item.id;
+    		}
     	}
     </script>
 
@@ -58,56 +123,18 @@
     <div class="exchangeContainer">
         <div class="tab-content">
             <div class="tab-pane active fade in" id="xw1">
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/001.jpg" alt="商品图片">
-                    <p>这是我手里的一双李宁篮球鞋，95成新，42码，我想要换一双41码的蓝球鞋<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/002.jpg" alt="商品图片">
-                    <p>这是我手里的一双科比毒液6，9成新，40码，我想要换一双41码的蓝球鞋，最好是白色或者灰色的<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/003.jpg" alt="商品图片">
-                    <p>这是我手里的一双乔1，9成新，42码，换一双41码乔1<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/001.jpg" alt="商品图片">
-                    <p>这是我手里的一双李宁篮球鞋，95成新，42码，我想要换一双41码的蓝球鞋<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/music/002.jpg" alt="商品图片">
-                    <p>这是我手里的一把尤克里里，95成新，买回来没怎么弹过，闲置浪费地方也舍不得扔掉，我想要换一把吉他<br>
-                        有意者联系QQ：<span>543372027</span></p>
-                </div>
             </div>
             <div class="tab-pane" id="xw2">
-                <div class="exchangeGoods">
-                    <img src="./images/clothes/female/001.jpg" alt="商品图片">
-                    <p>这是我手里的一件雪纺衫，95成新，L码，我想要换一件白色M码的雪纺衫<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/002.jpg" alt="商品图片">
-                    <p>这是我手里的一双科比毒液6，9成新，40码，我想要换一双41码的蓝球鞋，最好是白色或者灰色的<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/003.jpg" alt="商品图片">
-                    <p>这是我手里的一双乔1，9成新，42码，换一双41码乔1<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/shoes/003.jpg" alt="商品图片">
-                    <p>这是我手里的一双乔1，9成新，42码，换一双41码乔1<br>有意者联系QQ：<span>543372027</span></p>
-                </div>
-                <div class="exchangeGoods">
-                    <img src="./images/shoes/music/002.jpg" alt="商品图片">
-                    <p>这是我手里的一把尤克里里，95成新，买回来没怎么弹过，闲置浪费地方也舍不得扔掉，我想要换一把吉他<br>
-                        有意者联系QQ：<span>543372027</span></p>
-                </div>
+            	<div id="goodsContainer">
+            	
+            	</div>
             </div>
         </div>
     </div>
     <div class="position">
         <img src="./images/components/line.png" alt="" width="100%">
     </div>
+    <div class="pos"></div>
 	<%@ include file="Footer.jsp" %>
 </div>
 </body>

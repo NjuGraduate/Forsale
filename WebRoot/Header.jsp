@@ -17,6 +17,13 @@
 				temp.innerHTML = "欢迎您！ "+account.account+" (点击退出登录)";
 				temp.href = "${pageContext.request.contextPath}/userinfo/logout.do";
 				temp2.innerHTML = "点击重新注册";
+				if(account.account == "admin@smail.nju.edu.cn"){
+					let user = document.getElementById("checkUser");
+					user.innerHTML = "管理员";
+					user.href="./Master.jsp";
+				}else{
+					user.href = "./UserInfoDetail.jsp";
+				}
 			}
 		}
 </script>
@@ -36,7 +43,7 @@
                 <li>
                     <a href="./UserInfoDetail.jsp">我的二手</a>
                     <ul id="myForSale">
-                        <li><a href="./Master.jsp">我的二手</a></li>
+                        <li><a href="./Master.jsp" id="checkUser">我的二手</a></li>
                         <li><a href="./Cart.jsp">已买的二手</a></li>
                         <li><a href="./exchangeReq.jsp">我要置换</a></li>
                     </ul>

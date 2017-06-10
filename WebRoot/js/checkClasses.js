@@ -8,8 +8,6 @@ var sheng_json=[
     {sheng:'美妆',shi:['美妆','洗护','保健品']},
     {sheng:'手表',shi:['珠宝','眼镜','手表']},
     {sheng:'户外',shi:['运动','户外','乐器']},
-    {sheng:'房子',shi:['房产','装修','材料']},
-    {sheng:'汽车',shi:['汽车','二手车','汽车用品']},
     {sheng:'家具',shi:['家具','家饰','家纺']}
 ];
 var sheng_length = sheng_json.length;

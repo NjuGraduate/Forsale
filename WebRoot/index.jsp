@@ -94,21 +94,233 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				}
     				
     			}else if(data[i].classifiction1 == "鞋靴"){
-    				
+    				if(data[i].classifiction2 == "鞋"){
+    					let femaleContainer = document.getElementById("shoes_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "箱包"){
+    					let maleContainer = document.getElementById("bags_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("parts_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
     			}else if(data[i].classifiction1 == "数码"){
-    				
+    				if(data[i].classifiction2 == "家电"){
+    					let femaleContainer = document.getElementById("home_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "数码"){
+    					let maleContainer = document.getElementById("digit_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("phone_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
     			}else if(data[i].classifiction1 == "美妆"){
-    				
+    				if(data[i].classifiction2 == "美妆"){
+    					let femaleContainer = document.getElementById("cosmetics_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "洗护"){
+    					let maleContainer = document.getElementById("wash_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("health_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
     			}else if(data[i].classifiction1 == "手表"){
-    				
+    				if(data[i].classifiction2 == "珠宝"){
+    					let femaleContainer = document.getElementById("jewelry_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "眼镜"){
+    					let maleContainer = document.getElementById("glasses_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("watch_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
     			}else if(data[i].classifiction1 == "户外"){
-    				
-    			}else if(data[i].classifiction1 == "房子"){
-    				
-    			}else if(data[i].classifiction1 == "汽车"){
-    				
+    				if(data[i].classifiction2 == "运动"){
+    					let femaleContainer = document.getElementById("sports_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "户外"){
+    					let maleContainer = document.getElementById("outdoor_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("music_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
     			}else{
-    				
+    				if(data[i].classifiction2 == "家具"){
+    					let femaleContainer = document.getElementById("furniture_container");
+    					femaleContainer.classList.remove("hidden");
+        				let femaleDiv = document.createElement("div");
+        				let femaleImg = document.createElement("img");
+        				let femaleA = document.createElement("a");
+        				femaleA.innerHTML = "查看详情";
+        				femaleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				femaleImg.src = data[i].pic;
+        				femaleDiv.appendChild(femaleImg);
+        				femaleDiv.appendChild(femaleA);
+        				femaleContainer.appendChild(femaleDiv);
+    				}else if(data[i].classifiction2 == "家饰"){
+    					let maleContainer = document.getElementById("furnishing_container");
+    					maleContainer.classList.remove("hidden");
+        				let maleDiv = document.createElement("div");
+        				let maleImg = document.createElement("img");
+        				let maleA = document.createElement("a");
+        				maleA.innerHTML = "查看详情";
+        				maleA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				maleImg.src = data[i].pic;
+        				maleDiv.appendChild(maleImg);
+        				maleDiv.appendChild(maleA);
+        				maleContainer.appendChild(maleDiv);
+    				}else{
+    					let underContainer = document.getElementById("textile_container");
+    					underContainer.classList.remove("hidden");
+        				let underDiv = document.createElement("div");
+        				let underImg = document.createElement("img");
+        				let underA = document.createElement("a");
+        				underA.innerHTML = "查看详情";
+        				underA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+        				underImg.src = data[i].pic;
+        				underDiv.appendChild(underImg);
+        				underDiv.appendChild(underA);
+        				underContainer.appendChild(underDiv);
+    				}
     			}
     		}
     	}
@@ -132,21 +344,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				adPic.title = data[i].des;
     				adDiv.appendChild(adA);
     			}else if(data[i].classifiction1 == "鞋靴"){
-    				
+    				let adDiv = document.getElementsByClassName("adPic2")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
     			}else if(data[i].classifiction1 == "数码"){
-    				
+    				let adDiv = document.getElementsByClassName("adPic3")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
     			}else if(data[i].classifiction1 == "美妆"){
-    				
+    				let adDiv = document.getElementsByClassName("adPic4")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
     			}else if(data[i].classifiction1 == "手表"){
-    				
+    				let adDiv = document.getElementsByClassName("adPic5")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
     			}else if(data[i].classifiction1 == "户外"){
-    				
-    			}else if(data[i].classifiction1 == "房子"){
-    				
-    			}else if(data[i].classifiction1 == "汽车"){
-    				
+    				let adDiv = document.getElementsByClassName("adPic6")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
     			}else{
-    				
+    				let adDiv = document.getElementsByClassName("adPic7")[0];
+    				let adPic = document.createElement("img");
+    				let adA = document.createElement("a");
+    				adA.href = "${pageContext.request.contextPath}/commodityInfo/goodsDetail.do?id=" +data[i].id;
+    				adA.appendChild(adPic);
+    				adPic.src = data[i].pic;
+    				adPic.title = data[i].des;
+    				adDiv.appendChild(adA);
     			}
     		}
     	}
@@ -236,20 +486,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </li>
                 <li>
                     <div class="linkDiv">
-                        <a href="#xw7" data-toggle="tab">房产/装修/材料</a>
-                        <a href="#content7" data-toggle="tab" class="a2"><span>展开&raquo;</span></a>
-                    </div>
-
-                </li>
-                <li>
-                    <div class="linkDiv">
-                        <a href="#xw8" data-toggle="tab">汽车/二手车/用品</a>
-                        <a href="#content8" class="a2"><span>展开&raquo;</span></a>
-                    </div>
-
-                </li>
-                <li>
-                    <div class="linkDiv">
                         <a href="#xw9" data-toggle="tab">家具/家饰/家纺</a>
                         <a href="#content9" data-toggle="tab" class="a2"><span>展开&raquo;</span></a>
                     </div>
@@ -258,88 +494,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
     <div class="tab-content advertisement" id="banner">
-        <div class="tab-pane active fade in" id="xw1">
+        <div class="tab-pane active" id="xw1">
             <div class="adPic">
             </div>
         </div>
-        <div class="tab-pane" id="xw2">
-            <div class="adPic">
-                <img src="./images/shoes/advertisement/1.jpg"
-                     title="旗下淘宝平台" style="display: block">
-                <img src="./images/shoes/advertisement/2.jpg" title="旗下新浪平台">
-                <img src="./images/shoes/advertisement/3.jpg" title="旗下咸鱼平台">
-                <img src="./images/shoes/advertisement/4.jpg" title="旗下58同城">
-                <img src="./images/shoes/advertisement/5.jpg" title="签约艺人科比-布莱恩特">
+        <div class="tab-pane fade in" id="xw2">
+            <div class="adPic adPic2">
             </div>
         </div>
-        <div class="tab-pane" id="xw3">
-            <div class="adPic">
-                <img src="./images/digit/advertisement/1.jpg"
-                     title="查看家电广告" style="display: block">
-                <img src="./images/digit/advertisement/2.jpg" title="查看家电广告">
-                <img src="./images/digit/advertisement/3.jpg" title="查看家电广告">
-                <img src="./images/digit/advertisement/4.jpg" title="查看家电广告">
-                <img src="./images/digit/advertisement/5.jpg" title="查看家电广告">
+        <div class="tab-pane fade in" id="xw3">
+            <div class="adPic adPic3">
             </div>
         </div>
-        <div class="tab-pane" id="xw4">
-            <div class="adPic">
-                <img src="./images/cosmetics/advertisement/1.jpg"
-                     title="查看化妆品广告" style="display: block">
-                <img src="./images/cosmetics/advertisement/2.jpg" title="查看化妆品广告">
-                <img src="./images/cosmetics/advertisement/3.jpg" title="查看化妆品广告">
-                <img src="./images/cosmetics/advertisement/4.jpg" title="查看化妆品广告">
-                <img src="./images/cosmetics/advertisement/5.jpg" title="查看化妆品广告">
+        <div class="tab-pane fade in" id="xw4">
+            <div class="adPic adPic4">
             </div>
         </div>
-        <div class="tab-pane" id="xw5">
-            <div class="adPic">
-                <img src="./images/watch/advertisement/1.jpg"
-                     title="查看手表广告" style="display: block">
-                <img src="./images/watch/advertisement/2.jpg" title="查看手表广告">
-                <img src="./images/watch/advertisement/3.jpg" title="查看珠宝广告">
-                <img src="./images/watch/advertisement/4.jpg" title="查看珠宝广告">
-                <img src="./images/watch/advertisement/5.jpg" title="查看珠宝广告">
+        <div class="tab-pane fade in" id="xw5">
+            <div class="adPic adPic5">
             </div>
         </div>
-        <div class="tab-pane" id="xw6">
-            <div class="adPic">
-                <img src="./images/sports/advertisement/1.jpg"
-                     title="查看运动品广告" style="display: block">
-                <img src="./images/sports/advertisement/2.jpg" title="查看运动品广告">
-                <img src="./images/sports/advertisement/3.jpg" title="查看运动品广告">
-                <img src="./images/sports/advertisement/4.jpg" title="查看运动品广告">
-                <img src="./images/sports/advertisement/5.jpg" title="查看运动品广告">
+        <div class="tab-pane fade in" id="xw6">
+            <div class="adPic adPic6">
             </div>
         </div>
-        <div class="tab-pane" id="xw7">
-            <div class="adPic">
-                <img src="./images/house/advertisement/1.jpg"
-                     title="查看房屋广告" style="display: block">
-                <img src="./images/house/advertisement/2.jpg" title="查看房屋广告">
-                <img src="./images/house/advertisement/3.jpg" title="查看房屋广告">
-                <img src="./images/house/advertisement/4.jpg" title="查看房屋广告">
-                <img src="./images/house/advertisement/5.jpg" title="查看房屋广告">
-            </div>
-        </div>
-        <div class="tab-pane" id="xw8">
-            <div class="adPic">
-                <img src="./images/cars/advertisement/1.jpg"
-                     title="查看车辆广告" style="display: block">
-                <img src="./images/cars/advertisement/2.jpg" title="查看车辆广告">
-                <img src="./images/cars/advertisement/3.jpg" title="查看车辆广告">
-                <img src="./images/cars/advertisement/4.jpg" title="查看车辆广告">
-                <img src="./images/cars/advertisement/5.jpg" title="查看车辆广告">
-            </div>
-        </div>
-        <div class="tab-pane" id="xw9">
-            <div class="adPic">
-                <img src="./images/furniture/advertisement/1.jpg"
-                     title="查看家具家饰广告" style="display: block">
-                <img src="./images/furniture/advertisement/2.jpg" title="查看衣服广告">
-                <img src="./images/furniture/advertisement/3.jpg" title="查看衣服广告">
-                <img src="./images/furniture/advertisement/4.jpg" title="查看衣服广告">
-                <img src="./images/furniture/advertisement/5.jpg" title="查看衣服广告">
+        <div class="tab-pane fade in" id="xw9">
+            <div class="adPic adPic7">
             </div>
         </div>
         <div class="lib">
@@ -384,251 +564,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           	<p class="line"><img src="./images/components/line.png"></p>
 	          	</div>
         	</div>
-            <h4>鞋靴专栏</h4>
-            <div><img src="./images/shoes/shoes/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/shoes/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/shoes/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/shoes/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/shoes/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/shoes/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/shoes/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>箱包专栏</h4>
-            <div><img src="./images/shoes/bags/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/bags/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/bags/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/bags/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/bags/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/bags/006.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/bags/007.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>配件专栏</h4>
-            <div><img src="./images/shoes/music/001.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/002.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/003.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/004.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/005.jpg" alt=""><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/001.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-            <div><img src="./images/shoes/music/002.jpg" alt="暂无商品"><a href="./html/goodsDetail.html" target="_blank">查看详情</a></div>
-             
         </div>
         <div class="femaleClothes tab-pane fade in" id="content3">
-            <h4>数码专栏</h4>
-            <div>数码</div>
-            <div>数码</div>
-            <div>数码</div>
-            <div>数码</div>
-            <div>数码</div>
-            <div>数码</div>
-            <div>数码</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>家电专栏</h4>
-            <div>家电</div>
-            <div>家电</div>
-            <div>家电</div>
-            <div>家电</div>
-            <div>家电</div>
-            <div>家电</div>
-            <div>家电</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>手机专栏</h4>
-            <div>手机</div>
-            <div>手机</div>
-            <div>手机</div>
-            <div>手机</div>
-            <div>手机</div>
-            <div>手机</div>
-            <div>手机</div>
-             
+        	<div id="digit_container" class="hidden goods-container">
+	            <h4>数码专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="home_container" class="hidden goods-container">
+	            <h4>家电专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="phone_container" class="hidden goods-container">
+	            <h4>手机专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
         </div>
         <div class="femaleClothes tab-pane fade in" id="content4">
-            <h4>美妆专栏</h4>
-            <div>美妆</div>
-            <div>美妆</div>
-            <div>美妆</div>
-            <div>美妆</div>
-            <div>美妆</div>
-            <div>美妆</div>
-            <div>美妆</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>洗护用品专栏</h4>
-            <div>洗护用品</div>
-            <div>洗护用品</div>
-            <div>洗护用品</div>
-            <div>洗护用品</div>
-            <div>洗护用品</div>
-            <div>洗护用品</div>
-            <div>洗护用品</div>
-             
-			<p class="line"><img src="./images/components/line.png"></p> 
-            <h4>保健品专栏</h4>
-            <div>保健品</div>
-            <div>保健品</div>
-            <div>保健品</div>
-            <div>保健品</div>
-            <div>保健品</div>
-            <div>保健品</div>
-            <div>保健品</div>
-             
+            <div id="cosmetics_container" class="hidden goods-container">
+	            <h4>美妆专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="wash_container" class="hidden goods-container">
+	            <h4>洗护专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="health_container" class="hidden goods-container">
+	            <h4>保健品专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
         </div>
         <div class="femaleClothes tab-pane fade in" id="content5">
-            <h4>珠宝专栏</h4>
-            <div>珠宝</div>
-            <div>珠宝</div>
-            <div>珠宝</div>
-            <div>珠宝</div>
-            <div>珠宝</div>
-            <div>珠宝</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>眼镜专栏</h4>
-            <div>眼镜</div>
-            <div>眼镜</div>
-            <div>眼镜</div>
-            <div>眼镜</div>
-            <div>眼镜</div>
-            <div>眼镜</div>
-            <div>眼镜</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>手表专栏</h4>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-             
+            <div id="jewelry_container" class="hidden goods-container">
+	            <h4>珠宝专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="glasses_container" class="hidden goods-container">
+	            <h4>眼镜专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="watch_container" class="hidden goods-container">
+	            <h4>手表专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
         </div>
         <div class="femaleClothes tab-pane fade in" id="content6">
-            <h4>运动专栏</h4>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>户外专栏</h4>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>乐器专栏</h4>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-             
-        </div>
-        <div class="femaleClothes tab-pane fade in" id="content7">
-            <h4>房产专栏</h4>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>装修专栏</h4>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>材料专栏</h4>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-             
-        </div>
-        <div class="femaleClothes tab-pane fade in" id="content8">
-            <h4>汽车专栏</h4>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>二手车专栏</h4>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>汽车用品专栏</h4>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-             
+            <div id="sports_container" class="hidden goods-container">
+	            <h4>运动专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="outdoor_container" class="hidden goods-container">
+	            <h4>户外专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="music_container" class="hidden goods-container">
+	            <h4>乐器专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
         </div>
         <div class="femaleClothes tab-pane fade in" id="content9">
-            <h4>家具专栏</h4>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-            <div>鞋靴</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>家饰专栏</h4>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-            <div>箱包</div>
-             
-            <p class="line"><img src="./images/components/line.png"></p> 
-            <h4>家纺专栏</h4>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-            <div>配件</div>
-             
+            <div id="furniture_container" class="hidden goods-container">
+	            <h4>家具专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="furnishing_container" class="hidden goods-container">
+	            <h4>家饰专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
+        	<div id="textile_container" class="hidden goods-container">
+	            <h4>家纺专栏</h4>
+        		<p class="line"><img src="./images/components/line.png"></p>
+        	</div>
         </div>
     </div>
     <%@ include file="Footer.jsp" %>
